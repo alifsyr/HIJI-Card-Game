@@ -1,4 +1,5 @@
 # HIJI - Card Game
+![hiji-logo](./doc/HIJI_Logo.png)
 
 ## Reference 
 The game logic is built according to [official uno rules](https://en.wikipedia.org/wiki/Uno_(card_game)#Official_rules).
