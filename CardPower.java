@@ -1,7 +1,3 @@
-//interface CardPower
-
-public interface CardPower {
-
-    // method
-    void usePower();
+abstract class CardPower {
+    public void usePower(){};
 }
