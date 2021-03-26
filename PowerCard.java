@@ -1,11 +1,18 @@
-public class PowerCard extends CardAttribute implements CardPower{
+public class PowerCard extends CardAttribute{
     private int power;
 
     public PowerCard() {
         super();
-        setColor((int) ((Math.random() * 5) + 1));
-        int type = (int) ((Math.random() * 2) + 2);
-        setType(type);
+
+        setColor(Color.values() [(int) ((Math.random() * 4) + 1)]);
+
+        int type = (int) ((Math.random() * 2) + 1);
+        if (type == 1) {
+            setType(Type.SKIP);
+        } else {
+            setType(Type.REVERSE);
+        }
+
         setValue(0);
     }
 

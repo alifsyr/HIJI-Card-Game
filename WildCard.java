@@ -1,10 +1,10 @@
-public class WildCard extends CardAttribute implements CardPower {
+public class WildCard extends CardAttribute {
     private int power;
 
     public WildCard() {
         super();
-        setColor(0);
-        setType(4);
+        setColor(Color.BLACK);
+        setType(Type.WILDCARD);
         setValue(0);
     }
 
