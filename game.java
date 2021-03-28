@@ -1,20 +1,34 @@
 import java.util.Timer;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class game{
-    boolean isReverse;
-    int drawPenalty;
-    int turn;
-    Player winner;
+    static final int handSize; // untuk jumlah kartu
+    boolean isReverse; //untuk membalik
+    // false = maju; true = mundur
+    int drawPenalty; //menambah jumlah draw (+2 / +4)
+    int turn; //giliran keberapa
+    Player winner; //menampilkan nama pemenang
+    Player player[]; // array nama pemain
 
-    public void startGame(){
+
+    public static int nextTurn; //giliran bermain
+
+    handSize = 7; 
+// manggil deck
+// jumlah pemain
+    public startGame(){
         //manggil setup game
+        for (int i = 1; i < 6; i++){
+            System.out.println("Player" + i + ": " + player[i])
+        }
     }
     public void step(){
-
+        this.turn = turn;
     }
+
     public void setTimer(){
-        Timer timer = new Timer();
+    // ini pake thread
     }
 
     public Card getTableCard(){
@@ -26,7 +40,11 @@ public class game{
     }
 
     public Player[] viewPlayer(){
-
+        if (isReverse == false) {
+            return (nextPlayer + 1) % 6;
+        } else if (isReverse == true){
+            return (nextPlayer + 6 - 1) % 6;
+        }
     }
 
     public Player[] listPlayer(){
