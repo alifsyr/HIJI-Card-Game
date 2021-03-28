@@ -49,10 +49,10 @@ class SetupGame {
         sc.close();
     }
 
-    // belum ada abstract class
-    // AttributeCard getTableCard() {
+    // method untuk mendapatkan kartu di meja dari cardDeck
+    Card getTableCard() {
 
-    // }
+    }
 
     // untuk dapetin pemain yang main pertama kali secara acak.
     // tinggal diubah jadi type player

@@ -1,6 +1,6 @@
 public class CardSkip extends Card {
-    private int power;
 
+    // Konstruktor
     public CardSkip() {
         super();
 
@@ -8,10 +8,16 @@ public class CardSkip extends Card {
         setType(AttributeType.SKIP);
         setValue(0);
     }
+    public CardSkip(AttributeColor color) {
+        super();
+        setColor(color);
+        setType(AttributeType.SKIP);
+        setValue(0);
+    }
 
     @Override
     public int usePower(int i) {
-        return i += 1;
+        return i + 1;
     }
 }
 

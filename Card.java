@@ -3,6 +3,9 @@ public class Card<Color, Type> implements AttributePower{
     private Color color;
     private Type type;
 
+    // Konstruktor
+    public Card() {}
+
     // Setter
     public void setValue(int value) {
         this.value = value;
