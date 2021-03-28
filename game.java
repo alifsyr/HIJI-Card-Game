@@ -2,44 +2,48 @@ import java.util.Timer;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class game{
-    static final int handSize; // untuk jumlah kartu
-    boolean isReverse; //untuk membalik
+public class Game{
+    private static int handSize = 7; // untuk jumlah kartu
+    private boolean isReverse; //untuk membalik
     // false = maju; true = mundur
-    int drawPenalty; //menambah jumlah draw (+2 / +4)
-    int turn; //giliran keberapa
-    Player winner; //menampilkan nama pemenang
-    Player player[]; // array nama pemain
+    private int drawPenalty; //menambah jumlah draw (+2 / +4)
+    private int turn; //giliran keberapa
+    private player winner; //menampilkan nama pemenang
+    private player player[]; // array nama pemain
 
+    private static int nextTurn; //giliran bermain
 
-    public static int nextTurn; //giliran bermain
+    turn = 0;
 
-    handSize = 7; 
 // manggil deck
 // jumlah pemain
-    public startGame(){
+
+    public void startGame(){
         //manggil setup game
-        for (int i = 1; i < 6; i++){
-            System.out.println("Player" + i + ": " + player[i])
-        }
     }
-    public void step(){
+
+    public int step(){
         this.turn = turn;
+        if (isReverse == true){
+            return (turn + 1) % jmlhPemain; //manggil jumlah pemain
+        } else if (isReverse == false){
+
+        }
     }
 
     public void setTimer(){
     // ini pake thread
+    
     }
 
-    public Card getTableCard(){
-
+    public player getWinner(){
+        if (Card.checkCard = 0){
+            System.out.println(player.getName() + "has win the Game!");
+        }
+        return false;
     }
 
-    public Player getWinner(){
-
-    }
-
-    public Player[] viewPlayer(){
+    public player[] viewPlayer(){
         if (isReverse == false) {
             return (nextPlayer + 1) % 6;
         } else if (isReverse == true){
@@ -47,7 +51,7 @@ public class game{
         }
     }
 
-    public Player[] listPlayer(){
+    public player[] listPlayer(){
 
     }
 
