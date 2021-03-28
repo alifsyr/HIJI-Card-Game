@@ -1,4 +1,4 @@
-public enum Color {
+public enum AttributeColor {
     RED,
     BLUE,
     YELLOW,
