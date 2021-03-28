@@ -1,4 +1,4 @@
-enum Type {
+enum AttributeType {
     NUMBER,
     DRAW,
     REVERSE,
