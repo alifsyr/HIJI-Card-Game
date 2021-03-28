@@ -1,11 +1,11 @@
 public class player extends playerCard{
     private final String name;
-    private final Boolean isHiji;
+    private Boolean isHiji;
 
     // Atribut class player
-    public player(String name, Boolean isHiji){
+    public player(String name){
+        super();
         this.name = name;
-        this.isHiji = isHiji;
     }
 
     // Method menapatkan nama
@@ -15,11 +15,6 @@ public class player extends playerCard{
 
     // Method mengucapkan Hiji
     public void declareHiji(){
-        if(isHiji){
-            getName(); // mengambil nama pemenang
-        }
-        else{
-            addCard() // mungkin(?)
-        }
+        this.isHiji = true;
     }
 }
