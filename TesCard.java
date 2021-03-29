@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TesCard {
-    public static void main(String args[]) {
-        ArrayList<Card> card = new ArrayList<Card>();
-        ArrayList<String> player = new ArrayList<String>();
+    public static void main(String[] args) {
+        ArrayList<Card> card = new ArrayList<>();
+        ArrayList<String> player = new ArrayList<>();
         int playerOrder = 1;
         int currentDrawCard = 0;
         int currentPlayer = 0;
@@ -17,31 +17,31 @@ public class TesCard {
         player.add("Pemain 4");
 
         CardWild wildcard = new CardWild();
-        card.add((Card) wildcard);                                  // Typecasting
+        card.add(wildcard);                                  // Typecasting
         System.out.print("color " + wildcard.getColor());
         System.out.print(" type " + wildcard.getType());
         System.out.println(" value " + wildcard.getValue());
 
         CardSkip skipcard = new CardSkip();
-        card.add((Card) skipcard);                                  // Typecasting
+        card.add(skipcard);                                  // Typecasting
         System.out.print("color " + skipcard.getColor());
         System.out.print(" type " + skipcard.getType());
         System.out.println(" value " + skipcard.getValue());
 
         CardReverse reversecard = new CardReverse();
-        card.add((Card) reversecard);                                  // Typecasting
+        card.add(reversecard);                                  // Typecasting
         System.out.print("color " + reversecard.getColor());
         System.out.print(" type " + reversecard.getType());
         System.out.println(" value " + reversecard.getValue());
 
         CardNumber numbercard = new CardNumber();
-        card.add((Card) numbercard);                                  // Typecasting
+        card.add(numbercard);                                  // Typecasting
         System.out.print("color " + numbercard.getColor());
         System.out.print(" type " + numbercard.getType());
         System.out.println(" value " + numbercard.getValue());
 
         CardDraw drawcard = new CardDraw();
-        card.add((Card) drawcard);                                  // Typecasting
+        card.add(drawcard);                                  // Typecasting
         System.out.print("color " + drawcard.getColor());
         System.out.print(" type " + drawcard.getType());
         System.out.println(" value " + drawcard.getValue());
@@ -76,36 +76,35 @@ public class TesCard {
         tableCardColor = AttributeColor.values() [choosenColor-1];
         System.out.println(tableCardColor);
 
-
-        ArrayList<Card> cardDeck = new ArrayList<Card>();
+        ArrayList<Card> cardDeck = new ArrayList<>();
         // Create Deck --> Insert CardNumber
-        for (var c = 0; c < 4; c++) {
+        for (int c = 0; c < 4; c++) {
             for (var i = 1; i < 10;i++) {
                 CardNumber newCard = new CardNumber(i, AttributeColor.values()[c]);
-                cardDeck.add((Card) newCard);
+                cardDeck.add(newCard);
             }
         }
         // Create Deck --> Insert DrawCard
-        for (var c = 0; c < 4; c++) {
+        for (int c = 0; c < 4; c++) {
             for (var i =1; i < 3; i++) {
                 CardDraw newDrawCard = new CardDraw(2, AttributeColor.values()[c]);
-                cardDeck.add((Card) newDrawCard);
+                cardDeck.add( newDrawCard);
                 CardSkip newSkipCard = new CardSkip(AttributeColor.values()[c]);
-                cardDeck.add((Card) newSkipCard);
+                cardDeck.add(newSkipCard);
                 CardReverse newReverseCard = new CardReverse(AttributeColor.values()[c]);
-                cardDeck.add((Card) newReverseCard);
+                cardDeck.add(newReverseCard);
             }
         }
         // Create Deck --> Insert Wild & Draw 4
-        for (var c = 0; c < 4; c++) {
+        for (int c = 0; c < 4; c++) {
             CardDraw newDrawCard = new CardDraw(4, AttributeColor.BLACK);
-            cardDeck.add((Card) newDrawCard);
+            cardDeck.add(newDrawCard);
             CardWild newWildCard = new CardWild();
-            cardDeck.add((Card) newWildCard);
+            cardDeck.add(newWildCard);
         }
 
-        for (var i = 0; i < cardDeck.size(); i++) {
-            System.out.println(cardDeck.get(i).getType() + " " +cardDeck.get(i).getColor() + " " + cardDeck.get(i).getValue());
+        for (Card c: cardDeck ) {
+            System.out.println(c.getType() + " " +c.getColor() + " " + c.getValue());
         }
     }
 }

@@ -8,6 +8,7 @@ public class CardWild extends Card{
         setValue(0);
     }
 
+
     @Override
     public int usePower(int i) {
         return i;
