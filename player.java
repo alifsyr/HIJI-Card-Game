@@ -1,9 +1,9 @@
-public class player extends playerCard{
+public class Player extends PlayerCard{
     private final String name;
     private Boolean isHiji;
 
     // Atribut class player
-    public player(String name){
+    public Player(String name){
         super();
         this.name = name;
     }

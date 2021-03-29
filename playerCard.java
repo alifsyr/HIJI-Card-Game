@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //inheritance playerCard
-public class playerCard{
+public class PlayerCard{
     // Atribut
 
     private final List<Card> playerCardList = new ArrayList<>(); //belom ada array list card
@@ -11,8 +11,6 @@ public class playerCard{
     public List<Card> getKartu() {
         return playerCardList;
     }
-
-    // masih gak ngerti
 
     // method menghitung sisa kartu player
     public int getCardLeft(){
