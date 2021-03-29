@@ -1,22 +1,40 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-class SetupGame {
+class SetupGame extends cardDeck {
     // atribut
     Card tableCard;
     player[] player;
     int jumlahPemain;
+    playerCard playerCardList;
 
     // method untuk melakukan pengacakan kartu di cardDeck
+    // perlu ditunjukkin deck nya kah (?)
     public void shuffleDeck() {
-
+        Collections.shuffle(cardDeck);
+        for (Card c : cardDeck) {
+            System.out.print(c.getType() + " ");
+            System.out.print(c.getColor() + " ");
+            System.out.print(c.getValue() + " ");
+            System.out.println("");
+        }
+        System.out.println("Deck kartu sudah diacak!");
+        System.out.println("");
     }
 
     // method untuk melakukan pembagian kartu ketiap player
     // + 1 kartu untuk di table
-    public void distributeCard() {
-
-    }
+    // tinggal remove card dari cardDeck
+    // public void distributeCard() {
+    // for (int i = 0; i < cardDeck.size(); i++) {
+    // int numOfCardsPerPlayer = 7;
+    // int positionInHand = i % numOfCardsPerPlayer;
+    // playerCardList[i % jumlahPemain].addCard(cardDeck[i], positionInHand);
+    // }
+    // }
 
     // method untuk mendapatkan jumlah pemain
     // dan menerima nama pemain.
@@ -50,8 +68,10 @@ class SetupGame {
     }
 
     // method untuk mendapatkan kartu di meja dari cardDeck
+    // sebenarnya tinggal ambil kartu pertama dari hasil shuffle
+    // tinggal remove card dari cardDeck
     Card getTableCard() {
-
+        return cardDeck.get(0);
     }
 
     // untuk dapetin pemain yang main pertama kali secara acak.

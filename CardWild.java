@@ -1,4 +1,4 @@
-public class CardWild extends Card{
+public class CardWild extends Card {
     private int power;
 
     public CardWild() {
