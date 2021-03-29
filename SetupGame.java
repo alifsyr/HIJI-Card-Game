@@ -9,7 +9,7 @@ class SetupGame extends cardDeck {
     Card tableCard;
     player[] player;
     int jumlahPemain;
-    playerCard playerCardList;
+    List<List<Card>> playerCardList = new ArrayList<>();
 
     // method untuk melakukan pengacakan kartu di cardDeck
     // perlu ditunjukkin deck nya kah (?)
@@ -25,24 +25,13 @@ class SetupGame extends cardDeck {
         System.out.println("");
     }
 
-    // method untuk melakukan pembagian kartu ketiap player
-    // + 1 kartu untuk di table
-    // tinggal remove card dari cardDeck
-    // public void distributeCard() {
-    // for (int i = 0; i < cardDeck.size(); i++) {
-    // int numOfCardsPerPlayer = 7;
-    // int positionInHand = i % numOfCardsPerPlayer;
-    // playerCardList[i % jumlahPemain].addCard(cardDeck[i], positionInHand);
-    // }
-    // }
-
     // method untuk mendapatkan jumlah pemain
     // dan menerima nama pemain.
     public void getPlayer() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Ada berapa pemain?");
-        int jumlahPemain = sc.nextInt();
+        jumlahPemain = sc.nextInt();
 
         while (jumlahPemain <= 1 || jumlahPemain >= 7) {
             System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
@@ -65,6 +54,75 @@ class SetupGame extends cardDeck {
         }
         System.out.println("Selamat bermain!");
         sc.close();
+    }
+
+    // method untuk melakukan pembagian kartu ketiap player
+    // + 1 kartu untuk di table
+    // tinggal remove card dari cardDeck
+    public void distributeCard() {
+        // for (int i = 0; i < jumlahPemain; i++) {
+        // playerCardList = new ArrayList<Card>(7);
+        // }
+
+        // for (int i = 0; i < cardDeck.size(); i++) {
+        // // int numOfCardsPerPlayer = 7;
+        // // int positionInHand = i % numOfCardsPerPlayer;
+        // playerCardList.add(cardDeck.get(i));
+        // }
+        // // for (Card c : playerCardList) {
+        // // System.out.print(c.getType() + " ");
+        // // System.out.print(c.getColor() + " ");
+        // // System.out.print(c.getValue() + " ");
+        // // }
+        // System.out.println("Deck Pemain 1.");
+        // System.out.println("");
+
+        // // for (player arrPlayer : player) {
+        // // int deckPemain = cardDeck.size() / jumlahPemain;
+        // // for (int i = 0; i < deckPemain; i++) {
+        // // arrPlayer.addCard(cardDeck.get(i));
+        // // }
+        // // System.out.println(arrPlayer);
+        // // }
+
+        for (int i = 0; i < jumlahPemain; i++) {
+            ArrayList<Card> myGroup = new ArrayList<>();
+            playerCardList.add(myGroup);
+            for (int j = 0; j < cardDeck.size(); j++) {
+                // int numOfCardsPerPlayer = 7;
+                // int positionInHand = i % numOfCardsPerPlayer;
+                playerCardList.get(i).add(cardDeck.get(j));
+            }
+        }
+
+        // for (int i = 0; i < jumlahPemain; i++) {
+        // for (Card c : playerCardList.get(0)) {
+        // System.out.print(c.getType() + " ");
+        // System.out.print(c.getColor() + " ");
+        // System.out.print(c.getValue() + " ");
+        // }
+        // }
+        // for (int i = 0; i < playerCardList.size(); i++) {
+        // for (int j = 0; j < playerCardList.get(j).size(); j++) {
+        // for (Card c : playerCardList.get(i)) {
+        // c.getType();
+        // c.getColor();
+        // c.getValue();
+        // }
+        // }
+        // }
+        for (int i = 0; i < playerCardList.size(); i++) {
+            System.out.println("Deck kartu " + player[i].getName() + ":");
+            for (int j = 0; j < playerCardList.get(i).size(); j++) {
+                Card c = playerCardList.get(i).get(j);
+                System.out.print(c.getType() + " ");
+                System.out.print(c.getColor() + " ");
+                System.out.print(c.getValue() + " ");
+            }
+            System.out.println("");
+            System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
+            System.out.println("");
+        }
     }
 
     // method untuk mendapatkan kartu di meja dari cardDeck
