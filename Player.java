@@ -17,4 +17,8 @@ public class Player extends PlayerCard{
     public void declareHiji(){
         this.isHiji = true;
     }
+
+    public Boolean getHiji(){
+        return isHiji;
+    }
 }

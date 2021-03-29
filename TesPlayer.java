@@ -12,11 +12,14 @@ public class TesPlayer {
         listNama.add("Boi");
         listNama.add("Eko");
 
+        // Masukin nama pemain dari listNama dan ngebuat object palyer dengan nama dari listNama
         for (int i = 0; i < listNama.size(); i++){
             Player player = new Player(listNama.get(i));
             playerList.add((Player) player);
-            System.out.print("Player "+ i +" : "+player.)
         }
 
+        System.out.println("Player 2 : "+playerList.get(1).getName());
+        playerList.get(1).declareHiji();
+        System.out.println("Player 2 isHiji : "+playerList.get(1).getHiji());
     }
 }
