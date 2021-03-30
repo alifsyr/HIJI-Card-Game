@@ -4,6 +4,8 @@ import java.util.List;
 //inheritance playerCard
 public class PlayerCard{
     // Atribut
+    private Boolean cardAvail = false;
+    private Card playingCard;
 
     private final List<Card> playerCardList = new ArrayList<Card>(); //belom ada array list card
 
@@ -21,14 +23,12 @@ public class PlayerCard{
 
     // method mengecek kartu yang tersedia
     public void checkCard(Card card){
-        for (int i = 0; i < playerCardList.size(); i++){
-            if(playerCardList.contains(card)){
-                throwCard(i,card);
-            }
-            else{
-                System.out.println("Kartu tidak tersedia!");
-            }
+        if(playerCardList.contains(card)){
+            System.out.println("Kartu tersedia");
+            this.cardAvail = true;
+            return;
         }
+        System.out.println("Kartu tidak tersedia!");
     }
 
     // method menambahkan kartu
@@ -37,9 +37,13 @@ public class PlayerCard{
     }
 
     // method mengeluarkan kartu
-    public Card throwCard(int index, Card card){
-        Card playingCard = card;
-        playerCardList.remove(index);
+    public Card throwCard(Card card){
+        checkCard(card);
+        if(this.cardAvail == true){
+            Card playingCard = card;
+            playerCardList.remove(card);
+            return playingCard;
+        }
         return playingCard;
     }
 }
