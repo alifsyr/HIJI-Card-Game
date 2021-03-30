@@ -1,16 +1,19 @@
-public class Card<Color, Type> implements AttributePower{
+public class Card implements AttributePower{
     private int value;
-    private Color color;
-    private Type type;
+    private AttributeColor color;
+    private AttributeType type;
+
+    // Konstruktor
+    public Card() {}
 
     // Setter
     public void setValue(int value) {
         this.value = value;
     }
-    public void setColor(Color color) {
+    public void setColor(AttributeColor color) {
         this.color = color;
     }
-    public void setType(Type type) {
+    public void setType(AttributeType type) {
         this.type = type;
     }
 
@@ -18,10 +21,10 @@ public class Card<Color, Type> implements AttributePower{
     public int getValue(){
         return value;
     }
-    public Color getColor() {
+    public AttributeColor getColor() {
         return color;
     }
-    public Type getType() {
+    public AttributeType getType() {
         return type;
     }
 
