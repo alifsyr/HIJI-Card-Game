@@ -32,7 +32,6 @@ public class PlayerCard{
     }
 
     // method menambahkan kartu
-    //belom ada array list card
     public void addCard(Card newCard){
         playerCardList.add(newCard);
     }

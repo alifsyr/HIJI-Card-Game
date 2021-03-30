@@ -18,8 +18,21 @@ public class TesPlayer {
             playerList.add((Player) player);
         }
 
+        // Check getName Player
         System.out.println("Player 2 : "+playerList.get(1).getName());
+        
+        CardWild wildcard = new CardWild();
+        // PlayerCard.addCard(wildcard); ini kenapa error :(
+        CardSkip skipcard = new CardSkip();
+        CardReverse reversecard = new CardReverse();
+        CardNumber numbercard = new CardNumber();
+        CardDraw drawcard = new CardDraw();
+        
+        // Check declareHiji
         playerList.get(1).declareHiji();
         System.out.println("Player 2 isHiji : "+playerList.get(1).getHiji());
+
+
+
     }
 }
