@@ -54,7 +54,7 @@ public class TesPlayer {
         
         // Check declareHiji
         System.out.println("Player 1 isHiji sebeleum declareHiji : "+playerList.get(0).getHiji());
-        playerList.get(1).declareHiji();
+        playerList.get(0).declareHiji();
         System.out.println("Player 1 isHiji sesudah declareHiji: "+playerList.get(0).getHiji());
     }
 }
