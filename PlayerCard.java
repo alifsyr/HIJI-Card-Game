@@ -5,7 +5,7 @@ import java.util.List;
 public class PlayerCard{
     // Atribut
 
-    private final List<Card> playerCardList = new ArrayList<>(); //belom ada array list card
+    private final List<Card> playerCardList = new ArrayList<Card>(); //belom ada array list card
 
     // method mengambil kartu
     public List<Card> getKartu() {
@@ -32,7 +32,6 @@ public class PlayerCard{
     }
 
     // method menambahkan kartu
-    //belom ada array list card
     public void addCard(Card newCard){
         playerCardList.add(newCard);
     }
