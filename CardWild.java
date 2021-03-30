@@ -1,4 +1,4 @@
-public class CardWild extends Card {
+public class CardWild extends Card{
     private int power;
 
     public CardWild() {
@@ -7,6 +7,7 @@ public class CardWild extends Card {
         setType(AttributeType.WILDCARD);
         setValue(0);
     }
+
 
     @Override
     public int usePower(int i) {

@@ -1,6 +1,6 @@
 public class CardDraw extends Card {
-    private int power;
 
+    // Konstruktor
     public CardDraw() {
         super();
         setType(AttributeType.DRAW);
@@ -17,8 +17,15 @@ public class CardDraw extends Card {
         }
     }
 
+    public CardDraw(int value, AttributeColor color) {
+        super();
+        setColor(color);
+        setType(AttributeType.DRAW);
+        setValue(value);
+    }
+
     @Override
     public int usePower(int draw) {
-        return draw += getValue();
+        return draw + getValue();
     }
 }

@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-class SetupGame {
+public class SetupGame {
     // atribut
 
     // belum ada abstract class CardAttribute
