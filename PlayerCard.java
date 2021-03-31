@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 //inheritance playerCard
-public class PlayerCard{
+public class PlayerCard {
     // Atribut
     private Boolean cardAvail = false;
     private Card playingCard;
 
-    private final List<Card> playerCardList = new ArrayList<Card>(); //belom ada array list card
+    private final List<Card> playerCardList = new ArrayList<Card>(); // belom ada array list card
 
     // method mengambil kartu
     public List<Card> getKartu() {
@@ -15,15 +15,15 @@ public class PlayerCard{
     }
 
     // method menghitung sisa kartu player
-    public int getCardLeft(){
+    public int getCardLeft() {
         // belum ada array list card
         int count = playerCardList.size();
         return count;
     }
 
     // method mengecek kartu yang tersedia
-    public void checkCard(Card card){
-        if(playerCardList.contains(card)){
+    public void checkCard(Card card) {
+        if (playerCardList.contains(card)) {
             System.out.println("Kartu tersedia");
             this.cardAvail = true;
             return;
@@ -32,14 +32,14 @@ public class PlayerCard{
     }
 
     // method menambahkan kartu
-    public void addCard(Card newCard){
+    public void addCard(Card newCard) {
         playerCardList.add(newCard);
     }
 
     // method mengeluarkan kartu
-    public Card throwCard(Card card){
+    public Card throwCard(Card card) {
         checkCard(card);
-        if(this.cardAvail == true){
+        if (this.cardAvail == true) {
             Card playingCard = card;
             playerCardList.remove(card);
             return playingCard;

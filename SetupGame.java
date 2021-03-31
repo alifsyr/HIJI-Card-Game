@@ -134,7 +134,7 @@ class SetupGame extends CardDeck {
 
     // untuk dapetin pemain yang main pertama kali secara acak.
     // tinggal diubah jadi type player
-    player getFirstPlayer() {
+    Player getFirstPlayer() {
         Random indeksAcak = new Random();
         int i = indeksAcak.nextInt(player.length);
         return player[i];
