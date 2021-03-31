@@ -1,25 +1,25 @@
-public class Player extends PlayerCard{
+public class Player extends PlayerCard {
     public static Object PlayerCard;
     private final String name;
-    private Boolean isHiji;
+    private Boolean isHiji = false;
 
     // Atribut class player
-    public Player(String name){
+    public Player(String name) {
         super();
         this.name = name;
     }
 
     // Method menapatkan nama
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
     // Method mengucapkan Hiji
-    public void declareHiji(){
+    public void declareHiji() {
         this.isHiji = true;
     }
 
-    public Boolean getHiji(){
+    public Boolean getHiji() {
         return isHiji;
     }
 }
