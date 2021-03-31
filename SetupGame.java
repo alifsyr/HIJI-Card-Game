@@ -7,7 +7,7 @@ import java.util.Scanner;
 class SetupGame extends CardDeck {
     // atribut
     Card tableCard;
-    player[] player;
+    Player[] player;
     int jumlahPemain;
     List<List<Card>> playerCardList = new ArrayList<>();
 
@@ -39,13 +39,13 @@ class SetupGame extends CardDeck {
             jumlahPemain = sc.nextInt();
         }
 
-        player = new player[jumlahPemain];
+        player = new Player[jumlahPemain];
 
         for (int i = 0; i < jumlahPemain; i++) {
             System.out.println("Masukkan nama pemain " + (i + 1) + " : ");
             String namaPemain = sc.next();
 
-            player[i] = new player(namaPemain);
+            player[i] = new Player(namaPemain);
         }
         System.out.println("Berikut daftar pemain.");
 
