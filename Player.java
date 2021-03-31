@@ -1,7 +1,7 @@
 public class Player extends PlayerCard {
     public static Object PlayerCard;
     private final String name;
-    private Boolean isHiji;
+    private Boolean isHiji = false;
 
     // Atribut class player
     public Player(String name) {
