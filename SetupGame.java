@@ -111,18 +111,18 @@ class SetupGame extends CardDeck {
         // }
         // }
         // }
-        for (int i = 0; i < playerCardList.size(); i++) {
-            System.out.println("Deck kartu " + player[i].getName() + ":");
-            for (int j = 0; j < playerCardList.get(i).size(); j++) {
-                Card c = playerCardList.get(i).get(j);
-                System.out.print(c.getType() + " ");
-                System.out.print(c.getColor() + " ");
-                System.out.print(c.getValue() + " ");
-            }
-            System.out.println("");
-            System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
-            System.out.println("");
-        }
+        // for (int i = 0; i < playerCardList.size(); i++) {
+        //     System.out.println("Deck kartu " + player[i].getName() + ":");
+        //     for (int j = 0; j < playerCardList.get(i).size(); j++) {
+        //         Card c = playerCardList.get(i).get(j);
+        //         System.out.print(c.getType() + " ");
+        //         System.out.print(c.getColor() + " ");
+        //         System.out.print(c.getValue() + " ");
+        //     }
+        //     System.out.println("");
+        //     System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
+        //     System.out.println("");
+        // }
     }
 
     // method untuk mendapatkan kartu di meja dari cardDeck

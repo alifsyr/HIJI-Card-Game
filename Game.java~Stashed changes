@@ -13,8 +13,6 @@ public class Game{
 
     private static int nextTurn; //giliran bermain
 
-    PlayerCard playercard = new PlayerCard();
-
     public void startGame(){
         //manggil setup game
         SetupGame setupGame = new SetupGame();
@@ -32,7 +30,7 @@ public class Game{
         setupGame.distributeCard();
 
         // tablecard
-        System.out.print("Table Card: ");
+        System.out.println("Table Card: ");
         System.out.print(setupGame.getTableCard().getType() + " ");
         System.out.print(setupGame.getTableCard().getColor() + " ");
         System.out.print(setupGame.getTableCard().getValue() + " ");
@@ -51,21 +49,10 @@ public class Game{
         }
     }
 
-    // public void timer(){
-    //     try {
-    //         Thread.sleep(3000);
-    //         ArrayList<Card> card = new ArrayList<>();
-    //         playerCardList.add(card);
-    //         playerCardList.get(i).add(cardDeck.get(j));
-    //     } catch (InterruptedException ex) {
+    public void setTimer(){
+        // ini pake thread
 
-    //     }
-    // }
-
-    // public void setTimer(){
-    //     // ini pake thread
-
-    // }
+    }
 
 //    public Player getWinner(){
 //        if (Player[].size() == 0){
