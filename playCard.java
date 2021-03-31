@@ -14,7 +14,7 @@ public class playCard {
     public void discard() {
         
     }
-    public getLastCard(){
+    public Card getLastCard(){
         
     }
 }
