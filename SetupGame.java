@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -31,7 +32,15 @@ class SetupGame extends CardDeck {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Ada berapa pemain?");
-        jumlahPemain = sc.nextInt();
+
+        // exception buat input.
+        try {
+            jumlahPemain = sc.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Harap masukkan bilangan integer!");
+            System.out.println("Ulangi permainan.");
+            System.exit(0);
+        }
 
         while (jumlahPemain <= 1 || jumlahPemain >= 7) {
             System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
