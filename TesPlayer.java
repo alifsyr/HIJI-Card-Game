@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TesPlayer {
-    public static void main(String args[]){
-        ArrayList<String> listNama = new ArrayList<String>();
-        ArrayList<Player> playerList = new ArrayList<Player>();
+    public static void main(String[] args){
+        ArrayList<String> listNama = new ArrayList<>();
+        ArrayList<Player> playerList = new ArrayList<>();
         Card kartutersedia;
 
         // membuat objek playerCard
-        PlayerCard playerCard =new PlayerCard();
+        PlayerCard playerCard = new PlayerCard();
 
         // Inisiasi Pemain
         listNama.add("Alif");
@@ -16,9 +16,9 @@ public class TesPlayer {
         listNama.add("Eko");
 
         // Masukin nama pemain dari listNama dan ngebuat object palyer dengan nama dari listNama
-        for (int i = 0; i < listNama.size(); i++){
-            Player player = new Player(listNama.get(i));
-            playerList.add((Player) player);
+        for (String nama: listNama){
+            Player player = new Player(nama);
+            playerList.add(player);
         }
 
         // Check getName Player
@@ -38,14 +38,36 @@ public class TesPlayer {
         playerList.get(0).addCard(numbercard);
 
         // Check playerCardList
-        System.out.println("List kartu player 1 : "+ playerList.get(0).getKartu());
-        System.out.println("List kartu player 2 : "+ playerList.get(1).getKartu());
+//        System.out.println("List kartu player 1 : "+ playerList.get(0).getKartu());
+//        System.out.println("List kartu player 2 : "+ playerList.get(1).getKartu());
+        System.out.println("List kartu player 1 : ");
+        for (Card c : playerList.get(0).getKartu()) {
+            System.out.println(c.getType() + " " + c.getColor() + " " + c.getValue());
+        }
+//        System.out.println("List kartu player 2 : ");
+//        for (Card c : playerList.get(1).getKartu()) {
+//            System.out.println(c.getType() + " " + c.getColor() + " " + c.getValue());
+//        }
 
         // Mengecek kartu yang tersedia
         kartutersedia = playerList.get(0).throwCard(reversecard);
-        System.out.println("Kartu yang dimainkan " + kartutersedia);
+        System.out.println("Pemain 1 mengeluarkan: ");
+        System.out.println("Kartu yang dimainkan " + kartutersedia.getType() + " " + kartutersedia.getColor() + " " + kartutersedia.getValue());
 
-        playerList.get(1).throwCard(numbercard);
+        kartutersedia = playerList.get(0).throwCard(numbercard);
+        if (kartutersedia == null){
+            System.out.println("Kartu tidak tersedia!");
+        } else {
+            System.out.println("Kartu yang dimainkan " + kartutersedia.getType() + " " + kartutersedia.getColor() + " " + kartutersedia.getValue());
+        }
+        kartutersedia = playerList.get(0).throwCard(numbercard);
+        if (kartutersedia == null){
+            System.out.println("Kartu " + numbercard.getType() + " " + numbercard.getColor() + " " + numbercard.getValue() +" tidak tersedia!");
+        } else {
+            System.out.println("Kartu yang dimainkan " + kartutersedia.getType() + " " + kartutersedia.getColor() + " " + kartutersedia.getValue());
+        }
+
+//      playerList.get(1).throwCard(numbercard);
 
         // Check getCardLeft (sisa kartu) pemain
         System.out.println("Sisa kartu player 1 : "+ playerList.get(0).getCardLeft());
