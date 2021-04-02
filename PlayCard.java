@@ -4,10 +4,6 @@ public class PlayCard {
 
     private ArrayList<Card> cardList = new ArrayList<>();
 
-    public PlayCard() {
-
-    }
-
     public boolean checkIsValid(Card out, Card current) {
         if (out.getType() != current.getType()) {
             return false;
@@ -37,7 +33,7 @@ public class PlayCard {
         System.out.println("last card " + cardList.get(cardList.size()-1).printCard());
     }
 
-    public void getPower() {
+    public void getPower(int X) {
 
     }
 

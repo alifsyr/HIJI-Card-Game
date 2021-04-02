@@ -40,7 +40,6 @@ public class Main1 {
             number = sc.nextInt();
         }
 
-
         System.out.println("cardList");
         for (Card c: play.discard()) {
             System.out.println(c.printCard());
