@@ -54,12 +54,20 @@ public class TesPlayer {
         System.out.println("Pemain 1 mengeluarkan: ");
         System.out.println("Kartu yang dimainkan " + kartutersedia.getType() + " " + kartutersedia.getColor() + " " + kartutersedia.getValue());
 
-        Card kartu2 = playerList.get(0).throwCard(numbercard);
-        System.out.println("Kartu yang dimainkan " + kartu2.getType() + " " + kartu2.getColor() + " " + kartu2.getValue());
-        Card kartu3 = playerList.get(0).throwCard(numbercard);
-        System.out.println("Kartu yang dimainkan " + kartu3.getType() + " " + kartu3.getColor() + " " + kartu3.getValue());
+        kartutersedia = playerList.get(0).throwCard(numbercard);
+        if (kartutersedia == null){
+            System.out.println("Kartu tidak tersedia!");
+        } else {
+            System.out.println("Kartu yang dimainkan " + kartutersedia.getType() + " " + kartutersedia.getColor() + " " + kartutersedia.getValue());
+        }
+        kartutersedia = playerList.get(0).throwCard(numbercard);
+        if (kartutersedia == null){
+            System.out.println("Kartu " + numbercard.getType() + " " + numbercard.getColor() + " " + numbercard.getValue() +" tidak tersedia!");
+        } else {
+            System.out.println("Kartu yang dimainkan " + kartutersedia.getType() + " " + kartutersedia.getColor() + " " + kartutersedia.getValue());
+        }
 
-//        playerList.get(1).throwCard(numbercard);
+//      playerList.get(1).throwCard(numbercard);
 
         // Check getCardLeft (sisa kartu) pemain
         System.out.println("Sisa kartu player 1 : "+ playerList.get(0).getCardLeft());

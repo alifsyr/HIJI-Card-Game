@@ -32,12 +32,10 @@ public class PlayerCard {
     // method mengeluarkan kartu
     public Card throwCard(Card card) {
         if (checkCard(card)) {
-            System.out.println("Kartu tersedia");
             Card playingCard = card;
             playerCardList.remove(card);
             return playingCard;
         } else {
-            System.out.println("Kartu tidak tersedia!");
             return null;
         }
     }
