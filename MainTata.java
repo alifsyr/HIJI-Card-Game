@@ -40,7 +40,7 @@ public class MainTata {
             if (runGame.equals(F01)){
                 game.startGame();
             } else if(runGame.equals(F02)){
-                playercard.getKartu();
+                game.listCard();
             } else if(runGame.equals(F03)){
                 
             } else if(runGame.equals(F04)){

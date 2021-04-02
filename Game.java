@@ -57,7 +57,12 @@ public class Game{
         if (currCard instanceof CardReverse){
             playerOrder = card.get(2).usePower(playerOrder);
         }
+    }
 
+    public void listCard(){
+        for(int j = 0; j < playerCardList.size(); j++){
+            System.out.println((j+1)+". " + playercard.getKartu().get(j));
+        }
     }
 
     // public void timer(){
@@ -75,6 +80,20 @@ public class Game{
     //     // ini pake thread
 
     // }
+
+    public void checkHiji(){
+        for (Player p : player){
+            for (int j = 0; j < playerCardList.size(); j++) {
+                if (player[j] == player[currTurn]){
+                    if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
+                        // nambah dua kartu
+                    }
+                }
+            }
+        }
+
+    }
+
 
    public void getWinner(){
     for (int j = 0; j < playerCardList.size(); j++){
