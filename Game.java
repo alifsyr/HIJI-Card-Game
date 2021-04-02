@@ -1,6 +1,9 @@
 import java.util.Timer;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Game{
     private static int handSize = 7; // untuk jumlah kartu
@@ -9,11 +12,16 @@ public class Game{
     private int drawPenalty; //menambah jumlah draw (+2 / +4)
     private static int turn = 0; //giliran keberapa
     private Player winner; //menampilkan nama pemenang
-    private Player player[]; // array nama pemain
-
+    int currTurn = 0;
     private static int nextTurn; //giliran bermain
+    int playerOrder = 1;
 
+    Card tableCard;
+    Player[] player;  // array nama pemain
     PlayerCard playercard = new PlayerCard();
+    ArrayList<Card> card = new ArrayList<>();
+    List<List<Card>> playerCardList = new ArrayList<>();
+    
 
     public void startGame(){
         //manggil setup game
@@ -43,12 +51,12 @@ public class Game{
         System.out.println("");
     }
 
-    public static int step(int jmlhPemain){
-        if (isReverse == true){
-            return (turn + 1) % jmlhPemain; //manggil jumlah pemain
-        } else {
-            return (turn + jmlhPemain - 1) % jmlhPemain;
+    public void step(){
+        currTurn = (currTurn + playerOrder) % player.length;
+        if (/* ini bingung cara baca kartu yang dikeluarin itu gimana*/){
+            playerOrder = card.get(2).usePower(playerOrder);
         }
+
     }
 
     // public void timer(){
@@ -74,26 +82,30 @@ public class Game{
 //        return false;
 //    }
 
-//    public Player[] viewPlayer(){
-//        if (isReverse == false) {
-//            return (nextPlayer + 1) % 6;
-//        } else if (isReverse == true){
-//            return (nextPlayer + 6 - 1) % 6;
-//        }
-//    }
+   public void viewPlayer(){
+    for (int j = 0; j < playerCardList.size(); j++) {
+        if (player[j] == player[currTurn]){
+            System.out.println(player[j].getName() +"sedang giliran");
+            j += 1;
+            System.out.println( player[j].getName() +"giliran berikutnya");
+            System.out.println("");
+        }
+        
+    }
+   }
 
-//    public Player[] listPlayer(int jmlhPemain){
-//        for (int i = 0; i < jmlhPemain; i++){
-//            System.out.println("Pemain " + i + ": ");
-//            System.out.println("Jumlah Kartu: " + Card.getSize);
-//            if (turn == ){
-//                System.out.println("Sedang giliran");
-//            } else if (turn == false){
-//                System.out.println("Tidak sedang giliran");
-//            }
-//        }
-//
-//    }
+   public void listPlayer(){
+            for (int j = 0; j < playerCardList.size(); j++) {
+            System.out.println("Pemain " + j + ": " + player[j].getName());
+            System.out.println("Jumlah Kartu: " + j + ": " +  playerCardList.get(j).size());
+            if (player[j] == player[currTurn]){
+                System.out.println("Sedang giliran");
+            } else {
+                System.out.println("Tidak sedang giliran");
+            }
+            System.out.println("");
+        }
+   }
 
     public void help(){
         System.out.println("How to play the game?");

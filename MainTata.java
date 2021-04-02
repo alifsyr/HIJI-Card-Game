@@ -3,11 +3,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MainTata {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Game game = new Game();
-        PalyerCard playercard = new PlayerCard();
+        PlayerCard playercard = new PlayerCard();
+        List<List<Card>> playerCardList = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
         String runGame;
+        
 
         System.out.println("");
         System.out.println("Pilihan permainan");
@@ -22,32 +24,34 @@ public class MainTata {
 
         for (int i = 0; i >= 0; i++){
             // input player
-            runGame = scan.nextLine();
+            System.out.println("Selamat bermain!");
             System.out.println("");
+            runGame = scan.next();
+            
+            game.startGame();
+            game.help();
+            game.viewPlayer();
+            game.listPlayer();
 
-            if (runGame.toUpperCase() == "F01"){
+            if (runGame.toUpperCase() == "1"){
                 game.startGame();
-                runGame = scan.nextLine();
             } else if(runGame.toUpperCase() == "F02"){
-
+                System.out.println("Selamat bermain!");
             } else if(runGame.toUpperCase() == "F03"){
-                playercard.throwcard();
+                // playercard.throwcard();
             } else if(runGame.toUpperCase() == "F04"){
 
             } else if(runGame.toUpperCase() == "F05"){
 
             } else if(runGame.toUpperCase() == "F06"){
-
+                game.listPlayer();
             } else if(runGame.toUpperCase() == "F07"){
 
             } else if(runGame.toUpperCase() == "F08"){
                 game.help();
             } else {
                 i = -2;
-                System.exit(0);
-            }
-        }
-        ;
-        
-    } 
+            }    
+    }
+}
 }
