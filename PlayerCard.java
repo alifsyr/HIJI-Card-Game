@@ -5,7 +5,6 @@ import java.util.List;
 public class PlayerCard {
     // Atribut
     private Boolean cardAvail = false;
-    private Card playingCard;
 
     private final List<Card> playerCardList = new ArrayList<>(); // belom ada array list card
 

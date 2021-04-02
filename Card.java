@@ -32,4 +32,8 @@ public class Card implements AttributePower{
     public int usePower(int i) {
         return 0;
     }
+
+    public String printCard() {
+        return (getType() + " " + getColor() + " " + getValue());
+    }
 }

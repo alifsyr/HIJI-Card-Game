@@ -1,10 +1,10 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CardDeck {
     ArrayList<Card> cardDeck = new ArrayList<>();
 
     public CardDeck() {
-
         // Create Deck --> Insert CardNumber
         for (int c = 0; c < 4; c++) {
             for (var i = 1; i < 10; i++) {
@@ -31,4 +31,14 @@ public class CardDeck {
             cardDeck.add(newWildCard);
         }
     }
+
+    public Card getCard() {
+        int random = new Random().nextInt(cardDeck.size());
+        return cardDeck.get(random);
+    }
+
+    public ArrayList<Card> getCardDeck() {
+        return cardDeck;
+    }
+
 }
