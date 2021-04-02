@@ -29,7 +29,7 @@ public class MainTata {
             runGame = scan.next();
             
             game.startGame();
-            game.help();
+
             game.viewPlayer();
             game.listPlayer();
 

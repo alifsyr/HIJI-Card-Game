@@ -10,7 +10,7 @@ public class Game{
     private static boolean isReverse; //untuk membalik
     // false = maju; true = mundur
     private int drawPenalty; //menambah jumlah draw (+2 / +4)
-    private static int turn = 0; //giliran keberapa
+    // private static int turn = 0; //giliran keberapa
     private Player winner; //menampilkan nama pemenang
     int currTurn = 0;
     private static int nextTurn; //giliran bermain
@@ -21,7 +21,6 @@ public class Game{
     PlayerCard playercard = new PlayerCard();
     ArrayList<Card> card = new ArrayList<>();
     List<List<Card>> playerCardList = new ArrayList<>();
-    
 
     public void startGame(){
         //manggil setup game
@@ -75,12 +74,13 @@ public class Game{
 
     // }
 
-//    public Player getWinner(){
-//        if (Player[].size() == 0){
-//            System.out.println(Player[] + "has win the Game!");
-//        }
-//        return false;
-//    }
+   public void getWinner(){
+    for (int j = 0; j < playerCardList.size(); j++){
+        if (playerCardList.get(j).size() == 0){
+            System.out.println(player[j].getName() + " telah memenangkan game!");
+        }
+    }
+   }
 
    public void viewPlayer(){
     for (int j = 0; j < playerCardList.size(); j++) {
@@ -90,7 +90,6 @@ public class Game{
             System.out.println( player[j].getName() +"giliran berikutnya");
             System.out.println("");
         }
-        
     }
    }
 
