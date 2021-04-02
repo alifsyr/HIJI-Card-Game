@@ -16,11 +16,13 @@ public class Game{
     private static int nextTurn; //giliran bermain
     int playerOrder = 1;
 
+    Card currCard;
     Card tableCard;
     Player[] player;  // array nama pemain
     PlayerCard playercard = new PlayerCard();
     ArrayList<Card> card = new ArrayList<>();
     List<List<Card>> playerCardList = new ArrayList<>();
+    ArrayList<Player> playerList = new ArrayList<>();
 
     public void startGame(){
         //manggil setup game
@@ -50,13 +52,13 @@ public class Game{
         System.out.println("");
     }
 
-    // public void step(){
-    //     currTurn = (currTurn + playerOrder) % player.length;
-    //     if (/* ini bingung cara baca kartu yang dikeluarin itu gimana*/){
-    //         playerOrder = card.get(2).usePower(playerOrder);
-    //     }
+    public void step(){
+        currTurn = (currTurn + playerOrder) % player.length;
+        if (currCard instanceof CardReverse){
+            playerOrder = card.get(2).usePower(playerOrder);
+        }
 
-    // }
+    }
 
     // public void timer(){
     //     try {

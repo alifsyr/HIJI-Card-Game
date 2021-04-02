@@ -10,7 +10,15 @@ public class MainTata {
         Scanner scan = new Scanner(System.in);
         String runGame;
         boolean play = true;
+
         String F01 = "F01";
+        String F02 = "F02";
+        String F03 = "F03";
+        String F04 = "F04";
+        String F05 = "F05";
+        String F06 = "F06";
+        String F07 = "F07";
+        String F08 = "F08";
 
         System.out.println("");
         System.out.println("Pilihan permainan");
@@ -28,29 +36,25 @@ public class MainTata {
             System.out.println("Selamat bermain!");
             System.out.println("");
             runGame = scan.next();
-            
-            // game.startGame();
-            // game.viewPlayer();
-            // game.listPlayer();
 
             if (runGame.equals(F01)){
                 game.startGame();
-            } else if(runGame.toUpperCase() == "F02"){
-            
-            } else if(runGame.toUpperCase() == "F03"){
-                // playercard.throwcard();
-            } else if(runGame.toUpperCase() == "F04"){
-
-            } else if(runGame.toUpperCase() == "F05"){
+            } else if(runGame.equals(F02)){
+                playercard.getKartu();
+            } else if(runGame.equals(F03)){
+                
+            } else if(runGame.equals(F04)){
+                
+            } else if(runGame.equals(F05)){
                 // hoo bingung nanti winner taro mana
-            } else if(runGame.toUpperCase() == "F06"){
+            } else if(runGame.equals(F06)){
                 game.listPlayer();
-            } else if(runGame.toUpperCase() == "F07"){
+            } else if(runGame.equals(F07)){
                 game.viewPlayer();
-            } else if(runGame.toUpperCase() == "F08"){
+            } else if(runGame.equals(F08)){
                 game.help();
             } else {
-                System.out.println("Pilihan permainan");
+                System.out.println("NGECEK");
                 play = false;
             }    
     }
