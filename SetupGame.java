@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -31,7 +32,15 @@ class SetupGame extends CardDeck {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Ada berapa pemain?");
-        jumlahPemain = sc.nextInt();
+
+        // exception buat input.
+        try {
+            jumlahPemain = sc.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Harap masukkan bilangan integer!");
+            System.out.println("Ulangi permainan.");
+            System.exit(0);
+        }
 
         while (jumlahPemain <= 1 || jumlahPemain >= 7) {
             System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
@@ -111,18 +120,18 @@ class SetupGame extends CardDeck {
         // }
         // }
         // }
-        for (int i = 0; i < playerCardList.size(); i++) {
-            System.out.println("Deck kartu " + player[i].getName() + ":");
-            for (int j = 0; j < playerCardList.get(i).size(); j++) {
-                Card c = playerCardList.get(i).get(j);
-                System.out.print(c.getType() + " ");
-                System.out.print(c.getColor() + " ");
-                System.out.print(c.getValue() + " ");
-            }
-            System.out.println("");
-            System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
-            System.out.println("");
-        }
+        // for (int i = 0; i < playerCardList.size(); i++) {
+        //     System.out.println("Deck kartu " + player[i].getName() + ":");
+        //     for (int j = 0; j < playerCardList.get(i).size(); j++) {
+        //         Card c = playerCardList.get(i).get(j);
+        //         System.out.print(c.getType() + " ");
+        //         System.out.print(c.getColor() + " ");
+        //         System.out.print(c.getValue() + " ");
+        //     }
+        //     System.out.println("");
+        //     System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
+        //     System.out.println("");
+        // }
     }
 
     // method untuk mendapatkan kartu di meja dari cardDeck
