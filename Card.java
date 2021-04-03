@@ -32,4 +32,13 @@ public class Card implements AttributePower{
     public int usePower(int i) {
         return 0;
     }
+
+    public String printCard() {
+        if (getType() == AttributeType.NUMBER || getType() == AttributeType.DRAW) {
+            return (getType() + " " + getColor() + " " + getValue());
+        } else {
+            return (getType() + " " + getColor());
+            
+        }
+    }
 }

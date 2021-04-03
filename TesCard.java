@@ -6,9 +6,16 @@ public class TesCard {
         ArrayList<Card> card = new ArrayList<>();
         ArrayList<String> player = new ArrayList<>();
         int playerOrder = 1;
-        int currentDrawCard = 0;
         int currentPlayer = 0;
+        int currentDrawCard = 0;
+        Boolean winner = false;
         AttributeColor tableCardColor;
+
+        while (winner) {
+            String now = player.get(currentPlayer);
+
+            currentPlayer = (currentPlayer + player.size() + playerOrder) % player.size();
+        }
 
         // Inisiasi Pemain
         player.add("Pemain 1");
