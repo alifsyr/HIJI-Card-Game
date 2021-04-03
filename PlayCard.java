@@ -9,7 +9,7 @@ public class PlayCard {
     }
 
     public boolean checkIsValid(Card out, Card current) {
-        if (out.getType() == AttributeType.WILDCARD) {
+        if (out.getType() == AttributeType.WILDCARD || out.getColor() == AttributeColor.BLACK) {
             return true;
         } else {
             if (out.getType() != current.getType()) {
