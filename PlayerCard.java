@@ -1,3 +1,4 @@
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,12 @@ public class PlayerCard {
 
     // method mengecek kartu yang tersedia
     public Boolean checkCard(Card card) {
-        return playerCardList.contains(card);
+        for (Card c : playerCardList) {
+            if (c.getType() == card.getType() || c.getColor() == card.getColor() || c.getValue() == card.getValue()) {
+                return true;
+            } 
+        }
+        return playerCardList.contains(new CardWild()) || playerCardList.contains(new CardDraw(4, AttributeColor.BLACK));
     }
 
     // method menambahkan kartu
