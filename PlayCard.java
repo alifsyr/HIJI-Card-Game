@@ -9,22 +9,27 @@ public class PlayCard {
     }
 
     public boolean checkIsValid(Card out, Card current) {
-        if (out.getType() == AttributeType.WILDCARD || out.getColor() == AttributeColor.BLACK) {
-            return true;
+        if (cardList.size() > 1) {
+            return out.equals(cardList.get(cardList.size()-1)); 
         } else {
-            if (out.getType() != current.getType()) {
-                return false;
-            }
-            if (out.getValue() == current.getValue()) {
+            if (out.getColor() == AttributeColor.BLACK) {
                 return true;
-            } else if (out.getColor() == current.getColor()) {
-                if (cardList.size() > 1) {
-                    return cardList.get(cardList.size() - 1).getColor() == out.getColor();
-                } else {
-                    return true;
+            } else {
+                if (out.getType() != current.getType()) {
+                    return false;
                 }
+                if (out.getValue() == current.getValue()) {
+                    return true;
+                } else if (out.getColor() == current.getColor()) {
+                    if (cardList.size() > 1) {
+                        return cardList.get(cardList.size() - 1).getColor() == out.getColor();
+                    } else {
+                        return true;
+                    }
+                }
+                return false;
+
             }
-            return false;
         }
     }
 

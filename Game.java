@@ -82,6 +82,15 @@ public class Game {
         }
     }
 
+    public void getColorOption() {
+        System.out.println("Kamu mengeluarkan sebuah wildcard");
+        System.out.println("1. Red");
+        System.out.println("2. Green");
+        System.out.println("3. Blue");
+        System.out.println("4. Yellow");
+        System.out.print("Warna apa yang kamu inginkan? ");
+    }
+
 
     // public void timer(){
     // try {

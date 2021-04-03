@@ -142,16 +142,13 @@ public class Main {
                                 Card throwCard = currentPlayer.getKartu().get(index-1);
                                 if (temp.addCard(throwCard)) {
                                     currentPlayer.throwCard(throwCard);
-                                } 
+                                } else {
+
+                                }
 
                                 // Handle Multiple Discard
-                                if (throwCard.getType() == AttributeType.WILDCARD) {
-                                    System.out.println("Kamu mengeluarkan sebuah wildcard");
-                                    System.out.println("1. Red");
-                                    System.out.println("2. Green");
-                                    System.out.println("3. Blue");
-                                    System.out.println("4. Yellow");
-                                    System.out.print("Warna apa yang kamu inginkan? ");
+                                if (throwCard.getColor() == AttributeColor.BLACK) {
+                                    game.getColorOption();
                                     index = sc.nextInt();
                                     cont = false;
                                 } else {
@@ -186,7 +183,9 @@ public class Main {
                     } else if (runGame.equals("5")) {
 
                         System.out.println("Giliran diskip, kamu mendapat sebuah kartu dari deck");
-                        currentPlayer.addCard(deck.getCard());
+                        Card temp = deck.getCard();
+                        System.out.println("Kartu yang kamu peroleh dari deck adalah " + temp.printCard());
+                        currentPlayer.addCard(temp);
                         isTurn = false;
                         
                     } else if (runGame.equals("6")) {
