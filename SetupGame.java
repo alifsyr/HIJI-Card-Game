@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -37,6 +38,7 @@ class SetupGame extends CardDeck {
         try {
             jumlahPemain = sc.nextInt();
         } catch (InputMismatchException e) {
+            System.out.println("InputMismatchException catched.");
             System.out.println("Harap masukkan bilangan integer!");
             System.out.println("Ulangi permainan.");
             System.exit(0);
@@ -63,6 +65,29 @@ class SetupGame extends CardDeck {
         }
         System.out.println("Selamat bermain!");
         sc.close();
+    }
+
+    // method untuk mendapatkan kartu di meja dari cardDeck
+    // sebenarnya tinggal ambil kartu pertama dari hasil shuffle
+    // tinggal remove card dari cardDeck
+    Card getTableCard() {
+        for (int i = 0; i < cardDeck.size(); i++) {
+            Card c = cardDeck.get(i);
+            if (c.getType() == AttributeType.NUMBER) {
+                tableCard = c;
+                cardDeck.remove(i);
+                i = cardDeck.size();
+            }
+        }
+        return tableCard;
+
+        // for (Card c : cardDeck) {
+        // if (c.getType() == AttributeType.NUMBER) {
+        // tableCard = c;
+        // }
+        // // cardDeck.remove(i);
+        // }
+        // return tableCard;
     }
 
     // method untuk melakukan pembagian kartu ketiap player
@@ -100,7 +125,11 @@ class SetupGame extends CardDeck {
             for (int j = 0; j < cardDeck.size(); j++) {
                 // int numOfCardsPerPlayer = 7;
                 // int positionInHand = i % numOfCardsPerPlayer;
-                playerCardList.get(i).add(cardDeck.get(j));
+                while (playerCardList.get(i).size() < 7) {
+                    playerCardList.get(i).add(cardDeck.get(j));
+                    cardDeck.remove(j);
+                }
+
             }
         }
 
@@ -120,33 +149,28 @@ class SetupGame extends CardDeck {
         // }
         // }
         // }
-        // for (int i = 0; i < playerCardList.size(); i++) {
-        //     System.out.println("Deck kartu " + player[i].getName() + ":");
-        //     for (int j = 0; j < playerCardList.get(i).size(); j++) {
-        //         Card c = playerCardList.get(i).get(j);
-        //         System.out.print(c.getType() + " ");
-        //         System.out.print(c.getColor() + " ");
-        //         System.out.print(c.getValue() + " ");
-        //     }
-        //     System.out.println("");
-        //     System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
-        //     System.out.println("");
-        // }
-    }
-
-    // method untuk mendapatkan kartu di meja dari cardDeck
-    // sebenarnya tinggal ambil kartu pertama dari hasil shuffle
-    // tinggal remove card dari cardDeck
-    Card getTableCard() {
-        return cardDeck.get(0);
+        for (int i = 0; i < playerCardList.size(); i++) {
+            System.out.println("Deck kartu " + player[i].getName() + ":");
+            for (int j = 0; j < playerCardList.get(i).size(); j++) {
+                Card c = playerCardList.get(i).get(j);
+                System.out.print(c.getType() + " ");
+                System.out.print(c.getColor() + " ");
+                System.out.print(c.getValue() + " ");
+            }
+            System.out.println("");
+            System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
+            System.out.println("");
+        }
     }
 
     // untuk dapetin pemain yang main pertama kali secara acak.
     // tinggal diubah jadi type player
     Player getFirstPlayer() {
-        Random indeksAcak = new Random();
-        int i = indeksAcak.nextInt(player.length);
-        return player[i];
+        // Random indeksAcak = new Random();
+        // int i = indeksAcak.nextInt(player.length);
+        Collections.shuffle(Arrays.asList(player));
+        return player[0];
+
     }
 
     // //method untuk shuffle
