@@ -16,7 +16,11 @@ public class Player extends PlayerCard {
 
     // Method mengucapkan Hiji
     public void declareHiji() {
-        this.isHiji = true;
+        if (getCardLeft() != 1) {
+            System.out.println("Kamu tidak bisa declare Hiji sekarang!");
+        } else {
+            this.isHiji = true;
+        }
     }
 
     public Boolean getHiji() {

@@ -38,7 +38,7 @@ public class MainTata {
             runGame = scan.next();
 
             if (runGame.equals(F01)){
-                game.startGame();
+                // game.startGame();
             } else if(runGame.equals(F02)){
                 game.listCard();
             } else if(runGame.equals(F03)){
