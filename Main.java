@@ -8,13 +8,11 @@ public class Main {
 
         // ************************************************** Inisiasi Data **************************************************//
 
-        int number = 0; // Dummy
-        Card kartuBaru = null; // DUmmy
-
         // Inisiasi Variabel yang Diperlukan
         int playerOrder = 1; // Urutan pemain, -1 untuk reverse, 1 untuk normal
         int currentPlayerOrder = 0; // Urutan pemain saat ini
         int currentDrawCard = 0; // Jumlah Draw Card yang sedang digunakan saat ini (dapat ditumpuk)
+
         // Inisiasi scanner
         Scanner sc = new Scanner(System.in);
         String runGame;
@@ -26,16 +24,26 @@ public class Main {
         Player winner = null;
         Card tableCard = null;
 
-        ArrayList<Player> playerList = new ArrayList<>();
-        playerList.add(new Player("player1"));
-        playerList.add(new Player("player2"));
-
         // ************************************************** SetUp Game **************************************************//
 
         SetupGame setupGame = new SetupGame();
 
         // input player
-        System.out.println("");
+        // System.out.println("");
+        // System.out.println(".----------------.  .----------------.  .----------------.  .----------------. ");
+        // System.out.println("| .--------------. || .--------------. || .--------------. || .--------------. |");
+        // System.out.println("| |  ____  ____  | || |     _____    | || |     _____    | || |     _____    | |");
+        // System.out.println("| | |_   ||   _| | || |    |_   _|   | || |    |_   _|   | || |    |_   _|   | |");
+        // System.out.println("| |   | |__| |   | || |      | |     | || |      | |     | || |      | |     | |");
+        // System.out.println("| |   |  __  |   | || |      | |     | || |   _  | |     | || |      | |     | |");
+        // System.out.println("| |  _| |  | |_  | || |     _| |_    | || |  | |_' |     | || |     _| |_    | |");
+        // System.out.println("| | |____||____| | || |    |_____|   | || |  `.___.'     | || |    |_____|   | |");
+        // System.out.println("| |              | || |              | || |              | || |              | |");
+        // System.out.println("| '--------------' || '--------------' || '--------------' || '--------------' |");
+        // System.out.println(" '----------------'  '----------------'  '----------------'  '----------------' ");
+        // System.out.println("             Kelompok 21 | IF2212 Pemrograman Berorientasi Objek");
+        // System.out.println("");
+
         System.out.print("Ada berapa pemain? ");
 
         // exception buat input.
@@ -56,18 +64,24 @@ public class Main {
 
         setupGame.player = new Player[setupGame.jumlahPemain];
 
+        System.out.println("");
+
         for (int i = 0; i < setupGame.jumlahPemain; i++) {
             System.out.print("Masukkan nama pemain " + (i + 1) + " : ");
             String namaPemain = sc.next();
 
             setupGame.player[i] = new Player(namaPemain);
         }
+        System.out.println("");
+
         System.out.println("Berikut daftar pemain.");
 
         for (int i = 0; i < setupGame.player.length; i++) {
             System.out.println((i + 1) + ". " + setupGame.player[i].getName());
         }
         System.out.println("Selamat bermain!");
+        System.out.println("");
+        System.out.println("--------------------------------------");
         System.out.println("");
 
         currentPlayer = setupGame.getFirstPlayer();
@@ -78,15 +92,12 @@ public class Main {
         System.out.println("Shuffling deck...");
         setupGame.shuffleDeck();
 
+        System.out.println("--------------------------------------");
+
         // distribusi kartu
         setupGame.distributeCard();
 
-        // tablecard
-        System.out.println("Table Card: ");
         tableCard = setupGame.getTableCard();
-        System.out.println(tableCard.printCard());
-        System.out.println("");
-        System.out.println("--------------------------------------");
 
         // ************************************************** Game Dimulai **************************************************//
 
@@ -112,8 +123,16 @@ public class Main {
                         game.listCard(currentPlayer.getKartu());
                         
                     } else if (runGame.equals("2")) {
+                        System.out.println("");
+                        System.out.println("Table Card: ");
+                        System.out.println(tableCard.printCard());
+                        System.out.println("");
+
+
                         PlayCard temp = new PlayCard(tableCard);
                         boolean cont = true;
+
+                        // Looping Throw Card 
                         while (!runGame.toLowerCase().equals("n") && cont) {
                             game.listCard(currentPlayer.getKartu());
                             System.out.println("");
@@ -123,15 +142,13 @@ public class Main {
                                 Card throwCard = currentPlayer.getKartu().get(index-1);
                                 if (temp.addCard(throwCard)) {
                                     currentPlayer.throwCard(throwCard);
-                                } 
+                                } else {
+
+                                }
+
                                 // Handle Multiple Discard
-                                if (throwCard.getType() == AttributeType.WILDCARD) {
-                                    System.out.println("Kamu mengeluarkan sebuah wildcard");
-                                    System.out.println("1. Red");
-                                    System.out.println("2. Green");
-                                    System.out.println("3. Blue");
-                                    System.out.println("4. Yellow");
-                                    System.out.print("Warna apa yang kamu inginkan? ");
+                                if (throwCard.getColor() == AttributeColor.BLACK) {
+                                    game.getColorOption();
                                     index = sc.nextInt();
                                     cont = false;
                                 } else {
@@ -149,6 +166,7 @@ public class Main {
                             } catch (IndexOutOfBoundsException e){
                                 System.out.println("Pilihan kartu tidak valid!");
                             }
+
                         }
                         tableCard = temp.getLastCard();
                         isTurn = false;
@@ -165,7 +183,9 @@ public class Main {
                     } else if (runGame.equals("5")) {
 
                         System.out.println("Giliran diskip, kamu mendapat sebuah kartu dari deck");
-                        currentPlayer.addCard(deck.getCard());
+                        Card temp = deck.getCard();
+                        System.out.println("Kartu yang kamu peroleh dari deck adalah " + temp.printCard());
+                        currentPlayer.addCard(temp);
                         isTurn = false;
                         
                     } else if (runGame.equals("6")) {
@@ -184,6 +204,7 @@ public class Main {
 
                     }
 
+                    // Conditional sebelum ganti pemain selanjutnya
                     if (winner != null) {
                         System.out.println("");
                         System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
@@ -192,6 +213,7 @@ public class Main {
                         System.out.println("");
                         System.out.print("Command yang ingin dijalankan: ");
                         runGame = sc.next();
+
                     } else {
                         System.out.println("");
                         System.out.println("Giliran akan diganti ke pemain selanjutnya");
