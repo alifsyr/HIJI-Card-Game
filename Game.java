@@ -61,6 +61,7 @@ public class Game {
         System.out.println("[4] Urutan Pemain");
         System.out.println("[5] Skip Turn");
         System.out.println("[6] Declare Hiji");
+        System.out.println("[7] Bantuan");
     }
 
     public void step() {
@@ -70,11 +71,13 @@ public class Game {
         }
     }
 
-    public void listCard() {
+    public void listCard(List<Card> playerCardList) {
+        System.out.println("Berikut adalah list kartumu:");
         for (int j = 0; j < playerCardList.size(); j++) {
-            System.out.println((j + 1) + ". " + playercard.getKartu().get(j));
+            System.out.println((j+1) + ". " + playerCardList.get(j).printCard());
         }
     }
+
 
     // public void timer(){
     // try {

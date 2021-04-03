@@ -96,8 +96,11 @@ public class Main {
             System.out.println("Table Card: ");
             System.out.println(tableCard.printCard());
             System.out.println("");
-
-            System.out.println("Pemain Saat Ini: " + currentPlayer.getName());
+            
+            System.out.println("Pemain Saat Ini: ");
+            System.out.println(currentPlayer.getName());
+            System.out.println("");
+ 
             game.listCommand();
             boolean isTurn = true;
             try {
@@ -106,17 +109,17 @@ public class Main {
                 runGame = sc.next();
                 while (isTurn) {
                     if (runGame.equals("1")) {
-                        System.out.println("Game 1");
-                        System.out.println("Berikut adalah list kartumu:");
-                        int i = 1;
-                        for (Card c: currentPlayer.getKartu()) {
-                            System.out.println(i + ". " + c.printCard());
-                            i++;
-                        }
-                        // game.startGame();
+                        game.listCard(currentPlayer.getKartu());
+                        // int i = 1;
+                        // for (Card c: currentPlayer.getKartu()) {
+                        //     System.out.println(i + ". " + c.printCard());
+                        //     i++;
+                        // }
                     } else if (runGame.equals("2")) {
                         System.out.println("Pilih Kartu");
-                        // game.listCard();
+
+                        // cek udah winner apa belom
+                        
                     } else if (runGame.equals("3")) {
                         System.out.println("List Pemain: ");
                         game.listPlayer(setupGame.player, currentPlayerOrder);
@@ -129,19 +132,28 @@ public class Main {
                         System.out.println("Giliran diskip, kamu mendapat sebuah kartu dari deck");
                         currentPlayer.addCard(deck.getCard());
                         isTurn = false;
-                    } else if (runGame.equals("F06")) {
-                        System.out.println("Game 6");
-                    } else if (runGame.equals("F07")) {
-                        System.out.println("Game 7");
-                    } else if (runGame.equals("F08")) {
-                        System.out.println("Game 8");
+                        
+                    } else if (runGame.equals("6")) {
+                        System.out.println("Decklare Hiji");
+                        currentPlayer.declareHiji();
+
+                    } else if (runGame.equals("7")) {
                         game.help();
+                        
+                    } else if (runGame.equals("cheat")) {
+                        winner = currentPlayer;
+                        isTurn = false;
+                        
                     } else {
                         System.out.println("Command tidak valid!");
                         // play = false;
                     }
 
-                    if (isTurn) {
+                    if (winner != null) {
+                        System.out.println("");
+                        System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
+                        
+                    } else if (isTurn) {
                         System.out.println("");
                         System.out.print("Command yang ingin dijalankan: ");
                         runGame = sc.next();
@@ -157,8 +169,10 @@ public class Main {
             System.out.println("--------------------------------------");
             currentPlayerOrder = (currentPlayerOrder + playerOrder) %setupGame.jumlahPemain; 
             currentPlayer = setupGame.player[currentPlayerOrder];
-
         }
+        System.out.println("Terima kasih telah bermain HIJI!");
+        System.out.println("Selamat kepada " + winner.getName() + " sebagai pemenang game kali ini!");
+
         sc.close();
     }
 }
