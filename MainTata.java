@@ -4,18 +4,42 @@ import java.util.Scanner;
 
 public class MainTata {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Player p = new Player("nama");
+        CardDeck cardDeck = new CardDeck();
 
-        Thread t = new Thread(new DeclareHiji());
-        t.start();
-
-        String input = sc.next();
-        System.out.println("tes");
-        if (input.equals("ok")) {
-            t.interrupt();
+        int i = 0;
+        while (i < 7) {
+            // p.addCard(new CardDraw());
+            p.addCard(new CardNumber(4, AttributeColor.RED));
+            i++;
         }
 
-        sc.close();
+        for (Card c : p.getKartu()) {
+            System.out.println(c.printCard());
+        }
+
+        // Card temp = new CardDraw(4, AttributeColor.BLACK);
+        Card temp = new CardNumber(5, AttributeColor.BLUE);
+        System.out.println("temp " + temp.printCard());
+        if (p.checkCard(temp)) {
+            System.out.println("ok");
+        } else {
+            System.out.println("no");
+        }
+
+
+        // Scanner sc = new Scanner(System.in);
+
+        // Thread t = new Thread(new DeclareHiji());
+        // t.start();
+
+        // String input = sc.next();
+        // System.out.println("tes");
+        // if (input.equals("ok")) {
+        //     t.interrupt();
+        // }
+
+        // sc.close();
         // Game game = new Game();
         // PlayerCard playercard = new PlayerCard();
         // List<List<Card>> playerCardList = new ArrayList<>();

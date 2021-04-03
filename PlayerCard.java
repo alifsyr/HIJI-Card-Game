@@ -22,12 +22,48 @@ public class PlayerCard {
 
     // method mengecek kartu yang tersedia
     public Boolean checkCard(Card card) {
+        Boolean avail = false; 
         for (Card c : playerCardList) {
-            if (c.getType() == card.getType() || c.getColor() == card.getColor() || c.getValue() == card.getValue()) {
-                return true;
-            } 
+            if (c.getType() == AttributeType.WILDCARD){ // Cek kalo kita mau keluarin wildcard
+                avail = true;
+                System.out.println("check 1");
+            }
+            else if (card.getType() == AttributeType.WILDCARD) { // Cek kalo di table lagi wild card
+                avail = card.getColor() == c.getColor();
+                System.out.println("check 2");
+            }
+            else if (card.getType() == AttributeType.DRAW && card.getColor() == AttributeColor.BLACK) { // Cek kalo di table Draw +4
+                avail = c.getType() == AttributeType.DRAW && c.getColor() == AttributeColor.BLACK; 
+                System.out.println("check 3");
+            }
+            else if (card.getType() == c.getType() && card.getType() != AttributeType.NUMBER){ // Cek kalo di table reverse/ draw/ skip
+                avail = card.getColor() == c.getColor();
+                System.out.println("check 4");
+            }
+            else if (c.getType() != AttributeType.NUMBER) {
+                avail = c.getColor() == card.getColor(); 
+                System.out.println("check 5");
+            }
+            else if (c.getColor() == card.getColor()) { // Cek kalo warna sama
+                avail = true;
+                System.out.println("check 6");
+            }
+            else if (c.getValue() == card.getValue()){ // cek kalo angka sama
+                avail = true;
+                System.out.println("check 7");
+            }
+            else {
+                avail = false;
+                System.out.println("nop");
+            }
+
+            if (avail) {
+                break;
+            }
+
+            System.out.println("check avail " + c.printCard());
         }
-        return playerCardList.contains(new CardWild()) || playerCardList.contains(new CardDraw(4, AttributeColor.BLACK));
+        return avail;
     }
 
     // method menambahkan kartu

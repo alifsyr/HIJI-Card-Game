@@ -9,27 +9,30 @@ public class PlayCard {
     }
 
     public boolean checkIsValid(Card out, Card current) {
-        if (cardList.size() > 1) {
-            return out.equals(cardList.get(cardList.size()-1)); 
+        if (cardList.size() > 1) { // Kalau multiple discard
+            System.out.println("card compare " + cardList.get(cardList.size() - 1).printCard());
+            return out.equals(cardList.get(cardList.size() - 1));
         } else {
-            if (out.getColor() == AttributeColor.BLACK) {
+            if (out.getType() == AttributeType.WILDCARD) // Cek kalo kita mau keluarin wildcard
                 return true;
-            } else {
-                if (out.getType() != current.getType()) {
-                    return false;
-                }
-                if (out.getValue() == current.getValue()) {
-                    return true;
-                } else if (out.getColor() == current.getColor()) {
-                    if (cardList.size() > 1) {
-                        return cardList.get(cardList.size() - 1).getColor() == out.getColor();
-                    } else {
-                        return true;
-                    }
-                }
+            else if (current.getType() == AttributeType.WILDCARD) // Cek kalo di table lagi wild card
+                return current.getColor() == out.getColor();
+            else if (current.getType() == AttributeType.DRAW && current.getValue() == 4) // Cek kalo di table Draw +4
+                return out.getType() == AttributeType.DRAW && out.getValue() == 4;
+            else if (out.getType() == AttributeType.DRAW && out.getValue() == 4) // Cek kalo di table Draw +4
+                return current.getType()!= AttributeType.DRAW && current.getValue()!= 2;
+            else if (current.getType() == AttributeType.NUMBER && out.getType()!= AttributeType.NUMBER)
+                return current.getColor() == out.getColor();
+            else if (current.getType() == out.getType() && current.getType() != AttributeType.NUMBER) // Cek kalo di table reverse/ draw/ skip
+                return true;
+            else if (out.getType() != AttributeType.NUMBER)
+                return out.getColor() == current.getColor(); 
+            else if (out.getColor() == current.getColor()) // Cek kalo warna sama
+                return true;
+            else if (out.getValue() == current.getValue()) // cek kalo angka sama
+                return true;
+            else
                 return false;
-
-            }
         }
     }
 
@@ -48,6 +51,7 @@ public class PlayCard {
         for (Card c : cardList) {
             System.out.println(c.printCard());
         }
+        System.out.println("");
         return true;
     }
 
@@ -60,7 +64,7 @@ public class PlayCard {
     }
 
     public Card getLastCard() {
-        System.out.println("card " + cardList.get(cardList.size() - 1).printCard());
+        // System.out.println("card " + cardList.get(cardList.size() - 1).printCard());
         return cardList.get(cardList.size() - 1);
     }
 }
