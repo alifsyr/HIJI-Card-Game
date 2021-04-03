@@ -9,6 +9,7 @@ public class Main {
         // ************************************************** Inisiasi Data **************************************************//
 
         int number = 0; // Dummy
+        Card kartuBaru = null; // DUmmy
 
         // Inisiasi Variabel yang Diperlukan
         int playerOrder = 1; // Urutan pemain, -1 untuk reverse, 1 untuk normal
@@ -135,7 +136,7 @@ public class Main {
                                     cont = false;
                                 } else {
                                     System.out.println("");
-                                    System.out.print("Apakah kamu mau mengeluarkan kartu lagi? ");
+                                    System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
                                     runGame = sc.next();
                                     while (!runGame.toLowerCase().equals("n") && !runGame.toLowerCase().equals("y")) {
                                         System.out.println("Input tidak valid!");
@@ -162,6 +163,7 @@ public class Main {
                         game.viewPlayer(setupGame.player, currentPlayerOrder);
     
                     } else if (runGame.equals("5")) {
+
                         System.out.println("Giliran diskip, kamu mendapat sebuah kartu dari deck");
                         currentPlayer.addCard(deck.getCard());
                         isTurn = false;
