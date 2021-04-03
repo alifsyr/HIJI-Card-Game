@@ -21,7 +21,6 @@ public class Main {
         // Inisiasi class yang digunakan
         Game game = new Game();
         CardDeck deck = new CardDeck();
-        PlayCard play = new PlayCard();
         Player currentPlayer;
         Player winner = null;
         Card tableCard = null;
@@ -110,16 +109,50 @@ public class Main {
                 while (isTurn) {
                     if (runGame.equals("1")) {
                         game.listCard(currentPlayer.getKartu());
-                        // int i = 1;
-                        // for (Card c: currentPlayer.getKartu()) {
-                        //     System.out.println(i + ". " + c.printCard());
-                        //     i++;
-                        // }
-                    } else if (runGame.equals("2")) {
-                        System.out.println("Pilih Kartu");
-
-                        // cek udah winner apa belom
                         
+                    } else if (runGame.equals("2")) {
+                        PlayCard temp = new PlayCard(tableCard);
+                        boolean cont = true;
+                        while (!runGame.toLowerCase().equals("n") && cont) {
+                            game.listCard(currentPlayer.getKartu());
+                            System.out.println("");
+                            System.out.print("Kartu mana yang akan kamu keluarkan? ");
+                            int index = sc.nextInt();
+                            try {
+                                Card throwCard = currentPlayer.getKartu().get(index-1);
+                                if (temp.addCard(throwCard)) {
+                                    currentPlayer.throwCard(throwCard);
+                                } 
+                                // Handle Multiple Discard
+                                if (throwCard.getType() == AttributeType.WILDCARD) {
+                                    System.out.println("Kamu mengeluarkan sebuah wildcard");
+                                    System.out.println("1. Red");
+                                    System.out.println("2. Green");
+                                    System.out.println("3. Blue");
+                                    System.out.println("4. Yellow");
+                                    System.out.print("Warna apa yang kamu inginkan? ");
+                                    index = sc.nextInt();
+                                    cont = false;
+                                } else {
+                                    System.out.println("");
+                                    System.out.print("Apakah kamu mau mengeluarkan kartu lagi? ");
+                                    runGame = sc.next();
+                                    while (!runGame.toLowerCase().equals("n") && !runGame.toLowerCase().equals("y")) {
+                                        System.out.println("Input tidak valid!");
+                                        System.out.println("");
+                                        System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N)? ");
+                                        runGame = sc.next();
+                                    }
+                                }
+                                
+                            } catch (IndexOutOfBoundsException e){
+                                System.out.println("Pilihan kartu tidak valid!");
+                            }
+                        }
+                        tableCard = temp.getLastCard();
+                        isTurn = false;
+                        
+                        // cek udah winner apa belom
                     } else if (runGame.equals("3")) {
                         System.out.println("List Pemain: ");
                         game.listPlayer(setupGame.player, currentPlayerOrder);
@@ -134,7 +167,7 @@ public class Main {
                         isTurn = false;
                         
                     } else if (runGame.equals("6")) {
-                        System.out.println("Decklare Hiji");
+                        System.out.println("Declare Hiji");
                         currentPlayer.declareHiji();
 
                     } else if (runGame.equals("7")) {
@@ -146,7 +179,7 @@ public class Main {
                         
                     } else {
                         System.out.println("Command tidak valid!");
-                        // play = false;
+
                     }
 
                     if (winner != null) {

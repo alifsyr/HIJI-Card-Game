@@ -72,9 +72,13 @@ public class Game {
     }
 
     public void listCard(List<Card> playerCardList) {
-        System.out.println("Berikut adalah list kartumu:");
-        for (int j = 0; j < playerCardList.size(); j++) {
-            System.out.println((j+1) + ". " + playerCardList.get(j).printCard());
+        if (playerCardList.size() != 0) {
+            System.out.println("Berikut adalah list kartumu:");
+            for (int j = 0; j < playerCardList.size(); j++) {
+                System.out.println((j+1) + ". " + playerCardList.get(j).printCard());
+            }
+        } else {
+            System.out.println("Kamu tidak memiliki kartu lagi!");
         }
     }
 
