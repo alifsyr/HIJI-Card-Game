@@ -24,6 +24,7 @@ public class Main {
         PlayCard play = new PlayCard();
         Player currentPlayer;
         Player winner = null;
+        Card tableCard = null;
 
         ArrayList<Player> playerList = new ArrayList<>();
         playerList.add(new Player("player1"));
@@ -69,6 +70,10 @@ public class Main {
         System.out.println("Selamat bermain!");
         System.out.println("");
 
+        currentPlayer = setupGame.getFirstPlayer();
+        System.out.println("Pemain pertama: " + currentPlayer.getName());
+        System.out.println("");
+
         // Shuffle Kartu di Deck
         System.out.println("Shuffling deck...");
         setupGame.shuffleDeck();
@@ -78,64 +83,81 @@ public class Main {
 
         // tablecard
         System.out.println("Table Card: ");
-        System.out.println(setupGame.getTableCard().printCard());
+        tableCard = setupGame.getTableCard();
+        System.out.println(tableCard.printCard());
         System.out.println("");
-        System.out.println("");
-
-        currentPlayer = setupGame.getFirstPlayer();
-        System.out.println("Pemain pertama: " + currentPlayer.getName());
-        System.out.println("");
+        System.out.println("--------------------------------------");
 
         // ************************************************** Game Dimulai **************************************************//
 
         // Looping Player
 
         while (winner == null) {
-            System.out.println("Giliran " + currentPlayer.getName());
-            System.out.println("Berikut adalah list kartumu:");
-            int i = 1;
-            System.out.println(currentPlayer.getKartu());
-            for (Card c: currentPlayer.getKartu()) {
-                System.out.println(i + ". " + c.printCard());
-                i++;
-            }
-            
+            System.out.println("Table Card: ");
+            System.out.println(tableCard.printCard());
             System.out.println("");
+
+            System.out.println("Pemain Saat Ini: " + currentPlayer.getName());
+            game.listCommand();
+            boolean isTurn = true;
             try {
-                System.out.print("Next Move: ");
-                runGame = sc.nextLine();
+                System.out.println("");
+                System.out.print("Command yang ingin dijalankan: ");
+                runGame = sc.next();
+                while (isTurn) {
+                    if (runGame.equals("1")) {
+                        System.out.println("Game 1");
+                        System.out.println("Berikut adalah list kartumu:");
+                        int i = 1;
+                        for (Card c: currentPlayer.getKartu()) {
+                            System.out.println(i + ". " + c.printCard());
+                            i++;
+                        }
+                        // game.startGame();
+                    } else if (runGame.equals("2")) {
+                        System.out.println("Pilih Kartu");
+                        // game.listCard();
+                    } else if (runGame.equals("3")) {
+                        System.out.println("List Pemain: ");
+                        game.listPlayer(setupGame.player, currentPlayerOrder);
 
-                if (runGame.equals("F01")) {
-                    System.out.println("Game 1");
-                    // game.startGame();
-                } else if (runGame.equals("F02")) {
-                    System.out.println("Game 2");
-                    // game.listCard();
-                } else if (runGame.equals("F03")) {
-                    System.out.println("Game 3");
+                    } else if (runGame.equals("4")) {
+                        System.out.println("Urutan pemain: ");
+                        game.viewPlayer(setupGame.player, currentPlayerOrder);
+    
+                    } else if (runGame.equals("5")) {
+                        System.out.println("Giliran diskip, kamu mendapat sebuah kartu dari deck");
+                        currentPlayer.addCard(deck.getCard());
+                        isTurn = false;
+                    } else if (runGame.equals("F06")) {
+                        System.out.println("Game 6");
+                    } else if (runGame.equals("F07")) {
+                        System.out.println("Game 7");
+                    } else if (runGame.equals("F08")) {
+                        System.out.println("Game 8");
+                        game.help();
+                    } else {
+                        System.out.println("Command tidak valid!");
+                        // play = false;
+                    }
 
-                } else if (runGame.equals("F04")) {
-                    System.out.println("Game 4");
-
-                } else if (runGame.equals("F05")) {
-                    System.out.println("Game 5");
-                    // hoo bingung nanti winner taro mana
-                } else if (runGame.equals("F06")) {
-                    System.out.println("Game 6");
-                    game.listPlayer();
-                } else if (runGame.equals("F07")) {
-                    System.out.println("Game 7");
-                    game.viewPlayer();
-                } else if (runGame.equals("F08")) {
-                    System.out.println("Game 8");
-                    game.help();
-                } else {
-                    System.out.println("NGECEK");
-                    // play = false;
+                    if (isTurn) {
+                        System.out.println("");
+                        System.out.print("Command yang ingin dijalankan: ");
+                        runGame = sc.next();
+                    } else {
+                        System.out.println("");
+                        System.out.println("Giliran akan diganti ke pemain selanjutnya");
+                    }
                 }
             } catch (NoSuchElementException e) {
                 System.out.println(e);
             }
+            
+            System.out.println("--------------------------------------");
+            currentPlayerOrder = (currentPlayerOrder + playerOrder) %setupGame.jumlahPemain; 
+            currentPlayer = setupGame.player[currentPlayerOrder];
+
         }
         sc.close();
     }

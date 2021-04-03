@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 class SetupGame extends CardDeck {
     // atribut
-    Card tableCard;
+    // Card tableCard;
     Player[] player;
     int jumlahPemain;
     // List<List<Card>> playerCardList = new ArrayList<>();
@@ -67,16 +67,23 @@ class SetupGame extends CardDeck {
     // method untuk mendapatkan kartu di meja dari cardDeck
     // sebenarnya tinggal ambil kartu pertama dari hasil shuffle
     // tinggal remove card dari cardDeck
-    Card getTableCard() {
-        for (int i = 0; i < cardDeck.size(); i++) {
-            Card c = cardDeck.get(i);
-            if (c.getType() == AttributeType.NUMBER) {
-                tableCard = c;
-                cardDeck.remove(i);
-                i = cardDeck.size();
-            }
+    public Card getTableCard() {
+        int i = 0;
+        Card c = cardDeck.get(i);
+        while (c.getType() != AttributeType.NUMBER) {
+            i++;
+            c = cardDeck.get(i);
         }
-        return tableCard;
+        return c;
+        // for (int i = 0; i < cardDeck.size(); i++) {
+        //     Card c = cardDeck.get(i);
+        //     if (c.getType() == AttributeType.NUMBER) {
+        //         tableCard = c;
+        //         cardDeck.remove(i);
+        //         i = cardDeck.size();
+        //     }
+        // }
+        // return tableCard;
 
         // for (Card c : cardDeck) {
         // if (c.getType() == AttributeType.NUMBER) {
