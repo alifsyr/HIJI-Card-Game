@@ -59,7 +59,7 @@ public class Game {
         System.out.println("[2] Pilih Kartu");
         System.out.println("[3] List Pemain");
         System.out.println("[4] Urutan Pemain");
-        System.out.println("[5] Skip Turn");
+        System.out.println("[5] Ambil Kartu Dari Deck");
         System.out.println("[6] Declare Hiji");
         System.out.println("[7] Bantuan");
     }
@@ -81,6 +81,16 @@ public class Game {
             System.out.println("Kamu tidak memiliki kartu lagi!");
         }
     }
+
+    public void getColorOption() {
+        System.out.println("Kamu mengeluarkan sebuah wildcard");
+        System.out.println("1. Red");
+        System.out.println("2. Blue");
+        System.out.println("3. Yellow");
+        System.out.println("4. Green");
+        System.out.print("Warna apa yang kamu inginkan? ");
+    }
+
 
 
     // public void timer(){
