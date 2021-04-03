@@ -11,7 +11,7 @@ public class Main {
         // Inisiasi Variabel yang Diperlukan
         int playerOrder = 1; // Urutan pemain, -1 untuk reverse, 1 untuk normal
         int currentPlayerOrder = 0; // Urutan pemain saat ini
-        int currentDrawCard = 0; // Jumlah Draw Card yang sedang digunakan saat ini (dapat ditumpuk)
+        int drawPenalty = 0; // Jumlah Draw Card yang sedang digunakan saat ini (dapat ditumpuk)
 
         // Inisiasi scanner
         Scanner sc = new Scanner(System.in);
@@ -135,36 +135,47 @@ public class Main {
                         // Looping Throw Card 
                         while (!runGame.toLowerCase().equals("n") && cont) {
                             game.listCard(currentPlayer.getKartu());
-                            System.out.println("");
-                            System.out.print("Kartu mana yang akan kamu keluarkan? ");
-                            int index = sc.nextInt();
-                            try {
-                                Card throwCard = currentPlayer.getKartu().get(index-1);
-                                if (temp.addCard(throwCard)) {
-                                    currentPlayer.throwCard(throwCard);
-                                } else {
-
-                                }
-
-                                // Handle Multiple Discard
-                                if (throwCard.getColor() == AttributeColor.BLACK) {
-                                    game.getColorOption();
-                                    index = sc.nextInt();
-                                    cont = false;
-                                } else {
-                                    System.out.println("");
-                                    System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
-                                    runGame = sc.next();
-                                    while (!runGame.toLowerCase().equals("n") && !runGame.toLowerCase().equals("y")) {
-                                        System.out.println("Input tidak valid!");
-                                        System.out.println("");
-                                        System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N)? ");
-                                        runGame = sc.next();
+                            if (!currentPlayer.checkCard(tableCard)) {
+                                System.out.println("Kamu tidak memiliki kartu yang dapat dibuang!");
+                                System.out.println("Kamu harus mengambil kartu dari deck!");
+                                Card localCard = deck.getCard();
+                                System.out.println("Kartu yang kamu peroleh dari deck adalah " + localCard.printCard());
+                                currentPlayer.addCard(localCard);
+                                cont = false;
+                            } else {
+                                System.out.println("");
+                                System.out.print("Kartu mana yang akan kamu keluarkan? ");
+                                int index = sc.nextInt();
+                                try {
+                                    Card throwCard = currentPlayer.getKartu().get(index - 1);
+                                    if (temp.addCard(throwCard)) {
+                                        currentPlayer.throwCard(throwCard);
+                                    } else {
+                                        System.out.println("tes");
                                     }
+
+                                    // Handle Multiple Discard
+                                    if (throwCard.getColor() == AttributeColor.BLACK) {
+                                        game.getColorOption();
+                                        index = sc.nextInt();
+                                        cont = false;
+                                    } else {
+
+                                        System.out.println("");
+                                        System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
+                                        runGame = sc.next();
+                                        while (!runGame.toLowerCase().equals("n")
+                                                && !runGame.toLowerCase().equals("y")) {
+                                            System.out.println("Input tidak valid!");
+                                            System.out.println("");
+                                            System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N)? ");
+                                            runGame = sc.next();
+                                        }
+                                    }
+
+                                } catch (IndexOutOfBoundsException e) {
+                                    System.out.println("Pilihan kartu tidak valid!");
                                 }
-                                
-                            } catch (IndexOutOfBoundsException e){
-                                System.out.println("Pilihan kartu tidak valid!");
                             }
 
                         }
