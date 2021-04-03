@@ -11,7 +11,7 @@ class SetupGame extends CardDeck {
     Card tableCard;
     Player[] player;
     int jumlahPemain;
-    List<List<Card>> playerCardList = new ArrayList<>();
+    // List<List<Card>> playerCardList = new ArrayList<>();
 
     // method untuk melakukan pengacakan kartu di cardDeck
     // perlu ditunjukkin deck nya kah (?)
@@ -116,19 +116,28 @@ class SetupGame extends CardDeck {
         // // System.out.println(arrPlayer);
         // // }
 
-        for (int i = 0; i < jumlahPemain; i++) {
-            ArrayList<Card> myGroup = new ArrayList<>();
-            playerCardList.add(myGroup);
-            for (int j = 0; j < cardDeck.size(); j++) {
-                // int numOfCardsPerPlayer = 7;
-                // int positionInHand = i % numOfCardsPerPlayer;
-                while (playerCardList.get(i).size() < 7) {
-                    playerCardList.get(i).add(cardDeck.get(j));
-                    cardDeck.remove(j);
-                }
-
+        for (Player p : player) {
+            int i = 0;
+            while (i < 7) {
+                p.addCard(cardDeck.get(0));
+                cardDeck.remove(0);
+                i++;
             }
         }
+
+        // for (int i = 0; i < jumlahPemain; i++) {
+        //     ArrayList<Card> myGroup = new ArrayList<>();
+        //     playerCardList.add(myGroup);
+        //     for (int j = 0; j < cardDeck.size(); j++) {
+        //         // int numOfCardsPerPlayer = 7;
+        //         // int positionInHand = i % numOfCardsPerPlayer;
+        //         while (playerCardList.get(i).size() < 7) {
+        //             playerCardList.get(i).add(cardDeck.get(j));
+        //             cardDeck.remove(j);
+        //         }
+
+        //     }
+        // }
 
         // for (int i = 0; i < jumlahPemain; i++) {
         // for (Card c : playerCardList.get(0)) {
@@ -146,18 +155,18 @@ class SetupGame extends CardDeck {
         // }
         // }
         // }
-        for (int i = 0; i < playerCardList.size(); i++) {
-            System.out.println("Deck kartu " + player[i].getName() + ":");
-            for (int j = 0; j < playerCardList.get(i).size(); j++) {
-                Card c = playerCardList.get(i).get(j);
-                System.out.print(c.getType() + " ");
-                System.out.print(c.getColor() + " ");
-                System.out.print(c.getValue() + " ");
-            }
-            System.out.println("");
-            System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
-            System.out.println("");
-        }
+        // for (int i = 0; i < playerCardList.size(); i++) {
+        //     System.out.println("Deck kartu " + player[i].getName() + ":");
+        //     for (int j = 0; j < playerCardList.get(i).size(); j++) {
+        //         Card c = playerCardList.get(i).get(j);
+        //         System.out.print(c.getType() + " ");
+        //         System.out.print(c.getColor() + " ");
+        //         System.out.print(c.getValue() + " ");
+        //     }
+        //     System.out.println("");
+        //     System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
+        //     System.out.println("");
+        // }
     }
 
     // untuk dapetin pemain yang main pertama kali secara acak.

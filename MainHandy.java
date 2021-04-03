@@ -12,7 +12,7 @@ public class MainHandy {
         SetupGame setupGame = new SetupGame();
         // input player
         System.out.println("");
-        setupGame.getPlayer();
+        // setupGame.getPlayer();
         System.out.println("");
 
         // ngeshuffle

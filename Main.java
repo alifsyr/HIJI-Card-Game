@@ -94,6 +94,7 @@ public class Main {
             System.out.println("Giliran " + currentPlayer.getName());
             System.out.println("Berikut adalah list kartumu:");
             int i = 1;
+            System.out.println(currentPlayer.getKartu());
             for (Card c: currentPlayer.getKartu()) {
                 System.out.println(i + ". " + c.printCard());
                 i++;
