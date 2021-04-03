@@ -177,6 +177,14 @@ public class Main {
                                     System.out.println("Pilihan kartu tidak valid!");
                                 }
                             }
+                            if (drawPenalty == 0){
+                                if (currentPlayer.checkCard(tableCard)){
+                                    for (int i= 0; i < drawPenalty; i++){
+                                        Card temp = deck.getCard();
+                                        System.out.println("Kartu " + temp.printCard() +" ditambahkan ke list kartu pemain");
+                                    }
+                                }
+                            }
 
                         }
                         tableCard = temp.getLastCard();
