@@ -1,45 +1,64 @@
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
 import java.util.Scanner;
 
 public class MainTata {
+
+    public static void tes() {
+
+    }
     public static void main(String[] args) {
-        Player p = new Player("nama");
-        CardDeck cardDeck = new CardDeck();
 
-        int i = 0;
-        while (i < 7) {
-            // p.addCard(new CardDraw());
-            p.addCard(new CardNumber(4, AttributeColor.RED));
-            i++;
-        }
+        new Print<Integer>(2).stylePrint();
+        new Print<String>("2").stylePrint();
+        new Print<Character>('2').stylePrint();
+        new Print<AttributeColor>(AttributeColor.BLACK).stylePrint();
+        // Player p = new Player("nama");
+        // // CardDeck cardDeck = new CardDeck();
 
-        for (Card c : p.getKartu()) {
-            System.out.println(c.printCard());
-        }
-
-        // Card temp = new CardDraw(4, AttributeColor.BLACK);
-        Card temp = new CardNumber(5, AttributeColor.BLUE);
-        System.out.println("temp " + temp.printCard());
-        if (p.checkCard(temp)) {
-            System.out.println("ok");
-        } else {
-            System.out.println("no");
-        }
-
-
-        // Scanner sc = new Scanner(System.in);
-
-        // Thread t = new Thread(new DeclareHiji());
-        // t.start();
-
-        // String input = sc.next();
-        // System.out.println("tes");
-        // if (input.equals("ok")) {
-        //     t.interrupt();
+        // int i = 0;
+        // while (i < 7) {
+        //     // p.addCard(new CardDraw());
+        //     p.addCard(new CardNumber(4, AttributeColor.RED));
+        //     i++;
         // }
 
-        // sc.close();
+        // for (Card c : p.getKartu()) {
+        //     System.out.println(c.printCard());
+        // }
+
+        // // Card temp = new CardDraw(4, AttributeColor.BLACK);
+        // Card temp = new CardNumber(5, AttributeColor.BLUE);
+        // System.out.println("temp " + temp.printCard());
+        // if (p.checkCard(temp)) {
+        //     System.out.println("ok");
+        // } else {
+        //     System.out.println("no");
+        // }
+
+
+        Scanner sc = new Scanner(System.in);
+
+
+        Thread t = new Thread(new DeclareHiji());
+
+        Boolean isTrue = false;
+        
+        String input = sc.next();
+        while (!input.equals("no")) {
+            while (!isTrue) {
+                t.start();
+                isTrue = true;
+            }
+            System.out.println("tes");
+            if (input.equals("ok")) {
+                t.interrupt();
+            }
+            input = sc.next();
+        }
+
+
+        sc.close();
         // Game game = new Game();
         // PlayerCard playercard = new PlayerCard();
         // List<List<Card>> playerCardList = new ArrayList<>();

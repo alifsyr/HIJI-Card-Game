@@ -1,10 +1,10 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+// import java.util.ArrayList;
+// import java.util.InputMismatchException;
+// import java.util.List;
+// import java.util.Random;
+// import java.util.Scanner;
 
 class SetupGame extends CardDeck {
     // atribut

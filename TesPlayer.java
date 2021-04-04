@@ -8,7 +8,7 @@ public class TesPlayer {
         Card kartutersedia;
 
         // membuat objek playerCard
-        PlayerCard playerCard = new PlayerCard();
+        // PlayerCard playerCard = new PlayerCard();
 
         // Inisiasi Pemain
         listNama.add("Alif");

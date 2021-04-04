@@ -1,3 +1,3 @@
-interface AttributePower {
-    int usePower(int i);
+interface AttributePower<T> {
+    T usePower(T i);
 }
