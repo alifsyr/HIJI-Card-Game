@@ -58,6 +58,7 @@ abstract class PlayerCard {
             }
 
             if (avail) {
+                System.out.println("check avail " + c.printCard());
                 break;
             }
 
