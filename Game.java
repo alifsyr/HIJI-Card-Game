@@ -156,7 +156,7 @@ public class Game {
     }
 
     public void help() {
-        System.out.println("How to play the game?");
+        System.out.println("Bagaimana cara memainkan game ini?");
         System.out.println("F01 - Start Game");
         System.out.println("F02 - List Cards");
         System.out.println("F03 - Discard");
