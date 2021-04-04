@@ -112,23 +112,26 @@ public class Main {
             System.out.println(currentPlayer.getName());
             System.out.println("");
  
-            game.listCommand();
+            //game.listCommand();
             boolean isTurn = true;
             try {
+                game.listCommand();
                 System.out.println("");
                 System.out.print("Command yang ingin dijalankan: ");
                 runGame = sc.next();
                 while (isTurn) {
+                    PlayCard temp = new PlayCard(tableCard);
                     if (runGame.equals("1")) {
                         game.listCard(currentPlayer.getKartu());
-                        
+                        System.out.println(" ");
+                        game.listCommand();
                     } else if (runGame.equals("2")) {
-                        PlayCard temp = new PlayCard(tableCard);
+                        //PlayCard temp = new PlayCard(tableCard);
                         if (drawPenalty == 0) {
-                            System.out.println("");
-                            System.out.println("Table Card: ");
-                            System.out.println(tableCard.printCard());
-                            System.out.println("");
+                            // System.out.println("");
+                            // System.out.println("Table Card: ");
+                            // System.out.println(tableCard.printCard());
+                            // System.out.println("");
     
                             boolean cont = true;
                             int tempColor = 0;
@@ -136,12 +139,24 @@ public class Main {
     
                             // Looping Throw Card 
                             while (!runGame.toLowerCase().equals("n") && cont) {
+                                System.out.println("");
+                                System.out.println("Table Card: ");
+                                System.out.println(tableCard.printCard());
+                                System.out.println("");
                                 game.listCard(currentPlayer.getKartu());
                                 if (!currentPlayer.checkCard(tableCard)) {
                                     System.out.println("Kamu tidak memiliki kartu yang dapat dibuang!");
                                     System.out.println("Kamu harus mengambil kartu dari deck!");
                                     Card localCard = deck.getCard();
                                     System.out.println("Kartu yang kamu peroleh dari deck adalah " + localCard.printCard());
+                                    if (temp.checkIsValid(localCard,tableCard)) {
+                                        System.out.println("Apakah kamu ingin mengeluarkan kartu yang diperoleh dari deck (Y/N)? ");
+                                        String decision = sc.next();
+                                        if (decision.toLowerCase().equals("y")) {
+                                            tableCard = localCard;
+                                        }
+                                        System.out.println("Kartu dikeluarkan");
+                                    }
                                     currentPlayer.addCard(localCard);
                                     cont = false;
                                 } else {
@@ -155,38 +170,58 @@ public class Main {
                                     }
                                     try {
                                         Card throwCard = currentPlayer.getKartu().get(index - 1);
-                                        if (temp.getLastCard().getType() == AttributeType.WILDCARD) {
+                                        if (temp.addCard(throwCard)) {
                                             currentPlayer.throwCard(throwCard);
+                                            tableCard = temp.getLastCard();
+                                            if (throwCard.getType() == AttributeType.REVERSE) {
+                                                playerOrder = throwCard.usePower(playerOrder);
+                                            } else if (throwCard.getType() == AttributeType.SKIP) {
+                                                currentPlayerOrder = throwCard.usePower(currentPlayerOrder);
+                                            } else if (throwCard.getType() == AttributeType.DRAW) {
+                                                drawPenalty = throwCard.usePower(drawPenalty);
+                                            } else if (throwCard.getColor() == AttributeColor.BLACK) {
+                                                game.getColorOption();
+                                                tempColor = sc.nextInt();
+                                                cont = false;
+                                            } 
                                         } else {
-                                            if (temp.addCard(throwCard)) {
-                                                currentPlayer.throwCard(throwCard);
-                                                if (throwCard.getType() == AttributeType.REVERSE) {
-                                                    playerOrder = throwCard.usePower(playerOrder);
-                                                } else if (throwCard.getType() == AttributeType.SKIP) {
-                                                    currentPlayerOrder = throwCard.usePower(currentPlayerOrder);
-                                                } else if (throwCard.getType() == AttributeType.DRAW) {
-                                                    drawPenalty = throwCard.usePower(drawPenalty);
-                                                } else if (throwCard.getColor() == AttributeColor.BLACK) {
-                                                    game.getColorOption();
-                                                    tempColor = sc.nextInt();
-                                                    cont = false;
-                                                } 
-                                            } else {
-                                                System.out.println("tes");
-                                            }
+                                            System.out.println("tes");
                                         }
+                                        // if (temp.getLastCard().getType() == AttributeType.WILDCARD) {
+                                        
+                                        //     currentPlayer.throwCard(throwCard);
+                                        // } else {
+                                        //     if (temp.addCard(throwCard)) {
+                                        //         currentPlayer.throwCard(throwCard);
+                                        //         tableCard = temp.getLastCard();
+                                        //         if (throwCard.getType() == AttributeType.REVERSE) {
+                                        //             playerOrder = throwCard.usePower(playerOrder);
+                                        //         } else if (throwCard.getType() == AttributeType.SKIP) {
+                                        //             currentPlayerOrder = throwCard.usePower(currentPlayerOrder);
+                                        //         } else if (throwCard.getType() == AttributeType.DRAW) {
+                                        //             drawPenalty = throwCard.usePower(drawPenalty);
+                                        //         } else if (throwCard.getColor() == AttributeColor.BLACK) {
+                                        //             game.getColorOption();
+                                        //             tempColor = sc.nextInt();
+                                        //             cont = false;
+                                        //         } 
+                                        //     } else {
+                                        //         System.out.println("tes");
+                                        //     }
+                                        // }
 
                                         // Handle Multiple Discard
-                                        System.out.println("");
-                                        System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
-                                        runGame = sc.next();
-                                        while (!runGame.toLowerCase().equals("n")
-                                                && !runGame.toLowerCase().equals("y")) {
-                                            System.out.println("Input tidak valid!");
+                                        if (cont){
                                             System.out.println("");
-                                            System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N)? ");
+                                            System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
                                             runGame = sc.next();
-
+                                            while (!runGame.toLowerCase().equals("n")
+                                                    && !runGame.toLowerCase().equals("y")) {
+                                                System.out.println("Input tidak valid!");
+                                                System.out.println("");
+                                                System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N)? ");
+                                                runGame = sc.next();
+                                            }
                                         }
     
                                     } catch (IndexOutOfBoundsException e) {
@@ -211,6 +246,14 @@ public class Main {
                                     anyDraw = true;
                                 }
                             }
+                            //if (drawPenalty != 0){
+                            //    if (currentPlayer.checkCard(tableCard)){
+                            //        for (int i= 0; i < drawPenalty; i++){
+                            //            Card Temp = deck.getCard();
+                            //            System.out.println("Kartu " + Temp.printCard() +" ditambahkan ke list kartu pemain");
+                            //        }
+                            //    }
+                            //}
 
                             if (anyDraw) {
                                 boolean cont = true;
@@ -268,23 +311,26 @@ public class Main {
                     } else if (runGame.equals("3")) {
                         System.out.println("List Pemain: ");
                         game.listPlayer(setupGame.player, currentPlayerOrder);
+                        System.out.println(" ");
+                        game.listCommand();
 
                     } else if (runGame.equals("4")) {
                         System.out.println("Urutan pemain: ");
                         game.viewPlayer(setupGame.player, currentPlayerOrder);
+                        game.listCommand();
     
                     } else if (runGame.equals("5")) {
 
-                        System.out.println("Kamu megambil sebuah kartu dari deck");
-                        Card temp = deck.getCard();
-                        System.out.println("Kartu yang kamu peroleh dari deck adalah " + temp.printCard());
-                        currentPlayer.addCard(temp);
+                        System.out.println("Kamu mengambil sebuah kartu dari deck");
+                        Card fromDeck = deck.getCard();
+                        System.out.println("Kartu yang kamu peroleh dari deck adalah " + fromDeck.printCard());
+                        currentPlayer.addCard(fromDeck);
 
-                        if (temp.equals(tableCard)) {
+                        if (temp.checkIsValid(fromDeck,tableCard)) {
                             System.out.println("Apakah kamu ingin mengeluarkan kartu yang diperoleh dari deck (Y/N)? ");
                             String decision = sc.next();
                             if (decision.toLowerCase().equals("y")) {
-                                tableCard = temp;
+                                tableCard = fromDeck;
                             }  
                             System.out.println("Kartu dikeluarkan");
                         }
@@ -294,9 +340,13 @@ public class Main {
                     } else if (runGame.equals("6")) {
                         System.out.println("Declare Hiji");
                         currentPlayer.declareHiji();
+                        System.out.println(" ");
+                        game.listCommand();
 
                     } else if (runGame.equals("7")) {
                         game.help();
+                        System.out.println(" ");
+                        game.listCommand();
                         
                     } else if (runGame.equals("cheat")) {
                         winner = currentPlayer;
@@ -304,6 +354,8 @@ public class Main {
                         
                     } else {
                         System.out.println("Command tidak valid!");
+                        System.out.println(" ");
+                        game.listCommand();
 
                     }
 
