@@ -16,7 +16,7 @@ public class CardSkip extends Card {
     }
 
     @Override
-    public int usePower(int i) {
+    public Integer usePower(Integer i) {
         return i + 1;
     }
 }

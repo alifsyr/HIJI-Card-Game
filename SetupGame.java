@@ -1,59 +1,99 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+// import java.util.ArrayList;
+// import java.util.InputMismatchException;
+// import java.util.List;
+// import java.util.Random;
+// import java.util.Scanner;
 
-class SetupGame extends cardDeck {
+class SetupGame extends CardDeck {
     // atribut
-    Card tableCard;
-    player[] player;
+    // Card tableCard;
+    Player[] player;
     int jumlahPemain;
-    List<List<Card>> playerCardList = new ArrayList<>();
+    // List<List<Card>> playerCardList = new ArrayList<>();
 
     // method untuk melakukan pengacakan kartu di cardDeck
     // perlu ditunjukkin deck nya kah (?)
     public void shuffleDeck() {
         Collections.shuffle(cardDeck);
-        for (Card c : cardDeck) {
-            System.out.print(c.getType() + " ");
-            System.out.print(c.getColor() + " ");
-            System.out.print(c.getValue() + " ");
-            System.out.println("");
-        }
+        // for (Card c : cardDeck) {
+        // System.out.println(c.printCard());
+        // }
         System.out.println("Deck kartu sudah diacak!");
         System.out.println("");
     }
 
     // method untuk mendapatkan jumlah pemain
     // dan menerima nama pemain.
-    public void getPlayer() {
-        Scanner sc = new Scanner(System.in);
+    // public void getPlayer() {
+    // Scanner sc = new Scanner(System.in);
 
-        System.out.println("Ada berapa pemain?");
-        jumlahPemain = sc.nextInt();
+    // System.out.print("Ada berapa pemain? ");
 
-        while (jumlahPemain <= 1 || jumlahPemain >= 7) {
-            System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
-            System.out.println("Silahkan masukkan jumlah pemain.");
-            jumlahPemain = sc.nextInt();
+    // // exception buat input.
+    // try {
+    // jumlahPemain = sc.nextInt();
+    // } catch (InputMismatchException e) {
+    // System.out.println("InputMismatchException catched.");
+    // System.out.println("Harap masukkan bilangan integer!");
+    // System.out.println("Ulangi permainan.");
+    // System.exit(0);
+    // }
+
+    // while (jumlahPemain <= 1 || jumlahPemain >= 7) {
+    // System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang
+    // diperbolehkan.");
+    // System.out.println("Silahkan masukkan jumlah pemain.");
+    // jumlahPemain = sc.nextInt();
+    // }
+
+    // player = new Player[jumlahPemain];
+
+    // for (int i = 0; i < jumlahPemain; i++) {
+    // System.out.print("Masukkan nama pemain " + (i + 1) + " : ");
+    // String namaPemain = sc.next();
+
+    // player[i] = new Player(namaPemain);
+    // }
+    // System.out.println("Berikut daftar pemain.");
+
+    // for (int i = 0; i < player.length; i++) {
+    // System.out.println((i + 1) + ". " + player[i].getName());
+    // }
+    // System.out.println("Selamat bermain!");
+    // sc.close();
+    // }
+
+    // method untuk mendapatkan kartu di meja dari cardDeck
+    // sebenarnya tinggal ambil kartu pertama dari hasil shuffle
+    // tinggal remove card dari cardDeck
+    public Card getTableCard() {
+        int i = 0;
+        Card c = cardDeck.get(i);
+        while (c.getType() != AttributeType.NUMBER) {
+            i++;
+            c = cardDeck.get(i);
         }
+        c = new CardNumber(4, AttributeColor.RED); // dummy
+        return c;
+        // for (int i = 0; i < cardDeck.size(); i++) {
+        // Card c = cardDeck.get(i);
+        // if (c.getType() == AttributeType.NUMBER) {
+        // tableCard = c;
+        // cardDeck.remove(i);
+        // i = cardDeck.size();
+        // }
+        // }
+        // return tableCard;
 
-        player = new player[jumlahPemain];
-
-        for (int i = 0; i < jumlahPemain; i++) {
-            System.out.println("Masukkan nama pemain " + (i + 1) + " : ");
-            String namaPemain = sc.next();
-
-            player[i] = new player(namaPemain);
-        }
-        System.out.println("Berikut daftar pemain.");
-
-        for (int i = 0; i < player.length; i++) {
-            System.out.println((i + 1) + ". " + player[i].getName());
-        }
-        System.out.println("Selamat bermain!");
-        sc.close();
+        // for (Card c : cardDeck) {
+        // if (c.getType() == AttributeType.NUMBER) {
+        // tableCard = c;
+        // }
+        // // cardDeck.remove(i);
+        // }
+        // return tableCard;
     }
 
     // method untuk melakukan pembagian kartu ketiap player
@@ -85,15 +125,29 @@ class SetupGame extends cardDeck {
         // // System.out.println(arrPlayer);
         // // }
 
-        for (int i = 0; i < jumlahPemain; i++) {
-            ArrayList<Card> myGroup = new ArrayList<>();
-            playerCardList.add(myGroup);
-            for (int j = 0; j < cardDeck.size(); j++) {
-                // int numOfCardsPerPlayer = 7;
-                // int positionInHand = i % numOfCardsPerPlayer;
-                playerCardList.get(i).add(cardDeck.get(j));
+        for (Player p : player) {
+            int i = 0;
+            while (i < 7) {
+                p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
+                // p.addCard(cardDeck.get(0));
+                cardDeck.remove(0);
+                i++;
             }
         }
+
+        // for (int i = 0; i < jumlahPemain; i++) {
+        // ArrayList<Card> myGroup = new ArrayList<>();
+        // playerCardList.add(myGroup);
+        // for (int j = 0; j < cardDeck.size(); j++) {
+        // // int numOfCardsPerPlayer = 7;
+        // // int positionInHand = i % numOfCardsPerPlayer;
+        // while (playerCardList.get(i).size() < 7) {
+        // playerCardList.get(i).add(cardDeck.get(j));
+        // cardDeck.remove(j);
+        // }
+
+        // }
+        // }
 
         // for (int i = 0; i < jumlahPemain; i++) {
         // for (Card c : playerCardList.get(0)) {
@@ -111,33 +165,29 @@ class SetupGame extends cardDeck {
         // }
         // }
         // }
-        for (int i = 0; i < playerCardList.size(); i++) {
-            System.out.println("Deck kartu " + player[i].getName() + ":");
-            for (int j = 0; j < playerCardList.get(i).size(); j++) {
-                Card c = playerCardList.get(i).get(j);
-                System.out.print(c.getType() + " ");
-                System.out.print(c.getColor() + " ");
-                System.out.print(c.getValue() + " ");
-            }
-            System.out.println("");
-            System.out.println("Jumlah kartu " + player[i].getName() + ": " + playerCardList.get(i).size());
-            System.out.println("");
-        }
-    }
-
-    // method untuk mendapatkan kartu di meja dari cardDeck
-    // sebenarnya tinggal ambil kartu pertama dari hasil shuffle
-    // tinggal remove card dari cardDeck
-    Card getTableCard() {
-        return cardDeck.get(0);
+        // for (int i = 0; i < playerCardList.size(); i++) {
+        // System.out.println("Deck kartu " + player[i].getName() + ":");
+        // for (int j = 0; j < playerCardList.get(i).size(); j++) {
+        // Card c = playerCardList.get(i).get(j);
+        // System.out.print(c.getType() + " ");
+        // System.out.print(c.getColor() + " ");
+        // System.out.print(c.getValue() + " ");
+        // }
+        // System.out.println("");
+        // System.out.println("Jumlah kartu " + player[i].getName() + ": " +
+        // playerCardList.get(i).size());
+        // System.out.println("");
+        // }
     }
 
     // untuk dapetin pemain yang main pertama kali secara acak.
     // tinggal diubah jadi type player
-    player getFirstPlayer() {
-        Random indeksAcak = new Random();
-        int i = indeksAcak.nextInt(player.length);
-        return player[i];
+    Player getFirstPlayer() {
+        // Random indeksAcak = new Random();
+        // int i = indeksAcak.nextInt(player.length);
+        Collections.shuffle(Arrays.asList(player));
+        return player[0];
+
     }
 
     // //method untuk shuffle

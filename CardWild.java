@@ -1,6 +1,4 @@
-public class CardWild extends Card {
-    private int power;
-
+public class CardWild extends Card{
     public CardWild() {
         super();
         setColor(AttributeColor.BLACK);
@@ -8,8 +6,9 @@ public class CardWild extends Card {
         setValue(0);
     }
 
+
     @Override
-    public int usePower(int i) {
+    public Integer usePower(Integer i) {
         return i;
     }
 }
