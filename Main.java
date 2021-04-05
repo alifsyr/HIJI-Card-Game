@@ -57,6 +57,10 @@ public class Main {
             //game.listCommand();
             boolean isTurn = true;
             boolean multDisc = false;
+
+            DeclareHiji declare = new DeclareHiji(currentPlayer);
+            Thread t = new Thread(declare);
+
             try {
                 game.listCommand();
                 System.out.println("");
@@ -81,6 +85,9 @@ public class Main {
     
                             // Looping Throw Card 
                             while (!runGame.toLowerCase().equals("n") && cont && (currentPlayer.getCardLeft() != 0)) {
+                                if (currentPlayer.getCardLeft() == 1 && !currentPlayer.getHiji()) {
+                                    t.start();
+                                }
                                 game.getTableCard(tableCard);
                                 game.listCard(currentPlayer.getKartu());
 
@@ -292,6 +299,7 @@ public class Main {
 // ************************************************** Declare Hiji **************************************************//
 
                     } else if (runGame.equals("6")) {
+                        t.interrupt();
                         System.out.println("Declare Hiji");
                         currentPlayer.declareHiji();
                         System.out.println(" ");
