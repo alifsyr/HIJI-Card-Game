@@ -188,18 +188,25 @@ public class Main {
                                                 currentPlayer.addCard(localCard);
                                             }
                                         } while (!acceptedAnswers.contains(decision));
-
-                                    }
-                                    currentPlayer.addCard(localCard);
-                                    cont = false;
+                                      
+                                    System.out.println("\nGiliran selesai");
+                                    isTurn = false;
                                 } else {
                                     System.out.println("");
                                     System.out.print("Kartu mana yang akan kamu keluarkan? ");
-                                    try {
-                                        index = sc.nextInt();
-                                    } catch (InputMismatchException e) {
-                                        System.out.println("Inputan tidak valid!");
-                                        index = sc.nextInt();
+                                    boolean input = false;
+                                    index = 0;
+                                    while(!input){
+                                        System.out.println("wow keluar");
+                                        try {
+                                            index = sc.nextInt();
+                                            if (index <= currentPlayer.getCardLeft() && index > 0){
+                                                input = true;
+                                            }
+                                        } catch (InputMismatchException e) {
+                                            System.out.println("Inputan tidak valid!");
+                                            //index = sc.nextInt();
+                                        }
                                     }
                                     try {
                                         Card throwCard = currentPlayer.getKartu().get(index - 1);
@@ -361,6 +368,7 @@ public class Main {
                                     decision = sc.next();
                                 } while (!acceptedAnswers.contains(decision));
 
+
                                 if (decision.toLowerCase().equals("y")) {
                                     if (fromDeck.getType() == AttributeType.REVERSE) {
                                         playerOrder = fromDeck.usePower(playerOrder);
@@ -375,7 +383,6 @@ public class Main {
                                         fromDeck.setColor(AttributeColor.values()[tempColor - 1]);
                                     }
                                     tableCard = fromDeck;
-
                                     System.out.println("Kartu dikeluarkan");
                                 }
                                 // System.out.println("Kartu dikeluarkan");
@@ -383,6 +390,7 @@ public class Main {
                                     // tes kartu disimpan
                                     System.out.println("Kartu disimpan.");
                                 }
+
 
                             }
                             System.out.println("\nGiliran selesai");
@@ -434,6 +442,7 @@ public class Main {
                     if (winner != null) {
                         System.out.println("");
                         System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
+                        game.clearScreen();
 
                     } else if (isTurn) {
                         game.listCommand();
