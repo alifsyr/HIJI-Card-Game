@@ -98,7 +98,7 @@ public class Main {
                                     System.out.println("Kamu harus mengambil kartu dari deck!");
                                     Card localCard = deck.getCard();
                                     System.out.println("Kartu yang kamu peroleh dari deck adalah " + localCard.printCard());
-                                    if (temp.checkIsValid(localCard,tableCard)) {
+                                    if (temp.checkIsValid(localCard, tableCard)) {
                                         System.out.println("Apakah kamu ingin mengeluarkan kartu yang diperoleh dari deck (Y/N)? ");
                                         String decision = sc.next();
                                         if (decision.toLowerCase().equals("y")) {
@@ -114,11 +114,12 @@ public class Main {
                                 } else {
                                     System.out.println("");
                                     System.out.print("Kartu mana yang akan kamu keluarkan? ");
+                                    index = 0;
                                     try {
                                         index = sc.nextInt();
                                     } catch (InputMismatchException e) {
-                                        System.out.println("Inputan tidak valid!");
-                                        index = sc.nextInt();
+                                        // System.out.println("Inputan tidak valid!");
+                                        sc.next();
                                     }
                                     try {
                                         Card throwCard = currentPlayer.getKartu().get(index - 1);
@@ -196,11 +197,12 @@ public class Main {
                                     game.listCard(currentPlayer.getKartu());
                                     System.out.println("");
                                     System.out.print("Kartu mana yang akan kamu keluarkan? ");
+                                    index = 0;
                                     try {
                                         index = sc.nextInt();
                                     } catch (InputMismatchException e) {
-                                        System.out.println("Inputan tidak valid!");
-                                        index = sc.nextInt();
+                                        // System.out.println("Inputan tidak valid!");
+                                        sc.next();
                                     }
                                     try {
                                         Card throwCard = currentPlayer.getKartu().get(index - 1);
@@ -292,9 +294,7 @@ public class Main {
                                     tableCard = fromDeck;
                                     System.out.println("Kartu dikeluarkan");
                                 } 
-                                // System.out.println("Kartu dikeluarkan");
                                 else {
-                                    // tes kartu disimpan
                                     System.out.println("Kartu disimpan.");
                                 }
 
