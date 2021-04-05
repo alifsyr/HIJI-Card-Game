@@ -1,11 +1,11 @@
-import java.lang.reflect.WildcardType;
+// import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
 
 //inheritance playerCard
-public class PlayerCard {
+abstract class PlayerCard {
     // Atribut
-    private Boolean cardAvail = false;
+    // private Boolean cardAvail = false;
 
     private final List<Card> playerCardList = new ArrayList<>(); // belom ada array list card
 

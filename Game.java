@@ -1,25 +1,16 @@
-import java.util.Timer;
+
+// import java.util.Timer;
 import java.util.ArrayList;
-import java.util.Collections;
+// import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+// import java.util.Random;
+// import java.util.Scanner;
 
 public class Game {
-    private static int handSize = 7; // untuk jumlah kartu
-    private static boolean isReverse; // untuk membalik
-    // false = maju; true = mundur
-    private int drawPenalty; // menambah jumlah draw (+2 / +4)
-    // private static int turn = 0; //giliran keberapa
-    private Player winner; // menampilkan nama pemenang
-    int currTurn = 0;
-    private static int nextTurn; // giliran bermain
-    int playerOrder = 1;
-
     Card currCard;
     Card tableCard;
     Player[] player; // array nama pemain
-    PlayerCard playercard = new PlayerCard();
+    // PlayerCard playercard = new PlayerCard();
     ArrayList<Card> card = new ArrayList<>();
     List<List<Card>> playerCardList = new ArrayList<>();
     ArrayList<Player> playerList = new ArrayList<>();
@@ -64,18 +55,18 @@ public class Game {
         System.out.println("[7] Bantuan");
     }
 
-    public void step() {
-        currTurn = (currTurn + playerOrder) % player.length;
-        if (currCard instanceof CardReverse) {
-            playerOrder = card.get(2).usePower(playerOrder);
-        }
-    }
+    // public void step() {
+    // currTurn = (currTurn + playerOrder) % player.length;
+    // if (currCard instanceof CardReverse) {
+    // playerOrder = card.get(2).usePower(playerOrder);
+    // }
+    // }
 
     public void listCard(List<Card> playerCardList) {
         if (playerCardList.size() != 0) {
             System.out.println("Berikut adalah list kartumu:");
             for (int j = 0; j < playerCardList.size(); j++) {
-                System.out.println((j+1) + ". " + playerCardList.get(j).printCard());
+                System.out.println((j + 1) + ". " + playerCardList.get(j).printCard());
             }
         } else {
             System.out.println("Kamu tidak memiliki kartu lagi!");
@@ -91,7 +82,12 @@ public class Game {
         System.out.print("Warna apa yang kamu inginkan? ");
     }
 
-
+    public void getTableCard(Card card) {
+        System.out.println("");
+        System.out.println("Table Card: ");
+        System.out.println(card.printCard());
+        System.out.println("");
+    }
 
     // public void timer(){
     // try {
@@ -109,19 +105,19 @@ public class Game {
 
     // }
 
-    public void checkHiji() {
-        for (Player p : player) {
-            for (int j = 0; j < playerCardList.size(); j++) {
-                if (player[j] == player[currTurn]) {
-                    p.getName();
-                    // if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
-                    // nambah dua kartu
-                    // }
-                }
-            }
-        }
+    // public void checkHiji() {
+    // for (Player p : player) {
+    // for (int j = 0; j < playerCardList.size(); j++) {
+    // if (player[j] == player[currTurn]) {
+    // p.getName();
+    // // if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
+    // // nambah dua kartu
+    // // }
+    // }
+    // }
+    // }
 
-    }
+    // }
 
     public void getWinner() {
         for (int j = 0; j < playerCardList.size(); j++) {
@@ -144,8 +140,8 @@ public class Game {
 
     public void listPlayer(Player[] playerList, int currTurn) {
         for (int j = 0; j < playerList.length; j++) {
-            System.out.println("Pemain " + (j+1) + ": " + playerList[j].getName());
-            System.out.println("Jumlah Kartu: " + (j+1) + ": " + playerList[j].getCardLeft());
+            System.out.println("Pemain " + (j + 1) + ": " + playerList[j].getName());
+            System.out.println("Jumlah Kartu: " + (j + 1) + ": " + playerList[j].getCardLeft());
             if (playerList[j] == playerList[currTurn]) {
                 System.out.println("Sedang giliran");
             } else {

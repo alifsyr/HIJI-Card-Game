@@ -1,4 +1,4 @@
-public class Card implements AttributePower{
+public class Card implements AttributePower<Integer>{
     private int value;
     private AttributeColor color;
     private AttributeType type;
@@ -29,7 +29,7 @@ public class Card implements AttributePower{
     }
 
     @Override
-    public int usePower(int i) {
+    public Integer usePower(Integer i) {
         return 0;
     }
 
