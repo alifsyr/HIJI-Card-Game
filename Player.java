@@ -1,5 +1,5 @@
 public class Player extends PlayerCard {
-    public static Object PlayerCard;
+    // public static Object PlayerCard;
     private final String name;
     private Boolean isHiji = false;
 
