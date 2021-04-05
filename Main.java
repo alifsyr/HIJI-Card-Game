@@ -188,7 +188,7 @@ public class Main {
                                             }
                                         } catch (InputMismatchException e) {
                                             System.out.println("Inputan tidak valid!");
-                                            //index = sc.nextInt();
+                                            sc.next();
                                         }
                                     }
                                     try {
