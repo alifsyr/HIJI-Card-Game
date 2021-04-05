@@ -3,6 +3,9 @@
 import java.util.ArrayList;
 // import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 // import java.util.Random;
 // import java.util.Scanner;
 
@@ -117,6 +120,33 @@ public class Game {
     // }
     // }
 
+    // }
+
+    // public void DeclareHiji(){
+    //     boolean isTimeCopleted = true;
+    //     Timer timer = new Timer();
+    //     TimerTask task = new TimerTask() {
+
+    //     @Override
+    //     public void run() {
+    //         if (isTimeCopleted) {
+    //             System.out.println("Waktu kamu habis, kamu akan mendapat tambahan 2 kartu!");
+    //             Card Temp = deck.getCard();
+    //             currentPlayer.addCard(Temp);
+    //             }
+    //         }
+    //     };
+
+    //     timer.schedule(task, 3000);
+
+    //     System.out.println("Ketik HIJI dalam 3 detik!");
+
+    //     Scanner scan = new Scanner(System.in);
+    //     String str = scan.nextLine();
+    //     isTimeCopleted = false;
+
+
+    //     System.out.println("Berhasil!");
     // }
 
     public void getWinner() {
