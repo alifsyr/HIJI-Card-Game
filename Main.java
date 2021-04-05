@@ -402,7 +402,7 @@ public class Main {
                     if (winner != null) {
                         System.out.println("");
                         System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
-                        game.clearScreen();
+                        Game.clearScreen();
                         
                     } else if (isTurn) {
                         game.listCommand();
