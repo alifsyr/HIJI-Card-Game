@@ -3,6 +3,9 @@
 import java.util.ArrayList;
 // import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 // import java.util.Random;
 // import java.util.Scanner;
 
@@ -119,6 +122,33 @@ public class Game {
 
     // }
 
+    // public void DeclareHiji(){
+    //     boolean isTimeCopleted = true;
+    //     Timer timer = new Timer();
+    //     TimerTask task = new TimerTask() {
+
+    //     @Override
+    //     public void run() {
+    //         if (isTimeCopleted) {
+    //             System.out.println("Waktu kamu habis, kamu akan mendapat tambahan 2 kartu!");
+    //             Card Temp = deck.getCard();
+    //             currentPlayer.addCard(Temp);
+    //             }
+    //         }
+    //     };
+
+    //     timer.schedule(task, 3000);
+
+    //     System.out.println("Ketik HIJI dalam 3 detik!");
+
+    //     Scanner scan = new Scanner(System.in);
+    //     String str = scan.nextLine();
+    //     isTimeCopleted = false;
+
+
+    //     System.out.println("Berhasil!");
+    // }
+
     public void getWinner() {
         for (int j = 0; j < playerCardList.size(); j++) {
             if (playerList.get(j).getCardLeft() == 0) {
@@ -153,14 +183,18 @@ public class Game {
 
     public void help() {
         System.out.println("Bagaimana cara memainkan game ini?");
-        System.out.println("F01 - Start Game");
-        System.out.println("F02 - List Cards");
-        System.out.println("F03 - Discard");
-        System.out.println("F04 - Draw");
-        System.out.println("F05 - Declare HIJI");
-        System.out.println("F06 - List Players");
-        System.out.println("F07 - View Player in Turn");
-        System.out.println("F08 - Help");
+        System.out.println("Pertama, pemain harus memasukkan banyaknya dan nama pemain");
+        System.out.println("Setelahnya kartu yang ada akan diacak dan dibagikan kepada pemain dengan setiap pemain mendapat 7 kartu");
+        System.out.println("Lalu dipilih kartu pertama untuk acuan dan pemain pertama");
+        System.out.println("Terdapat beberapa command penting. Diantaranya:");
+        System.out.println("[1] Lihat list kartu");
+        System.out.println("[2] Pilih Kartu");
+        System.out.println("[3] List Pemain");
+        System.out.println("[4] Urutan Pemain");
+        System.out.println("[5] Ambil Kartu Dari Deck");
+        System.out.println("[6] Declare Hiji");
+        System.out.println("[7] Bantuan");
+        
     }
 
     public static void clearScreen() {  
