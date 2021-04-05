@@ -122,10 +122,15 @@ public class Main {
                 runGame = sc.next();
                 while (isTurn) {
                     PlayCard temp = new PlayCard(tableCard);
+
+// ************************************************** Melihat List Kartu **************************************************//
+
                     if (runGame.equals("1")) {
                         game.listCard(currentPlayer.getKartu());
                         System.out.println(" ");
-                        game.listCommand();
+
+// ************************************************** Pilih Kartu **************************************************//
+
                     } else if (runGame.equals("2")) {
                         if (drawPenalty == 0) {
                             boolean cont = true;
@@ -133,7 +138,7 @@ public class Main {
                             int index;
     
                             // Looping Throw Card 
-                            while (!runGame.toLowerCase().equals("n") && cont && currentPlayer.getCardLeft() != 1) {
+                            while (!runGame.toLowerCase().equals("n") && cont && (currentPlayer.getCardLeft() != 0)) {
                                 game.getTableCard(tableCard);
                                 game.listCard(currentPlayer.getKartu());
                                 if (!currentPlayer.checkCard(tableCard) && !multDisc) {
@@ -180,28 +185,6 @@ public class Main {
                                         } else {
                                             System.out.println("tes");
                                         }
-                                        // if (temp.getLastCard().getType() == AttributeType.WILDCARD) {
-                                        
-                                        //     currentPlayer.throwCard(throwCard);
-                                        // } else {
-                                        //     if (temp.addCard(throwCard)) {
-                                        //         currentPlayer.throwCard(throwCard);
-                                        //         tableCard = temp.getLastCard();
-                                        //         if (throwCard.getType() == AttributeType.REVERSE) {
-                                        //             playerOrder = throwCard.usePower(playerOrder);
-                                        //         } else if (throwCard.getType() == AttributeType.SKIP) {
-                                        //             currentPlayerOrder = throwCard.usePower(currentPlayerOrder);
-                                        //         } else if (throwCard.getType() == AttributeType.DRAW) {
-                                        //             drawPenalty = throwCard.usePower(drawPenalty);
-                                        //         } else if (throwCard.getColor() == AttributeColor.BLACK) {
-                                        //             game.getColorOption();
-                                        //             tempColor = sc.nextInt();
-                                        //             cont = false;
-                                        //         } 
-                                        //     } else {
-                                        //         System.out.println("tes");
-                                        //     }
-                                        // }
 
                                         // Handle Multiple Discard
                                         if (cont){
@@ -225,19 +208,24 @@ public class Main {
                                     }
                                 }
                             }
-                            if (currentPlayer.getCardLeft() == 1) {
-                                System.out.println("harusnya declare hiji qm");
-                            }
                             tableCard = temp.getLastCard();
                             if (tableCard.getType() == AttributeType.WILDCARD && tableCard.getColor() == AttributeColor.BLACK) {
                                 tableCard.setColor(AttributeColor.values() [tempColor-1]);
                             }
-                            isTurn = false;
+                            if (currentPlayer.getCardLeft() == 1) {
+                                System.out.println("harusnya declare hiji qm");
+                            } else if (currentPlayer.getCardLeft() == 0) {
+                                winner = currentPlayer;
+                                isTurn = false;
+                            } else {
+                                isTurn = false;
+                            }
                         } else {
                             game.listCard(currentPlayer.getKartu());
 
                             System.out.println("draw " + drawPenalty);
                             boolean anyDraw = false;
+
                             // Ngecek punya kartu draw atau engga
                             for (Card c: currentPlayer.getKartu()) {
                                 if (c instanceof CardDraw) {
@@ -296,19 +284,21 @@ public class Main {
                             isTurn = false;
                         }
                         
+// ************************************************** List Pemain **************************************************//
                         
-                        // cek udah winner apa belom
                     } else if (runGame.equals("3")) {
                         System.out.println("List Pemain: ");
                         game.listPlayer(setupGame.player, currentPlayerOrder);
                         System.out.println(" ");
-                        game.listCommand();
+
+// ************************************************** Urutan Pemain **************************************************//
 
                     } else if (runGame.equals("4")) {
                         System.out.println("Urutan pemain: ");
                         game.viewPlayer(setupGame.player, currentPlayerOrder);
-                        game.listCommand();
     
+// ************************************************** Ambil karu dari Deck **************************************************//
+
                     } else if (runGame.equals("5")) {
                         if (drawPenalty == 0) {
                             System.out.println("Kamu mengambil sebuah kartu dari deck");
@@ -350,18 +340,21 @@ public class Main {
                             isTurn = false;
                         }
 
-                        
+// ************************************************** Declare Hiji **************************************************//
+
                     } else if (runGame.equals("6")) {
                         System.out.println("Declare Hiji");
                         currentPlayer.declareHiji();
                         System.out.println(" ");
-                        game.listCommand();
+
+// ************************************************** Bantuan **************************************************//
 
                     } else if (runGame.equals("7")) {
                         game.help();
                         System.out.println(" ");
-                        game.listCommand();
                         
+// ************************************************** Else **************************************************//
+
                     } else if (runGame.equals("cheat")) {
                         winner = currentPlayer;
                         isTurn = false;
@@ -369,9 +362,10 @@ public class Main {
                     } else {
                         System.out.println("Command tidak valid!");
                         System.out.println(" ");
-                        game.listCommand();
 
                     }
+
+// ************************************************** Conditional Changing Player **************************************************//
 
                     // Conditional sebelum ganti pemain selanjutnya
                     if (winner != null) {
@@ -379,6 +373,7 @@ public class Main {
                         System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
                         
                     } else if (isTurn) {
+                        game.listCommand();
                         System.out.println("");
                         System.out.print("Command yang ingin dijalankan: ");
                         runGame = sc.next();
@@ -396,6 +391,9 @@ public class Main {
             currentPlayerOrder = (currentPlayerOrder + playerOrder + setupGame.jumlahPemain) % setupGame.jumlahPemain; 
             currentPlayer = setupGame.player[currentPlayerOrder];
         }
+
+// ************************************************** End Game **************************************************//
+
         System.out.println("Terima kasih telah bermain HIJI!");
         System.out.println("Selamat kepada " + winner.getName() + " sebagai pemenang game kali ini!");
 
