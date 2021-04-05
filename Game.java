@@ -4,16 +4,16 @@ import java.util.ArrayList;
 // import java.util.Collections;
 import java.util.List;
 // import java.util.Random;
-// import java.util.Scanner;
+import java.util.Scanner;
 
 public class Game {
-    Card currCard;
-    Card tableCard;
-    Player[] player; // array nama pemain
+    // Card currCard;
+    // Card tableCard;
+    // Player[] player; // array nama pemain
     // PlayerCard playercard = new PlayerCard();
-    ArrayList<Card> card = new ArrayList<>();
-    List<List<Card>> playerCardList = new ArrayList<>();
-    ArrayList<Player> playerList = new ArrayList<>();
+    // ArrayList<Card> card = new ArrayList<>();
+    // List<List<Card>> playerCardList = new ArrayList<>();
+    // ArrayList<Player> playerList = new ArrayList<>();
 
     // public void startGame(){
     // //manggil setup game
@@ -44,6 +44,31 @@ public class Game {
     // System.out.println("");
     // }
 
+    public void start(Scanner sc) {
+        System.out.println("");
+        System.out.println(".----------------.  .----------------.  .----------------.  .----------------. ");
+        System.out.println("| .--------------. || .--------------. || .--------------. || .--------------. |");
+        System.out.println("| |  ____  ____  | || |     _____    | || |     _____    | || |     _____    | |");
+        System.out.println("| | |_   ||   _| | || |    |_   _|   | || |    |_   _|   | || |    |_   _|   | |");
+        System.out.println("| |   | |__| |   | || |      | |     | || |      | |     | || |      | |     | |");
+        System.out.println("| |   |  __  |   | || |      | |     | || |   _  | |     | || |      | |     | |");
+        System.out.println("| |  _| |  | |_  | || |     _| |_    | || |  | |_' |     | || |     _| |_    | |");
+        System.out.println("| | |____||____| | || |    |_____|   | || |  `.___.'     | || |    |_____|   | |");
+        System.out.println("| |              | || |              | || |              | || |              | |");
+        System.out.println("| '--------------' || '--------------' || '--------------' || '--------------' |");
+        System.out.println(" '----------------'  '----------------'  '----------------'  '----------------' ");
+        System.out.println("             Kelompok 21 | IF2212 Pemrograman Berorientasi Objek");
+        System.out.println("                              Ketik 1 untuk memulai");
+        System.out.println("");
+        
+        String start = sc.next();
+        while (!start.equals("1")) {
+            System.out.println("Ketik 1 untuk memulai!");
+            start = sc.next();
+        }
+        System.out.println("");
+    }
+
     public void listCommand() {
         System.out.println("Command yang dapat kamu jalankan:");
         System.out.println("[1] Lihat list kartu");
@@ -55,6 +80,17 @@ public class Game {
         System.out.println("[7] Bantuan");
     }
 
+    public void space() {
+        System.out.println("");
+        System.out.println("--------------------------------------");
+        System.out.println("");
+    }
+
+    public void tableCardInfo(Card tableCard) {
+        System.out.println("Table Card: ");
+        System.out.println(tableCard.printCard());
+        System.out.println("");
+    }
     // public void step() {
     // currTurn = (currTurn + playerOrder) % player.length;
     // if (currCard instanceof CardReverse) {
@@ -74,18 +110,32 @@ public class Game {
     }
 
     public void getColorOption() {
-        System.out.println("Kamu mengeluarkan sebuah wildcard");
-        System.out.println("1. Red");
-        System.out.println("2. Blue");
-        System.out.println("3. Yellow");
-        System.out.println("4. Green");
-        System.out.print("Warna apa yang kamu inginkan? ");
+        new Print<String>("Kamu mengeluarkan sebuah wildcard").enterPrint();
+        new Print<String>("1. Red").enterPrint();
+        new Print<String>("2. Blue").enterPrint();
+        new Print<String>("3. Yellow").enterPrint();
+        new Print<String>("4. Green").enterPrint();
+        new Print<String>("Warna apa yang kamu inginkan?").noEnterPrint();
+        // System.out.println("Kamu mengeluarkan sebuah wildcard");
+        // System.out.println("1. Red");
+        // System.out.println("2. Blue");
+        // System.out.println("3. Yellow");
+        // System.out.println("4. Green");
+        // System.out.print("Warna apa yang kamu inginkan? ");
     }
 
     public void getTableCard(Card card) {
-        System.out.println("");
+        new Print<Character>(' ').enterPrint();;
+        // System.out.println("");
         System.out.println("Table Card: ");
         System.out.println(card.printCard());
+        // System.out.println("");
+        new Print<Character>(' ').enterPrint();;
+    }
+
+    public void currentPlayerInfo(Player currentPlayer) {
+        System.out.println("Pemain Saat Ini: ");
+        System.out.println(currentPlayer.getName());
         System.out.println("");
     }
 
@@ -119,13 +169,13 @@ public class Game {
 
     // }
 
-    public void getWinner() {
-        for (int j = 0; j < playerCardList.size(); j++) {
-            if (playerList.get(j).getCardLeft() == 0) {
-                System.out.println(player[j].getName() + " telah memenangkan game!");
-            }
-        }
-    }
+    // public void getWinner() {
+    //     for (int j = 0; j < playerCardList.size(); j++) {
+    //         if (playerList.get(j).getCardLeft() == 0) {
+    //             System.out.println(player[j].getName() + " telah memenangkan game!");
+    //         }
+    //     }
+    // }
 
     public void viewPlayer(Player[] playerList, int currTurn) {
         for (int j = 0; j < playerList.length; j++) {
