@@ -369,7 +369,6 @@ public class Main {
                                     decision = sc.next();
                                 } while (!acceptedAnswers.contains(decision));
 
-
                                 if (decision.toLowerCase().equals("y")) {
                                     if (fromDeck.getType() == AttributeType.REVERSE) {
                                         playerOrder = fromDeck.usePower(playerOrder);
@@ -391,7 +390,6 @@ public class Main {
                                     // tes kartu disimpan
                                     System.out.println("Kartu disimpan.");
                                 }
-
 
                             }
                             System.out.println("\nGiliran selesai");
