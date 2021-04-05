@@ -10,13 +10,19 @@ public class PlayCard {
 
     public boolean checkIsValid(Card out, Card current) {
         if (cardList.size() > 1) { // Kalau multiple discard
-            System.out.println("card compare " + cardList.get(cardList.size() - 1).printCard());
-            return out.equals(cardList.get(cardList.size() - 1));
+            Card temp = cardList.get(cardList.size() - 1);
+            System.out.println("card compare " + temp.printCard());
+            System.out.println("list card saat ini pas mau mult discard:");
+            for (Card c : cardList) {
+                System.out.println(c.printCard());
+            }
+            System.out.println("");
+            return out.getType() == temp.getType() && out.getColor() == temp.getColor() && out.getValue() == temp.getValue();
         } else {
             if (out.getType() == AttributeType.WILDCARD) // Cek kalo kita mau keluarin wildcard
                 return true;
             else if (current.getType() == AttributeType.WILDCARD) // Cek kalo di table lagi wild card
-                return current.getColor() == out.getColor();
+                return current.getColor() == out.getColor() || out.getColor() == AttributeColor.BLACK;
             else if (current.getType() == AttributeType.DRAW && current.getValue() == 4) // Cek kalo di table Draw +4
                 return out.getType() == AttributeType.DRAW && out.getValue() == 4;
             else if (out.getType() == AttributeType.DRAW && out.getValue() == 4) // Cek kalo di table Draw +4
@@ -55,8 +61,8 @@ public class PlayCard {
         return true;
     }
 
-    public void getPower(int X) {
-
+    public int length() {
+        return cardList.size();
     }
 
     public ArrayList<Card> discard() {

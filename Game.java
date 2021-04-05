@@ -1,3 +1,4 @@
+
 // import java.util.Timer;
 import java.util.ArrayList;
 // import java.util.Collections;
@@ -55,17 +56,17 @@ public class Game {
     }
 
     // public void step() {
-    //     currTurn = (currTurn + playerOrder) % player.length;
-    //     if (currCard instanceof CardReverse) {
-    //         playerOrder = card.get(2).usePower(playerOrder);
-    //     }
+    // currTurn = (currTurn + playerOrder) % player.length;
+    // if (currCard instanceof CardReverse) {
+    // playerOrder = card.get(2).usePower(playerOrder);
+    // }
     // }
 
     public void listCard(List<Card> playerCardList) {
         if (playerCardList.size() != 0) {
             System.out.println("Berikut adalah list kartumu:");
             for (int j = 0; j < playerCardList.size(); j++) {
-                System.out.println((j+1) + ". " + playerCardList.get(j).printCard());
+                System.out.println((j + 1) + ". " + playerCardList.get(j).printCard());
             }
         } else {
             System.out.println("Kamu tidak memiliki kartu lagi!");
@@ -81,7 +82,12 @@ public class Game {
         System.out.print("Warna apa yang kamu inginkan? ");
     }
 
-
+    public void getTableCard(Card card) {
+        System.out.println("");
+        System.out.println("Table Card: ");
+        System.out.println(card.printCard());
+        System.out.println("");
+    }
 
     // public void timer(){
     // try {
@@ -100,16 +106,16 @@ public class Game {
     // }
 
     // public void checkHiji() {
-    //     for (Player p : player) {
-    //         for (int j = 0; j < playerCardList.size(); j++) {
-    //             if (player[j] == player[currTurn]) {
-    //                 p.getName();
-    //                 // if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
-    //                 // nambah dua kartu
-    //                 // }
-    //             }
-    //         }
-    //     }
+    // for (Player p : player) {
+    // for (int j = 0; j < playerCardList.size(); j++) {
+    // if (player[j] == player[currTurn]) {
+    // p.getName();
+    // // if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
+    // // nambah dua kartu
+    // // }
+    // }
+    // }
+    // }
 
     // }
 
@@ -134,8 +140,8 @@ public class Game {
 
     public void listPlayer(Player[] playerList, int currTurn) {
         for (int j = 0; j < playerList.length; j++) {
-            System.out.println("Pemain " + (j+1) + ": " + playerList[j].getName());
-            System.out.println("Jumlah Kartu: " + (j+1) + ": " + playerList[j].getCardLeft());
+            System.out.println("Pemain " + (j + 1) + ": " + playerList[j].getName());
+            System.out.println("Jumlah Kartu: " + (j + 1) + ": " + playerList[j].getCardLeft());
             if (playerList[j] == playerList[currTurn]) {
                 System.out.println("Sedang giliran");
             } else {

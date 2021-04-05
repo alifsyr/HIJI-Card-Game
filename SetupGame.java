@@ -17,9 +17,9 @@ class SetupGame extends CardDeck {
     // perlu ditunjukkin deck nya kah (?)
     public void shuffleDeck() {
         Collections.shuffle(cardDeck);
-        for (Card c : cardDeck) {
+        // for (Card c : cardDeck) {
             // System.out.println(c.printCard());
-        }
+        // }
         System.out.println("Deck kartu sudah diacak!");
         System.out.println("");
     }
@@ -74,6 +74,7 @@ class SetupGame extends CardDeck {
             i++;
             c = cardDeck.get(i);
         }
+        c = new CardNumber(4, AttributeColor.RED); // dummy
         return c;
         // for (int i = 0; i < cardDeck.size(); i++) {
         //     Card c = cardDeck.get(i);
@@ -126,8 +127,8 @@ class SetupGame extends CardDeck {
         for (Player p : player) {
             int i = 0;
             while (i < 7) {
-                // p.addCard(new CardDraw());
-                p.addCard(cardDeck.get(0));
+                p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
+                // p.addCard(cardDeck.get(0));
                 cardDeck.remove(0);
                 i++;
             }
