@@ -25,7 +25,7 @@ public class CardDraw extends Card {
     }
 
     @Override
-    public int usePower(int draw) {
+    public Integer usePower(Integer draw) {
         return draw + getValue();
     }
 }

@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
+// import java.util.ArrayList;
+// import java.util.List;
+// import javax.swing.plaf.synth.SynthSpinnerUI;
 
 // driver untuk
 // 1. minta jumlah pemain dan masukin nama pemain ke array;
