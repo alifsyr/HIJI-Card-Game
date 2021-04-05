@@ -180,7 +180,6 @@ public class Main {
                                     boolean input = false;
                                     index = 0;
                                     while(!input){
-                                        System.out.println("wow keluar");
                                         try {
                                             index = sc.nextInt();
                                             if (index <= currentPlayer.getCardLeft() && index > 0){
