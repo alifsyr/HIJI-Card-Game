@@ -173,7 +173,7 @@ public class Main {
 
                                         // tadi make .equals gatahu kenapa gabisa
                                         String decision = sc.next();
-                                        List acceptedAnswers = Arrays.asList("y", "n");
+                                        List<String> acceptedAnswers = Arrays.asList("y", "n");
 
                                         do {
                                             decision = sc.next();
@@ -264,6 +264,7 @@ public class Main {
                             } else {
                                 isTurn = false;
                             }
+                        }
                         } else {
                             game.listCard(currentPlayer.getKartu());
 
@@ -361,7 +362,7 @@ public class Main {
                                 String decision = sc.nextLine();
 
                                 // tadi make .equals gatahu kenapa gabisa
-                                List acceptedAnswers = Arrays.asList("y", "n");
+                                List<String> acceptedAnswers = Arrays.asList("y", "n");
 
                                 do {
                                     System.out.println("Mohon masukkan opsi Y/N.");
@@ -442,7 +443,7 @@ public class Main {
                     if (winner != null) {
                         System.out.println("");
                         System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
-                        game.clearScreen();
+                        Game.clearScreen();
 
                     } else if (isTurn) {
                         game.listCommand();
