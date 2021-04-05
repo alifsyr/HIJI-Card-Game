@@ -4,8 +4,10 @@ public class Print<T> {
     public Print(T t) {
         this.t = t;
     }
-    public void stylePrint() {
+    public void enterPrint() {
         System.out.println(t);
     }
-    
+    public void noEnterPrint() {
+        System.out.print(t);
+    }
 }

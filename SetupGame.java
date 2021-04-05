@@ -1,68 +1,61 @@
 import java.util.Arrays;
 import java.util.Collections;
 // import java.util.ArrayList;
-// import java.util.InputMismatchException;
+import java.util.InputMismatchException;
 // import java.util.List;
 // import java.util.Random;
-// import java.util.Scanner;
+import java.util.Scanner;
 
 class SetupGame extends CardDeck {
-    // atribut
-    // Card tableCard;
     Player[] player;
     int jumlahPemain;
-    // List<List<Card>> playerCardList = new ArrayList<>();
 
     // method untuk melakukan pengacakan kartu di cardDeck
-    // perlu ditunjukkin deck nya kah (?)
     public void shuffleDeck() {
         Collections.shuffle(cardDeck);
-        // for (Card c : cardDeck) {
-            // System.out.println(c.printCard());
-        // }
         System.out.println("Deck kartu sudah diacak!");
         System.out.println("");
     }
 
     // method untuk mendapatkan jumlah pemain
     // dan menerima nama pemain.
-    // public void getPlayer() {
-    //     Scanner sc = new Scanner(System.in);
+    public void getPlayer(Scanner sc) {
 
-    //     System.out.print("Ada berapa pemain? ");
+        System.out.print("Ada berapa pemain? ");
 
-    //     // exception buat input.
-    //     try {
-    //         jumlahPemain = sc.nextInt();
-    //     } catch (InputMismatchException e) {
-    //         System.out.println("InputMismatchException catched.");
-    //         System.out.println("Harap masukkan bilangan integer!");
-    //         System.out.println("Ulangi permainan.");
-    //         System.exit(0);
-    //     }
+        // exception buat input.
+        try {
+            jumlahPemain = sc.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("InputMismatchException catched.");
+            System.out.println("Harap masukkan bilangan integer!");
+            System.out.println("Ulangi permainan.");
+            System.exit(0);
+        }
 
-    //     while (jumlahPemain <= 1 || jumlahPemain >= 7) {
-    //         System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
-    //         System.out.println("Silahkan masukkan jumlah pemain.");
-    //         jumlahPemain = sc.nextInt();
-    //     }
+        while (jumlahPemain <= 1 || jumlahPemain >= 7) {
+            System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
+            System.out.println("Silahkan masukkan jumlah pemain.");
+            jumlahPemain = sc.nextInt();
+        }
 
-    //     player = new Player[jumlahPemain];
+        player = new Player[jumlahPemain];
 
-    //     for (int i = 0; i < jumlahPemain; i++) {
-    //         System.out.print("Masukkan nama pemain " + (i + 1) + " : ");
-    //         String namaPemain = sc.next();
+        System.out.println("");
 
-    //         player[i] = new Player(namaPemain);
-    //     }
-    //     System.out.println("Berikut daftar pemain.");
+        for (int i = 0; i < jumlahPemain; i++) {
+            System.out.print("Masukkan nama pemain " + (i + 1) + " : ");
+            String namaPemain = sc.next();
 
-    //     for (int i = 0; i < player.length; i++) {
-    //         System.out.println((i + 1) + ". " + player[i].getName());
-    //     }
-    //     System.out.println("Selamat bermain!");
-    //     sc.close();
-    // }
+            player[i] = new Player(namaPemain);
+        }
+        System.out.println("Berikut daftar pemain.");
+
+        for (int i = 0; i < player.length; i++) {
+            System.out.println((i + 1) + ". " + player[i].getName());
+        }
+        System.out.println("Selamat bermain!");
+    }
 
     // method untuk mendapatkan kartu di meja dari cardDeck
     // sebenarnya tinggal ambil kartu pertama dari hasil shuffle

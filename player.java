@@ -3,6 +3,8 @@ public class Player extends PlayerCard {
     private final String name;
     private Boolean isHiji = false;
 
+    CardDeck deck = new CardDeck();
+
     // Atribut class player
     public Player(String name) {
         super();
@@ -18,6 +20,9 @@ public class Player extends PlayerCard {
     public void declareHiji() {
         if (getCardLeft() != 1) {
             System.out.println("Kamu tidak bisa declare Hiji sekarang!");
+            System.out.println("Kamu mendapatkan penalti 2 kartu dari deck!");
+            addCard(deck.getCard());
+            addCard(deck.getCard());
         } else {
             this.isHiji = true;
         }

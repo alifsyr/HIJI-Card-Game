@@ -53,10 +53,10 @@ public class PlayCard {
 
         // System.out.println("last card " +
         // cardList.get(cardList.size()-1).printCard());
-        System.out.println("list card saat ini:");
-        for (Card c : cardList) {
-            System.out.println(c.printCard());
-        }
+        // System.out.println("list card saat ini:");
+        // for (Card c : cardList) {
+        //     System.out.println(c.printCard());
+        // }
         System.out.println("");
         return true;
     }
