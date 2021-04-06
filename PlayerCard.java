@@ -5,7 +5,7 @@ import java.util.List;
 abstract class PlayerCard {
     // Atribut
 
-    private final List<Card> playerCardList = new ArrayList<>(); // belom ada array list card
+    private final List<Card> playerCardList = new ArrayList<>();
 
     // method mengambil kartu
     public List<Card> getKartu() {
@@ -14,7 +14,6 @@ abstract class PlayerCard {
 
     // method menghitung sisa kartu player
     public int getCardLeft() {
-        // belum ada array list card
         return playerCardList.size();
     }
 
@@ -24,43 +23,32 @@ abstract class PlayerCard {
         for (Card c : playerCardList) {
             if (c.getType() == AttributeType.WILDCARD){ // Cek kalo kita mau keluarin wildcard
                 avail = true;
-                // System.out.println("check 1");
             }
             else if (card.getType() == AttributeType.WILDCARD) { // Cek kalo di table lagi wild card
                 avail = card.getColor() == c.getColor();
-                // System.out.println("check 2");
             }
             else if (card.getType() == AttributeType.DRAW && card.getColor() == AttributeColor.BLACK) { // Cek kalo di table Draw +4
-                avail = c.getType() == AttributeType.DRAW && c.getColor() == AttributeColor.BLACK; 
-                // System.out.println("check 3");
+                avail = c.getType() == AttributeType.DRAW && c.getColor() == AttributeColor.BLACK;
             }
             else if (card.getType() == c.getType() && card.getType() != AttributeType.NUMBER){ // Cek kalo di table reverse/ draw/ skip
                 avail = card.getColor() == c.getColor();
-                // System.out.println("check 4");
             }
             else if (c.getType() != AttributeType.NUMBER) {
                 avail = c.getColor() == card.getColor(); 
-                // System.out.println("check 5");
             }
             else if (c.getColor() == card.getColor()) { // Cek kalo warna sama
                 avail = true;
-                // System.out.println("check 6");
             }
             else if (c.getValue() == card.getValue()){ // cek kalo angka sama
                 avail = true;
-                // System.out.println("check 7");
             }
             else {
                 avail = false;
-                // System.out.println("nop");
             }
 
             if (avail) {
-                // System.out.println("check avail " + c.printCard());
                 break;
             }
-
-            // System.out.println("check avail " + c.printCard());
         }
         return avail;
     }
