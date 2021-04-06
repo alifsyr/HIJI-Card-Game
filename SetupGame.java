@@ -72,7 +72,7 @@ class SetupGame extends CardDeck {
             i++;
             c = cardDeck.get(i);
         }
-        c = new CardNumber(4, AttributeColor.RED); // dummy
+        // c = new CardNumber(4, AttributeColor.RED); // dummy
         return c;
         // for (int i = 0; i < cardDeck.size(); i++) {
         //     Card c = cardDeck.get(i);
@@ -126,8 +126,8 @@ class SetupGame extends CardDeck {
             int i = 0;
             // while (i < 7) {
             while (i < 3) { // dummy
-                p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
-                // p.addCard(cardDeck.get(0));
+                // p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
+                p.addCard(cardDeck.get(0));
                 cardDeck.remove(0);
                 i++;
             }

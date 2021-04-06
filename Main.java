@@ -30,7 +30,7 @@ public class Main {
 
         // ************************************************** SetUp Game **************************************************//
 
-        // game.start(sc); // Uncomment pas mau kumpul saja
+        game.start(sc); // Uncomment pas mau kumpul saja
         setupGame.getPlayer(sc);
         game.space();
 

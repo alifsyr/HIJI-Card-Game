@@ -61,8 +61,8 @@ public class Game {
         System.out.println("| |              | || |              | || |              | || |              | |");
         System.out.println("| '--------------' || '--------------' || '--------------' || '--------------' |");
         System.out.println(" '----------------'  '----------------'  '----------------'  '----------------' ");
-        System.out.println("             Kelompok 21 | IF2212 Pemrograman Berorientasi Objek");
-        System.out.println("                              Ketik 1 untuk memulai");
+        System.out.println("      Kelompok 21 | IF2212 Pemrograman Berorientasi Objek | OperaVanJava");
+        System.out.println("                            Ketik 1 untuk memulai");
         System.out.println("");
         
         String start = sc.next();
@@ -143,44 +143,6 @@ public class Game {
         System.out.println(currentPlayer.getName());
         System.out.println("");
     }
-
-    // public void timer(){
-    // try {
-    // Thread.sleep(3000);
-    // ArrayList<Card> card = new ArrayList<>();
-    // playerCardList.add(card);
-    // playerCardList.get(i).add(cardDeck.get(j));
-    // } catch (InterruptedException ex) {
-
-    // }
-    // }
-
-    // public void setTimer(){
-    // // ini pake thread
-
-    // }
-
-    // public void checkHiji() {
-    // for (Player p : player) {
-    // for (int j = 0; j < playerCardList.size(); j++) {
-    // if (player[j] == player[currTurn]) {
-    // p.getName();
-    // // if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
-    // // nambah dua kartu
-    // // }
-    // }
-    // }
-    // }
-
-    // }
-
-    // public void getWinner() {
-    //     for (int j = 0; j < playerCardList.size(); j++) {
-    //         if (playerList.get(j).getCardLeft() == 0) {
-    //             System.out.println(player[j].getName() + " telah memenangkan game!");
-    //         }
-    //     }
-    // }
 
     public void viewPlayer(Player[] playerList, int currTurn) {
         for (int j = 0; j < playerList.length; j++) {
