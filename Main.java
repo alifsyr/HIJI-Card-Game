@@ -59,6 +59,7 @@ public class Main {
             //game.listCommand();
             boolean isTurn = true;
             boolean multDisc = false;
+            boolean anyThreadStarted = false;
 
             DeclareHiji declare = new DeclareHiji(currentPlayer);
             Thread t = new Thread(declare);
@@ -87,8 +88,9 @@ public class Main {
     
                             // Looping Throw Card 
                             while (!runGame.toLowerCase().equals("n") && cont && (currentPlayer.getCardLeft() != 0)) {
-                                if (currentPlayer.getCardLeft() == 1 && !currentPlayer.getHiji()) {
+                                if (currentPlayer.getCardLeft() == 1 && !currentPlayer.getHiji() && !anyThreadStarted) {
                                     t.start();
+                                    anyThreadStarted = true;
                                 }
                                 game.getTableCard(tableCard);
                                 game.listCard(currentPlayer.getKartu());
@@ -144,7 +146,7 @@ public class Main {
 
                                         // Handle Multiple Discard
                                         if (cont){
-                                            System.out.println("");
+                                            // System.out.println("");
                                             System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
                                             runGame = sc.next();
                                             while (!runGame.toLowerCase().equals("n")
@@ -216,7 +218,7 @@ public class Main {
                                         }
 
                                         // Handle Multiple Discard
-                                        System.out.println("");
+                                        // System.out.println("");
                                         System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N) ? ");
                                         runGame = sc.next();
                                         while (!runGame.toLowerCase().equals("n") && !runGame.toLowerCase().equals("y")) {
@@ -317,7 +319,6 @@ public class Main {
 
                     } else if (runGame.equals("6")) {
                         t.interrupt();
-                        System.out.println("Declare Hiji");
                         currentPlayer.declareHiji();
                         System.out.println(" ");
 
@@ -347,6 +348,9 @@ public class Main {
                         Game.clearScreen();
                         
                     } else if (isTurn) {
+                        if (currentPlayer.getCardLeft() == 1 && !anyThreadStarted && !t.isAlive()) {
+                            t.start();
+                        }
                         game.listCommand();
                         System.out.println("");
                         System.out.print("Command yang ingin dijalankan: ");

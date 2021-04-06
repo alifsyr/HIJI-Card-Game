@@ -11,11 +11,11 @@ public class PlayCard {
     public boolean checkIsValid(Card out, Card current) {
         if (cardList.size() > 1) { // Kalau multiple discard
             Card temp = cardList.get(cardList.size() - 1);
-            System.out.println("card compare " + temp.printCard());
-            System.out.println("list card saat ini pas mau mult discard:");
-            for (Card c : cardList) {
-                System.out.println(c.printCard());
-            }
+            // System.out.println("card compare " + temp.printCard());
+            // System.out.println("list card saat ini pas mau mult discard:");
+            // for (Card c : cardList) {
+            //     System.out.println(c.printCard());
+            // }
             System.out.println("");
             return out.getType() == temp.getType() && out.getColor() == temp.getColor() && out.getValue() == temp.getValue();
         } else {

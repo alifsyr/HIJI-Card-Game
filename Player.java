@@ -24,6 +24,7 @@ public class Player extends PlayerCard {
             addCard(deck.getCard());
             addCard(deck.getCard());
         } else {
+            System.out.println("Declare Hiji Berhasil");
             this.isHiji = true;
         }
     }
