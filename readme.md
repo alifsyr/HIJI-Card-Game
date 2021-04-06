@@ -32,8 +32,8 @@ Initially wild cards don't have a color. When drawn, a new value object is creat
 ### Implemented Bonus
 * Cheat
 
-### Build and Execution
-```javac *.java```
+### Build and Execution 
+```javac -target 8 -source 8 Main.java```
 ```java Main```
 
 ### Author
@@ -41,4 +41,4 @@ Initially wild cards don't have a color. When drawn, a new value object is creat
 * Michael Ryan Martin (18219046)
 * Handy Zulkarnain (18219060)
 * Natasya Jatiwicha Azzahra (18219065)
-* Graciella Valiska Liander (18219075)
+* Graciella Valeska Liander (18219075)

@@ -4,7 +4,6 @@ import java.util.List;
 //inheritance playerCard
 abstract class PlayerCard {
     // Atribut
-
     private final List<Card> playerCardList = new ArrayList<>();
 
     // method mengambil kartu
