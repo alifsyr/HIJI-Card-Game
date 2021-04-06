@@ -14,7 +14,7 @@ public class PlayCard {
             System.out.println("");
             return out.getType() == temp.getType() && out.getColor() == temp.getColor() && out.getValue() == temp.getValue();
         } else {
-            if (out.getType() == AttributeType.WILDCARD) // Cek kalo kita mau keluarin wildcard
+            if (out.getColor() == AttributeColor.BLACK) // Cek kalo kita mau keluarin wildcard
                 return true;
 
             else if (dimeja.getType() == AttributeType.WILDCARD) // Cek kalo di table lagi wild card

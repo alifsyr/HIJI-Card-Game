@@ -491,7 +491,7 @@ public class Main {
                     // Conditional sebelum ganti pemain selanjutnya
                     if (winner != null) {
                         System.out.println("");
-                        System.out.println("Pemenang permainan HIJI adalah " + winner.getName());
+                        System.out.println("Pemenang permainan HIJI adalah " + winner.getName()); 
                         Game.clearScreen();
                         
                     } else if (isTurn) {
@@ -519,6 +519,8 @@ public class Main {
                     } else {
                         System.out.println("");
                         System.out.println("Giliran akan diganti ke pemain selanjutnya");
+                        System.out.println("Ketik OK untuk mengganti pemain dan membersihkan terminal");
+                        sc.next();
                         Game.clearScreen();
                     }
                 }
