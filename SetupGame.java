@@ -27,7 +27,7 @@ class SetupGame extends CardDeck {
         try {
             jumlahPemain = sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("InputMismatchException catched.");
+            // System.out.println("InputMismatchException catched.");
             System.out.println("Harap masukkan bilangan integer!");
             System.out.println("Ulangi permainan.");
             System.exit(0);
@@ -36,7 +36,12 @@ class SetupGame extends CardDeck {
         while (jumlahPemain <= 1 || jumlahPemain >= 7) {
             System.out.println("Maaf, hanya jumlah pemain diantara 2-6 yang diperbolehkan.");
             System.out.println("Silahkan masukkan jumlah pemain.");
-            jumlahPemain = sc.nextInt();
+            try {
+                jumlahPemain = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Harap masukkan bilangan integer!");
+                sc.next();
+            }
         }
 
         player = new Player[jumlahPemain];
@@ -67,7 +72,7 @@ class SetupGame extends CardDeck {
             i++;
             c = cardDeck.get(i);
         }
-        c = new CardNumber(4, AttributeColor.RED); // dummy
+        // c = new CardNumber(4, AttributeColor.RED); // dummy
         return c;
         // for (int i = 0; i < cardDeck.size(); i++) {
         //     Card c = cardDeck.get(i);
@@ -119,10 +124,10 @@ class SetupGame extends CardDeck {
 
         for (Player p : player) {
             int i = 0;
-            // while (i < 7) {
-            while (i < 3) { // dummy
-                p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
-                // p.addCard(cardDeck.get(0));
+            while (i < 7) {
+            // while (i < 3) { // dummy
+                // p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
+                p.addCard(cardDeck.get(0));
                 cardDeck.remove(0);
                 i++;
             }

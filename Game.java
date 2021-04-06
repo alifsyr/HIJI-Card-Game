@@ -2,6 +2,7 @@
 // import java.util.Timer;
 // import java.util.ArrayList;
 // import java.util.Collections;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 // import java.util.Timer;
@@ -107,6 +108,7 @@ public class Game {
             for (int j = 0; j < playerCardList.size(); j++) {
                 System.out.println((j + 1) + ". " + playerCardList.get(j).printCard());
             }
+            System.out.println(" ");
         } else {
             System.out.println("Kamu tidak memiliki kartu lagi!");
         }
@@ -185,7 +187,7 @@ public class Game {
             if (playerList[j] == playerList[currTurn]) {
                 System.out.println(playerList[j].getName() + " sedang giliran");
                 j += 1;
-                System.out.println(playerList[j].getName() + " giliran berikutnya");
+                System.out.println(playerList[j % playerList.length].getName() + " giliran berikutnya");
                 System.out.println("");
             }
         }
@@ -220,9 +222,15 @@ public class Game {
         
     }
 
-    public static void clearScreen() {  
-        // System.out.print("\033[H\033[2J");  
-        // System.out.flush(); 
-         
+    public static void clearScreen(){
+        //Clears Screen in java
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {
+            System.out.println(ex);
+        }
     }
 }

@@ -7,14 +7,14 @@ public class CardDeck {
     public CardDeck() {
         // Create Deck --> Insert CardNumber
         for (int c = 0; c < 4; c++) {
-            for (var i = 1; i < 10; i++) {
+            for (int i = 1; i < 10; i++) {
                 CardNumber newCard = new CardNumber(i, AttributeColor.values()[c]);
                 cardDeck.add(newCard);
             }
         }
         // Create Deck --> Insert DrawCard
         for (int c = 0; c < 4; c++) {
-            for (var i = 1; i < 3; i++) {
+            for (int i = 1; i < 3; i++) {
                 CardDraw newDrawCard = new CardDraw(2, AttributeColor.values()[c]);
                 cardDeck.add(newDrawCard);
                 CardSkip newSkipCard = new CardSkip(AttributeColor.values()[c]);

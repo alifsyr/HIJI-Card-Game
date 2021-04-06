@@ -21,7 +21,7 @@ public class DeclareHiji extends Thread {
             }
             System.out.println(" ");
             if (currentPlayer.getChooseCardStatus()) {
-                System.out.print("Kartu mana yang akan kamu keluarkan? ");
+                System.out.print("Kartu mana yang akan kamu keluarkan (Ketik 0 untuk cancel)? ");
             } else {
                 System.out.print("Command yang ingin kamu jalankan: ");
             }

@@ -8,7 +8,7 @@ public class PlayCard {
         cardList.add(tableCard);
     }
 
-    public boolean checkIsValid(Card out, Card current) {
+    public boolean checkIsValid(Card out, Card dimeja) {
         if (cardList.size() > 1) { // Kalau multiple discard
             Card temp = cardList.get(cardList.size() - 1);
             // System.out.println("card compare " + temp.printCard());
@@ -21,22 +21,32 @@ public class PlayCard {
         } else {
             if (out.getType() == AttributeType.WILDCARD) // Cek kalo kita mau keluarin wildcard
                 return true;
-            else if (current.getType() == AttributeType.WILDCARD) // Cek kalo di table lagi wild card
-                return current.getColor() == out.getColor() || out.getColor() == AttributeColor.BLACK;
-            else if (current.getType() == AttributeType.DRAW && current.getValue() == 4) // Cek kalo di table Draw +4
-                return out.getType() == AttributeType.DRAW && out.getValue() == 4;
-            else if (out.getType() == AttributeType.DRAW && out.getValue() == 4) // Cek kalo di table Draw +4
-                return current.getType()!= AttributeType.DRAW && current.getValue()!= 2;
-            else if (current.getType() == AttributeType.NUMBER && out.getType()!= AttributeType.NUMBER)
-                return current.getColor() == out.getColor();
-            else if (current.getType() == out.getType() && current.getType() != AttributeType.NUMBER) // Cek kalo di table reverse/ draw/ skip
+
+            else if (dimeja.getType() == AttributeType.WILDCARD) // Cek kalo di table lagi wild card
+                return dimeja.getColor() == out.getColor() || out.getColor() == AttributeColor.BLACK;
+
+            else if (dimeja.getType() == AttributeType.DRAW && dimeja.getValue() == 4) // Cek kalo di table Draw +4
+                // return out.getType() == AttributeType.DRAW && out.getValue() == 4;
+                return out.getColor() == dimeja.getColor();
+            
+            else if (out.getType() == AttributeType.DRAW && out.getValue() == 4) // Cek kalo mau keluarin +4
+                return dimeja.getType()!= AttributeType.DRAW && dimeja.getValue()!= 2;
+
+            else if (dimeja.getType() == AttributeType.NUMBER && out.getType()!= AttributeType.NUMBER)
+                return dimeja.getColor() == out.getColor();
+            
+            else if (dimeja.getType() == out.getType() && dimeja.getType() != AttributeType.NUMBER) // Cek kalo di table reverse/ draw/ skip
                 return true;
+            
             else if (out.getType() != AttributeType.NUMBER)
-                return out.getColor() == current.getColor(); 
-            else if (out.getColor() == current.getColor()) // Cek kalo warna sama
+                return out.getColor() == dimeja.getColor(); 
+            
+            else if (out.getColor() == dimeja.getColor()) // Cek kalo warna sama
                 return true;
-            else if (out.getValue() == current.getValue()) // cek kalo angka sama
+            
+            else if (out.getValue() == dimeja.getValue()) // cek kalo angka sama
                 return true;
+            
             else
                 return false;
         }
