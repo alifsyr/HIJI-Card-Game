@@ -31,6 +31,7 @@ Initially wild cards don't have a color. When drawn, a new value object is creat
 
 ### Implemented Bonus
 * Cheat
+* Clear screen
 
 ### Build and Execution
 ```javac *.java```
