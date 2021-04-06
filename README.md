@@ -15,6 +15,21 @@ The game logic is built according to [official uno rules](https://en.wikipedia.o
 
 Initially wild cards don't have a color. When drawn, a new value object is created with the chosen color.
 
+### How to Play
+* Input the numbers of the total players (2 - 6 players)
+* Input the name of each player
+* System will distribute 7 card to each players, and then 1 card will be randomize to be the first card
+* Players turn will be randomize
+* Game rules will be
+   * Each turn the player can throw in one or more card that matches the requirement of that turn
+   * If the player did not throw anything then that player must draw one card from the deck
+   * If the card from the draw match the requirement of that turn then the player can throw the card but it’s not a must
+   * If that card did not match the requirement then that turn is over without throwing a single card
+* Some types of cards have a certain power that can affect the course of the game.
+* If one of the players has 1 card left, the player has to declare HIJI within 3 seconds. If not the player must draw 2 cards from the deck.
+* Game will be finished, if one of the players doesn't have any card again.
+
+
 ### Implemented Bonus
 * Cheat
 
