@@ -56,10 +56,11 @@ public class Main {
             game.tableCardInfo(tableCard);
             game.currentPlayerInfo(currentPlayer);
  
-            //game.listCommand();
             boolean isTurn = true;
             boolean multDisc = false;
+            boolean alreadyThrowCard = false;
             boolean anyThreadStarted = false;
+            // boolean declareHijiStatus = true;
 
             DeclareHiji declare = new DeclareHiji(currentPlayer);
             Thread t = new Thread(declare);
@@ -81,6 +82,7 @@ public class Main {
 // ************************************************** Pilih Kartu **************************************************//
 
                     } else if (runGame.equals("2")) {
+                        alreadyThrowCard = true;
                         if (drawPenalty == 0) {
                             boolean cont = true;
                             int tempColor = 0;
@@ -89,6 +91,7 @@ public class Main {
                             // Looping Throw Card 
                             while (!runGame.toLowerCase().equals("n") && cont && (currentPlayer.getCardLeft() != 0)) {
                                 if (currentPlayer.getCardLeft() == 1 && !currentPlayer.getHiji() && !anyThreadStarted) {
+                                    currentPlayer.chooseCard();
                                     t.start();
                                     anyThreadStarted = true;
                                 }
@@ -203,7 +206,6 @@ public class Main {
                                     try {
                                         index = sc.nextInt();
                                     } catch (InputMismatchException e) {
-                                        // System.out.println("Inputan tidak valid!");
                                         sc.next();
                                     }
                                     try {
@@ -261,57 +263,62 @@ public class Main {
 // ************************************************** Ambil karu dari Deck **************************************************//
 
                     } else if (runGame.equals("5")) {
-                        if (drawPenalty == 0) {
-                            System.out.println("Kamu mengambil sebuah kartu dari deck");
-                            Card fromDeck = deck.getCard();
-                            System.out.println("Kartu yang kamu peroleh dari deck adalah " + fromDeck.printCard());
-                            currentPlayer.addCard(fromDeck);
-    
-                            if (temp.checkIsValid(fromDeck, tableCard)) {
-                                System.out.println(
-                                        "Apakah kamu ingin mengeluarkan kartu yang diperoleh dari deck (Y/N)? ");
-                                String decision = sc.nextLine();
-
-                                // tadi make .equals gatahu kenapa gabisa
-                                List<String> acceptedAnswers = Arrays.asList("y", "n");
-
-                                do {
-                                    System.out.println("Mohon masukkan opsi Y/N.");
-                                    decision = sc.next();
-                                } while (!acceptedAnswers.contains(decision));
-
-                                if (decision.toLowerCase().equals("y")) {
-                                    if (fromDeck.getType() == AttributeType.REVERSE) {
-                                        playerOrder = fromDeck.usePower(playerOrder);
-                                    } else if (fromDeck.getType() == AttributeType.SKIP) {
-                                        currentPlayerOrder = fromDeck.usePower(currentPlayerOrder);
-                                    } else if (fromDeck.getType() == AttributeType.DRAW) {
-                                        drawPenalty = fromDeck.usePower(drawPenalty);
-                                    } 
-                                    if (fromDeck.getColor() == AttributeColor.BLACK) {
-                                        game.getColorOption();
-                                        int tempColor = sc.nextInt();
-                                        fromDeck.setColor(AttributeColor.values() [tempColor-1]);
-                                    } 
-                                    tableCard = fromDeck;
-                                    System.out.println("Kartu dikeluarkan");
-                                } 
-                                else {
-                                    System.out.println("Kartu disimpan.");
-                                }
-
-                            }
-                            System.out.println("\nGiliran selesai");
-                            isTurn = false;
-                        } else {
-                            System.out.println("Kamu terkena penalty draw sebanyak " + drawPenalty);
-                            for (int i = 0 ; i < drawPenalty; i++) {
+                        if (!alreadyThrowCard) {
+                            if (drawPenalty == 0) {
+                                System.out.println("Kamu mengambil sebuah kartu dari deck");
                                 Card fromDeck = deck.getCard();
                                 System.out.println("Kartu yang kamu peroleh dari deck adalah " + fromDeck.printCard());
                                 currentPlayer.addCard(fromDeck);
+        
+                                if (temp.checkIsValid(fromDeck, tableCard)) {
+                                    System.out.println(
+                                            "Apakah kamu ingin mengeluarkan kartu yang diperoleh dari deck (Y/N)? ");
+                                    String decision = sc.nextLine();
+    
+                                    // tadi make .equals gatahu kenapa gabisa
+                                    List<String> acceptedAnswers = Arrays.asList("y", "n");
+    
+                                    do {
+                                        System.out.println("Mohon masukkan opsi Y/N.");
+                                        decision = sc.next();
+                                    } while (!acceptedAnswers.contains(decision));
+    
+                                    if (decision.toLowerCase().equals("y")) {
+                                        if (fromDeck.getType() == AttributeType.REVERSE) {
+                                            playerOrder = fromDeck.usePower(playerOrder);
+                                        } else if (fromDeck.getType() == AttributeType.SKIP) {
+                                            currentPlayerOrder = fromDeck.usePower(currentPlayerOrder);
+                                        } else if (fromDeck.getType() == AttributeType.DRAW) {
+                                            drawPenalty = fromDeck.usePower(drawPenalty);
+                                        } 
+                                        if (fromDeck.getColor() == AttributeColor.BLACK) {
+                                            game.getColorOption();
+                                            int tempColor = sc.nextInt();
+                                            fromDeck.setColor(AttributeColor.values() [tempColor-1]);
+                                        } 
+                                        tableCard = fromDeck;
+                                        System.out.println("Kartu dikeluarkan");
+                                    } 
+                                    else {
+                                        System.out.println("Kartu disimpan.");
+                                    }
+    
+                                }
+                                System.out.println("\nGiliran selesai");
+                                isTurn = false;
+                            } else {
+                                System.out.println("Kamu terkena penalty draw sebanyak " + drawPenalty);
+                                for (int i = 0 ; i < drawPenalty; i++) {
+                                    Card fromDeck = deck.getCard();
+                                    System.out.println("Kartu yang kamu peroleh dari deck adalah " + fromDeck.printCard());
+                                    currentPlayer.addCard(fromDeck);
+                                }
+                                System.out.println("Giliran selesai");
+                                drawPenalty = 0;
+                                isTurn = false;
                             }
-                            System.out.println("Giliran selesai");
-                            drawPenalty = 0;
+                        } else {
+                            System.out.println("Turnmu sudah habis!");
                             isTurn = false;
                         }
 
@@ -350,16 +357,22 @@ public class Main {
                     } else if (isTurn) {
                         if (currentPlayer.getCardLeft() == 1 && !anyThreadStarted && !t.isAlive()) {
                             t.start();
+                            anyThreadStarted = true;
                         }
-                        game.listCommand();
-                        System.out.println("");
-                        System.out.print("Command yang ingin dijalankan: ");
-                        runGame = sc.next();
+                        if (anyThreadStarted && !t.isAlive()) {
+                            isTurn = false;
+                            System.out.println("Giliran akan diganti ke pemain selanjutnya");
+                        } else {
+                            game.listCommand();
+                            System.out.println("");
+                            System.out.print("Command yang ingin dijalankan: ");
+                            runGame = sc.next();
+                        }
 
                     } else {
                         System.out.println("");
                         System.out.println("Giliran akan diganti ke pemain selanjutnya");
-                        Game.clearScreen();
+                        // Game.clearScreen();
                     }
                 }
             } catch (NoSuchElementException e) {

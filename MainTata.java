@@ -20,19 +20,19 @@ public class MainTata {
 
         Scanner sc = new Scanner(System.in);
 
-        int userInput;
-        Scanner input = new Scanner(System.in);
-        while(true) {    
-            try {
-                System.out.println("Please enter a number: ");
-                userInput = input.nextInt();
-                break;
-            }
-            catch(InputMismatchException | NumberFormatException ex ) {
-                System.out.println("Invalid Number, Please try again");
-                input.next();
-            }
-        }
+        // int userInput;
+        // Scanner input = new Scanner(System.in);
+        // while(true) {    
+        //     try {
+        //         System.out.println("Please enter a number: ");
+        //         userInput = input.nextInt();
+        //         break;
+        //     }
+        //     catch(InputMismatchException | NumberFormatException ex ) {
+        //         System.out.println("Invalid Number, Please try again");
+        //         input.next();
+        //     }
+        // }
 
         // Player currentPlayer = new Player("nama");
 
@@ -47,6 +47,7 @@ public class MainTata {
         //         System.out.println("Inputan tidak valid!");
         //     }
         // }
+        
 
         // int index = 0;
         // while (index == 0) {
@@ -58,7 +59,7 @@ public class MainTata {
         //     index = sc.nextInt();
         // }
 
-        sc.close();
+        // sc.close();
 
         // new Print<Integer>(2).enterPrint();
         // new Print<String>("2").enterPrint();
@@ -91,36 +92,43 @@ public class MainTata {
         // Mulai dari sini
         // Scanner sc = new Scanner(System.in);
 
-        // Player testPlayer = new Player("test");
-        // testPlayer.addCard(new CardWild());
-        // System.out.println("card left before " + testPlayer.getCardLeft());
+        Player testPlayer = new Player("test");
+        testPlayer.addCard(new CardWild());
+        System.out.println("card left before " + testPlayer.getCardLeft());
 
-        // DeclareHiji declare = new DeclareHiji(testPlayer);
+        DeclareHiji declare = new DeclareHiji(testPlayer);
 
-        // Thread t = new Thread(declare);
+        Thread t = new Thread(declare);
 
-        // System.out.println("before " + testPlayer.getHiji());
-        // // SetupGame game = new SetupGame();
-        // // game.getPlayer(sc);
+        System.out.println("before " + testPlayer.getHiji());
+        // SetupGame game = new SetupGame();
+        // game.getPlayer(sc);
         
-        // // Boolean isTrue = false;
-        // t.start();
+        // Boolean isTrue = false;
+        t.start();
         
-        // String input = sc.next();
-        // while (!input.equals("no")) {
-        //     // while (!isTrue) {
-        //     //     t.start();
-        //     //     isTrue = true;
-        //     // }
-        //     System.out.println("tes");
-        //     if (input.equals("ok")) {
-        //         t.interrupt();
-        //         testPlayer = declare.afterDeclare();
-        //     }
-        //     input = sc.next();
-        // }
-        // System.out.println("after " + testPlayer.getHiji());
-        // System.out.println("card left after " + testPlayer.getCardLeft());
+        String input = sc.next();
+        while (!input.equals("no")) {
+            // while (!isTrue) {
+            //     t.start();
+            //     isTrue = true;
+            // }
+            System.out.println("tes");
+            if (input.equals("ok")) {
+                t.interrupt();
+        System.out.println(t.isInterrupted());
+
+                testPlayer = declare.afterDeclare();
+            }
+            input = sc.next();
+        }
+        System.out.println("after " + testPlayer.getHiji());
+        System.out.println("card left after " + testPlayer.getCardLeft());
+
+        System.out.println(t.isInterrupted());
+        if (t.isInterrupted()) {
+            System.out.println("sudah dideclare hiji");
+        }
         
         // // System.out.println("break");
         // // int x = -1;
@@ -128,7 +136,7 @@ public class MainTata {
         // //     x = MainTata.scan(sc);
         // // }
 
-        // sc.close();
+        sc.close();
         // Game game = new Game();
         // PlayerCard playercard = new PlayerCard();
         // List<List<Card>> playerCardList = new ArrayList<>();

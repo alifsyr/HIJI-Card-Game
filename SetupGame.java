@@ -119,7 +119,8 @@ class SetupGame extends CardDeck {
 
         for (Player p : player) {
             int i = 0;
-            while (i < 7) {
+            // while (i < 7) {
+            while (i < 3) { // dummy
                 p.addCard(new CardNumber(4, AttributeColor.RED)); // dummy
                 // p.addCard(cardDeck.get(0));
                 cardDeck.remove(0);

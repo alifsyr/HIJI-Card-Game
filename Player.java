@@ -2,6 +2,7 @@ public class Player extends PlayerCard {
     // public static Object PlayerCard;
     private final String name;
     private Boolean isHiji = false;
+    private Boolean isChoosingCard = false;
 
     CardDeck deck = new CardDeck();
 
@@ -32,4 +33,12 @@ public class Player extends PlayerCard {
     public Boolean getHiji() {
         return isHiji;
     }
+
+    public void chooseCard() {
+        isChoosingCard = !isChoosingCard;
+    }
+
+    public Boolean getChooseCardStatus() {
+        return isChoosingCard;
+    } 
 }
