@@ -21,14 +21,14 @@ public class DeclareHiji extends Thread {
             }
             System.out.println(" ");
             if (currentPlayer.getChooseCardStatus()) {
-                System.out.print("Kartu mana yang akan kamu keluarkan (Ketik 0 untuk cancel)? ");
+                System.out.print("Kartu mana yang akan kamu keluarkan? ");
             } else {
                 System.out.print("Command yang ingin kamu jalankan: ");
             }
         } catch(InterruptedException e) {
             Thread.currentThread().interrupt();
-            // System.out.println("Selamat, berhasil declare HIJI");
-            currentPlayer.declareHiji();
+            System.out.println("Selamat, berhasil declare HIJI sebelum 3 detik!");
+            // currentPlayer.declareHiji();
         }
     }
 

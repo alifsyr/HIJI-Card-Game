@@ -29,8 +29,8 @@ public class PlayCard {
                 // return out.getType() == AttributeType.DRAW && out.getValue() == 4;
                 return out.getColor() == dimeja.getColor();
             
-            else if (out.getType() == AttributeType.DRAW && out.getValue() == 4) // Cek kalo mau keluarin +4
-                return dimeja.getType()!= AttributeType.DRAW && dimeja.getValue()!= 2;
+            // else if (out.getType() == AttributeType.DRAW && out.getValue() == 4) // Cek kalo mau keluarin +4
+                // return dimeja.getType()!= AttributeType.DRAW && dimeja.getValue()!= 2;
 
             else if (dimeja.getType() == AttributeType.NUMBER && out.getType()!= AttributeType.NUMBER)
                 return dimeja.getColor() == out.getColor();
@@ -57,7 +57,7 @@ public class PlayCard {
             cardList.add(card);
         } else {
             System.out.println("Kamu tidak bisa mengeluarkan kartu tersebut!");
-            System.out.println("kartu yang tidak bisa dikeluarkan " + card.printCard());
+            // System.out.println("kartu yang tidak bisa dikeluarkan " + card.printCard());
             return false;
         }
 

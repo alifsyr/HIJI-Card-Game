@@ -2,7 +2,11 @@
 Tugas besar Mata Kuliah IF2210 Pemrograman Berorientasi Obyek STI ITB 2021
 
 ## Kelompok 21: 
-Zachrandika Alif Syahreza, Michael Ryan Martin, Handy Zulkarnain, Natasya Jatiwicha Azzahra, Graciella Valiska Liander
+- Zachrandika Alif Syahreza 
+- Michael Ryan Martin 
+- Handy Zulkarnain
+- Natasya Jatiwicha Azzahra
+- Graciella Valeska Liander
 
 ## Info
 Semua code berada pada folder [\progress]

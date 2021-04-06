@@ -30,6 +30,10 @@ public class Player extends PlayerCard {
         }
     }
 
+    public void restartHiji() {
+        isHiji = false;
+    }
+
     public Boolean getHiji() {
         return isHiji;
     }
