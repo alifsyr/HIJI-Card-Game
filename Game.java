@@ -16,8 +16,8 @@ public class Game {
         System.out.println("| |              | || |              | || |              | || |              | |");
         System.out.println("| '--------------' || '--------------' || '--------------' || '--------------' |");
         System.out.println(" '----------------'  '----------------'  '----------------'  '----------------' ");
-        System.out.println("             Kelompok 21 | IF2212 Pemrograman Berorientasi Objek");
-        System.out.println("                              Ketik 1 untuk memulai");
+        System.out.println("      Kelompok 21 | IF2212 Pemrograman Berorientasi Objek | OperaVanJava");
+        System.out.println("                            Ketik 1 untuk memulai");
         System.out.println("");
         
         String start = sc.next();
