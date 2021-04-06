@@ -1,31 +1,38 @@
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Scanner;
 
-public class Declare {
-    static int time = 1;
+public class teshiji{
+    private String str = "";
 
+    public void getInput() throws Exception{
+        Timer timer = new Timer();
+        timer.schedule( task, 3*1000 );
 
-    Timer timer = new Timer();
-    TimerTask task = new TimerTask() {
+        System.out.println("Ketik HIJI dalam 3 detik!");
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+    
+        timer.cancel();
+        System.out.println(str + "berhasil diinput"); 
+    }
 
-    @Override
-    public void run() {
-        if (time == 1) {
-            System.out.println("Waktu kamu habis, kamu akan mendapat tambahan 2 kartu!");
-            System.exit(0);
+    TimerTask task = new TimerTask(){
+        public void run(){
+            if(str.equals("")){
+                System.out.println( "Waktu kamu habis, kamu akan mendapat tambahan 2 kartu!" );
+                // tambah dua kartu
+                System.exit( 0 );
             }
-         }
+        }    
     };
-    timer.schedule(task, 3000);
 
-    System.out.println("Ketik HIJI dalam 3 detik!");
-
-    Scanner sc = new Scanner(System.in);
-    String str = sc.nextLine();
-    time = 0;
-
-
-    System.out.println("Berhasil!");
-    System.exit(0);
+    public static void main( String[] args){
+        try {
+            (new teshiji()).getInput();
+        } catch( Exception e ){
+            System.out.println( e );
+            
+        }  
+    }
 }
