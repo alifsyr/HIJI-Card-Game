@@ -1,53 +1,8 @@
-
-// import java.util.Timer;
-// import java.util.ArrayList;
-// import java.util.Collections;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-// import java.util.Timer;
-// import java.util.TimerTask;
-// import java.util.Random;
-// import java.util.Scanner;
 
 public class Game {
-    // Card currCard;
-    // Card tableCard;
-    // Player[] player; // array nama pemain
-    // PlayerCard playercard = new PlayerCard();
-    // ArrayList<Card> card = new ArrayList<>();
-    // List<List<Card>> playerCardList = new ArrayList<>();
-    // ArrayList<Player> playerList = new ArrayList<>();
-
-    // public void startGame(){
-    // //manggil setup game
-    // SetupGame setupGame = new SetupGame();
-
-    // System.out.println("");
-    // setupGame.getPlayer();
-    // System.out.println("");
-
-    // // ngeshuffle
-    // System.out.println("Shuffling deck...");
-    // setupGame.shuffleDeck();
-
-    // // distribusi kartu
-    // System.out.println("Distribute card...");
-    // setupGame.distributeCard();
-
-    // // tablecard
-    // System.out.print("Table Card: ");
-    // System.out.print(setupGame.getTableCard().getType() + " ");
-    // System.out.print(setupGame.getTableCard().getColor() + " ");
-    // System.out.print(setupGame.getTableCard().getValue() + " ");
-    // System.out.println("");
-
-    // // player pertama
-    // System.out.println("Pemain pertama: " +
-    // setupGame.getFirstPlayer().getName());
-    // System.out.println("");
-    // }
-
     public void start(Scanner sc) {
         System.out.println("");
         System.out.println(".----------------.  .----------------.  .----------------.  .----------------. ");
@@ -95,12 +50,6 @@ public class Game {
         System.out.println(tableCard.printCard());
         System.out.println("");
     }
-    // public void step() {
-    // currTurn = (currTurn + playerOrder) % player.length;
-    // if (currCard instanceof CardReverse) {
-    // playerOrder = card.get(2).usePower(playerOrder);
-    // }
-    // }
 
     public void listCard(List<Card> playerCardList) {
         if (playerCardList.size() != 0) {
@@ -121,20 +70,12 @@ public class Game {
         new Print<String>("3. Yellow").enterPrint();
         new Print<String>("4. Green").enterPrint();
         new Print<String>("Warna apa yang kamu inginkan?").noEnterPrint();
-        // System.out.println("Kamu mengeluarkan sebuah wildcard");
-        // System.out.println("1. Red");
-        // System.out.println("2. Blue");
-        // System.out.println("3. Yellow");
-        // System.out.println("4. Green");
-        // System.out.print("Warna apa yang kamu inginkan? ");
     }
 
     public void getTableCard(Card card) {
         new Print<Character>(' ').enterPrint();;
-        // System.out.println("");
         System.out.println("Table Card: ");
         System.out.println(card.printCard());
-        // System.out.println("");
         new Print<Character>(' ').enterPrint();;
     }
 
@@ -143,44 +84,6 @@ public class Game {
         System.out.println(currentPlayer.getName());
         System.out.println("");
     }
-
-    // public void timer(){
-    // try {
-    // Thread.sleep(3000);
-    // ArrayList<Card> card = new ArrayList<>();
-    // playerCardList.add(card);
-    // playerCardList.get(i).add(cardDeck.get(j));
-    // } catch (InterruptedException ex) {
-
-    // }
-    // }
-
-    // public void setTimer(){
-    // // ini pake thread
-
-    // }
-
-    // public void checkHiji() {
-    // for (Player p : player) {
-    // for (int j = 0; j < playerCardList.size(); j++) {
-    // if (player[j] == player[currTurn]) {
-    // p.getName();
-    // // if (playerList.get(j).getCardLeft() == 1 && !p.getHiji){
-    // // nambah dua kartu
-    // // }
-    // }
-    // }
-    // }
-
-    // }
-
-    // public void getWinner() {
-    //     for (int j = 0; j < playerCardList.size(); j++) {
-    //         if (playerList.get(j).getCardLeft() == 0) {
-    //             System.out.println(player[j].getName() + " telah memenangkan game!");
-    //         }
-    //     }
-    // }
 
     public void viewPlayer(Player[] playerList, int currTurn) {
         for (int j = 0; j < playerList.length; j++) {
@@ -223,7 +126,6 @@ public class Game {
     }
 
     public static void clearScreen(){
-        //Clears Screen in java
         try {
             if (System.getProperty("os.name").contains("Windows"))
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
