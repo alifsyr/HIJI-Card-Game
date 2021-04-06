@@ -20,7 +20,7 @@ abstract class PlayerCard {
     public Boolean checkCard(Card card) {
         Boolean avail = false; 
         for (Card c : playerCardList) {
-            if (c.getType() == AttributeType.WILDCARD){ // Cek kalo kita mau keluarin wildcard
+            if (c.getType() == AttributeType.WILDCARD || c.getColor() == AttributeColor.BLACK){ // Cek kalo kita mau keluarin wildcard
                 avail = true;
             }
             else if (card.getType() == AttributeType.WILDCARD) { // Cek kalo di table lagi wild card

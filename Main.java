@@ -293,7 +293,7 @@ public class Main {
                                 t.start();
                                 anyThreadStarted = true;
                             }
-                            game.listCard(currentPlayer.getKartu());
+                            // game.listCard(currentPlayer.getKartu());
 
                             boolean anyDraw = false;
 
