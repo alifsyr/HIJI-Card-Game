@@ -13,17 +13,14 @@ public class DeclareHiji extends Thread {
             Thread.sleep(delay);
             System.out.println("\nDeclare HIJI terlambat!");
             System.out.println("Sudah lewat 3 detik!");
-            System.out.println("Kamu mendapat sebuah kartu dari deck!");
+            System.out.println("Kamu mendapat dua buah kartu dari deck!");
+            currentPlayer.addCard(deck.getCard());
             currentPlayer.addCard(deck.getCard());
         } catch(InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println("Selamat, berhasil declare HIJI");
-            successHiji();
+            currentPlayer.declareHiji();
         }
-    }
-
-    public void successHiji() {
-        currentPlayer.declareHiji();
     }
 
     public Player afterDeclare() {

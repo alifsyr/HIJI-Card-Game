@@ -355,6 +355,7 @@ public class Main {
                     } else {
                         System.out.println("");
                         System.out.println("Giliran akan diganti ke pemain selanjutnya");
+                        Game.clearScreen();
                     }
                 }
             } catch (NoSuchElementException e) {
@@ -371,6 +372,8 @@ public class Main {
         System.out.println("Terima kasih telah bermain HIJI!");
         System.out.println("Selamat kepada " + winner.getName() + " sebagai pemenang game kali ini!");
         System.out.println("");
+
+        System.exit(0);
 
         sc.close();
     }
