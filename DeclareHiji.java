@@ -28,7 +28,6 @@ public class DeclareHiji extends Thread {
         } catch(InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println("Selamat, berhasil declare HIJI sebelum 3 detik!");
-            // currentPlayer.declareHiji();
         }
     }
 
