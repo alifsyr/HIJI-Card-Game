@@ -20,8 +20,8 @@ public class PlayCard {
             else if (dimeja.getType() == AttributeType.WILDCARD) // Cek kalo di table lagi wild card
                 return dimeja.getColor() == out.getColor() || out.getColor() == AttributeColor.BLACK;
 
-            else if (dimeja.getType() == AttributeType.DRAW && dimeja.getValue() == 4) // Cek kalo di table Draw +4
-                return out.getColor() == dimeja.getColor();
+            // else if (dimeja.getType() == AttributeType.DRAW && dimeja.getValue() == 4) // Cek kalo di table Draw +4
+            //     return out.getColor() == dimeja.getColor();
             
             else if (dimeja.getType() == AttributeType.NUMBER && out.getType()!= AttributeType.NUMBER)
                 return dimeja.getColor() == out.getColor();
@@ -35,7 +35,7 @@ public class PlayCard {
             else if (out.getColor() == dimeja.getColor()) // Cek kalo warna sama
                 return true;
             
-            else if (out.getValue() == dimeja.getValue()) // cek kalo angka sama
+            else if (out.getValue() == dimeja.getValue() && dimeja.getType() != AttributeType.DRAW) // cek kalo angka sama
                 return true;
             
             else

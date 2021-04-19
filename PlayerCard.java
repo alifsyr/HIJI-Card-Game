@@ -30,7 +30,7 @@ abstract class PlayerCard {
                 avail = c.getType() == AttributeType.DRAW && c.getColor() == AttributeColor.BLACK;
             }
             else if (card.getType() == c.getType() && card.getType() != AttributeType.NUMBER){ // Cek kalo di table reverse/ draw/ skip
-                avail = card.getColor() == c.getColor();
+                avail = true;
             }
             else if (c.getType() != AttributeType.NUMBER) {
                 avail = c.getColor() == card.getColor(); 

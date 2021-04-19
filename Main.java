@@ -66,6 +66,7 @@ public class Main {
 
             DeclareHiji declare = new DeclareHiji(currentPlayer);
             Thread t = new Thread(declare);
+            PlayCard temp = new PlayCard(tableCard);
 
             try {
                 game.listCommand();
@@ -73,7 +74,6 @@ public class Main {
                 System.out.print("Command yang ingin dijalankan: ");
                 runGame = sc.next();
                 while (isTurn) {
-                    PlayCard temp = new PlayCard(tableCard);
 
 // ************************************************** Melihat List Kartu **************************************************//
 
@@ -117,7 +117,7 @@ public class Main {
                                         do {
                                             System.out.println("Mohon masukkan opsi Y/N.");
                                             decision = sc.next();
-                                        } while (!acceptedAnswers.contains(decision));
+                                        } while (!acceptedAnswers.contains(decision.toLowerCase()));
 
                                         if (decision.toLowerCase().equals("y")) {
                                             if (localCard.getType() == AttributeType.REVERSE) {
@@ -142,6 +142,7 @@ public class Main {
                                                 }
                                                 localCard.setColor(AttributeColor.values()[tempColor - 1]);
                                             }
+                                            isAvail = false;
                                             tableCard = localCard;
                                             System.out.println("Kartu dikeluarkan");
                                         } else {
@@ -207,7 +208,7 @@ public class Main {
                                                 System.out.print("Apakah kamu mau mengeluarkan kartu lagi (Y/N)? ");
                                                 runGame = sc.next();
                                             }
-                                            if (temp.length() > 2 && runGame.toLowerCase().equals("y")) {
+                                            if (temp.length() > 1 && runGame.toLowerCase().equals("y")) {
                                                 multDisc = true;
                                             }
                                         }    
@@ -230,7 +231,7 @@ public class Main {
                                     do {
                                         System.out.println("Mohon masukkan opsi Y/N.");
                                         decision = sc.next();
-                                    } while (!acceptedAnswers.contains(decision));
+                                    } while (!acceptedAnswers.contains(decision.toLowerCase()));
     
                                     if (decision.toLowerCase().equals("y")) {
                                         if (fromDeck.getType() == AttributeType.REVERSE) {
@@ -255,6 +256,7 @@ public class Main {
                                             }
                                             fromDeck.setColor(AttributeColor.values() [tempColor-1]);
                                         } 
+                                        isAvail = false; 
                                         tableCard = fromDeck;
                                         System.out.println("Kartu dikeluarkan");
                                     } 
@@ -330,6 +332,23 @@ public class Main {
                                             isThrow = true;
                                             System.out.println("Kartu " + throwCard.printCard() + " berhasil dikeluarkan!");
                                             System.out.println("Draw penalty saat ini sebanyak " + drawPenalty);
+                                            if (throwCard.getValue() == 4) {
+                                                game.getColorOption();
+                                                int tempColor = 0;
+                                                while (tempColor < 1 || tempColor > 4) {
+                                                    try {
+                                                        tempColor = sc.nextInt();
+                                                        if (tempColor < 1 || tempColor > 4) {
+                                                            System.out.print("Warna yang tersedia hanya 1-4");
+                                                        }
+                                                    } catch (InputMismatchException e) {
+                                                        System.out.println("Input tidak valid!");
+                                                        sc.next();
+                                                    }
+                                                }
+                                                throwCard.setColor(AttributeColor.values() [tempColor-1]);
+                                                tableCard = throwCard;
+                                            } 
                                         } else {
                                             System.out.println("Kamu tidak bisa mengeluarkan kartu tersebut!");
                                         }
@@ -405,7 +424,7 @@ public class Main {
                                     do {
                                         System.out.println("Mohon masukkan opsi Y/N.");
                                         decision = sc.next();
-                                    } while (!acceptedAnswers.contains(decision));
+                                    } while (!acceptedAnswers.contains(decision.toLowerCase()));
     
                                     if (decision.toLowerCase().equals("y")) {
                                         if (fromDeck.getType() == AttributeType.REVERSE) {
